@@ -6,7 +6,10 @@ import './pages.css'
 
 export default function AddNewJob() {
     const params = useParams()
-    
+    const token = JSON.parse(localStorage.getItem('petsJWT')) 
+    const [newJob, setNewJob] = useState({})
+    const navigate = useNavigate();
+
 
     const [formData, setFormData] = useState({
         "title": "",
@@ -29,10 +32,47 @@ export default function AddNewJob() {
                 })
     }
 
+
+    async function createNewJob(userId, formData, token) {
+        console.log("fetch running")
+        const url = `http://project4-rails-api.herokuapp.com/users/${userId}/jobs`
+        
+        const fetchOptions = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': 'Bearer ' + token.token 
+            },
+            body: JSON.stringify(formData)
+        };
+
+        try {
+            const response = await fetch(url, fetchOptions);
+            const data = await response.json()
+            return data
+
+        } catch(error) {
+            console.log(error)
+        }
+}
+
+  async function handleFormSubmit (e) {
+    console.log("submitting...")
+        e.preventDefault();
+        const newJob = await createNewJob(params.id, formData, token)
+        console.log("new job???")
+        console.log(newJob)
+        console.log(newJob.id)
+
+        if (!newJob.errors) {
+            navigate(`/users/${params.id}/jobs/${newJob.id}`)
+        }
+    }
+
   return (
     <div className='new-job-page'>
     <h1>Add new job:</h1>
-        <form className='new-job-form'>
+        <form className='new-job-form' onSubmit={handleFormSubmit}>
 
         <label>Title</label>
         <input type='text' name='title' value={formData.title} onChange={handleFormChange} />
