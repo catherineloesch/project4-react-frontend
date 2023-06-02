@@ -15,6 +15,7 @@ export default function Login() {
     })
 
     const logUserIn = async (loginDetails) => {
+
         const url = API_URL + "/users/login"
 
         const fetchOptions = {
@@ -25,6 +26,7 @@ export default function Login() {
             },
             body: JSON.stringify(loginDetails)
         };
+
         const response = await fetch(url, fetchOptions);
         
         if (!response.ok) {
@@ -37,10 +39,7 @@ export default function Login() {
     }
 
     const handleFormChange = (e) => {
-        setFormData({
-                  ...formData,
-                    [e.target.name]: e.target.value
-                })
+        setFormData({ ...formData, [e.target.name]: e.target.value})
     }
 
     const handleFormSubmit = async (e) => {
@@ -57,9 +56,7 @@ export default function Login() {
             navigate(`/users/${user.user.id}/dashboard`)
         }
     }
-        
     
-
   return (
     <div className='login-page'>
         <h1 className='page-title'>Login</h1>
@@ -76,7 +73,6 @@ export default function Login() {
             <h4>Don't have an account? <Link to='/users/signup'>Sign Up</Link></h4>
 
         </form>
-
       
     </div>
   )

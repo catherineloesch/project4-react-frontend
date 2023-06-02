@@ -1,13 +1,12 @@
 import React from 'react'
 import { useContext } from 'react';
-import "./Nav.css"
 import { Link, useNavigate } from "react-router-dom";
 import { LoginContext } from '../contexts/LoginContext';
+import "./Nav.css"
 
 export default function Nav() {
   const navigate = useNavigate();
-  const {userLoggedIn, setUserLoggedIn} = useContext(LoginContext);
-  const {currentUser, setCurrentUser} = useContext(LoginContext);
+  const { currentUser, setCurrentUser, userLoggedIn, setUserLoggedIn} = useContext(LoginContext);
 
   const handleLogOut = () => {
     localStorage.removeItem("petsJWT")

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useContext } from 'react';
 import { LoginContext } from '../contexts/LoginContext';
-import { useNavigate, Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import './pages.css'
 
 

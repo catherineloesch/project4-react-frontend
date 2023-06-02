@@ -6,9 +6,7 @@ import "./Card.css"
 
 export default function UserJobCard(props) {
     const navigate = useNavigate();
-
-    const { currentUser } = useContext(LoginContext);
-    const { userLoggedIn } = useContext(LoginContext);
+    const { currentUser, userLoggedIn } = useContext(LoginContext);
 
     const handleDelete = () => {
         if (userLoggedIn && currentUser.id == props.job.user_id) {
@@ -20,7 +18,6 @@ export default function UserJobCard(props) {
         if (userLoggedIn && currentUser.id == props.job.user_id)
         navigate(`/users/${props.job.user_id}/jobs/${props.job.id}/edit`)
     }
-
 
   return (
     <div>

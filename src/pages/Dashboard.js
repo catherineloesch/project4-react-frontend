@@ -1,10 +1,8 @@
 import React from 'react'
-import { LoginContext } from "../contexts/LoginContext"
-import { useContext } from 'react';
-import { useEffect } from 'react';
-
-import './pages.css'
+import { useEffect, useContext } from 'react';
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { LoginContext } from "../contexts/LoginContext"
+import './pages.css'
 
 export default function Dashboard({ verifyToken }) {
   const {userLoggedIn} = useContext(LoginContext);

@@ -1,9 +1,10 @@
 import React from 'react'
+import { useContext } from 'react';
+import { LoginContext } from "../contexts/LoginContext"
 import Nav from "./Nav";
 import "./Header.css"
 
-import { LoginContext } from "../contexts/LoginContext"
-import { useContext } from 'react';
+
 
 export default function Header() {
   const {currentUser, setCurrentUser} = useContext(LoginContext);

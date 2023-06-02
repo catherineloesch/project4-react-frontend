@@ -1,24 +1,20 @@
 import React from 'react'
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import JobCard from '../components/JobCard'
 import "./../components/Card.css"
 
 
-
-
 export default function Job() {
     const params = useParams()
-
-
     const [job, setJob] = useState(null);
 
     const fetchJob = async (id, job_id) => {
         return fetch(`http://project4-rails-api.herokuapp.com/users/${id}/jobs/${job_id}`)
     
     }
+
     useEffect(() => {
-     
        fetchJob(params.id, params.job_id)
         .then(res => res.json())
         .then(data => setJob(data))
