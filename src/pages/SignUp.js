@@ -15,7 +15,7 @@ export default function SignUp() {
 
     const navigate = useNavigate();
 
-
+    const [error, setError] = useState(null)
     const [formData, setFormData] = useState({
         username: "",
         password: "",
@@ -55,17 +55,26 @@ export default function SignUp() {
         })
             .then(response => response.json())
             .then(user => {
-             setCurrentUser(user.user)
-             setUserLoggedIn(true)
-             localStorage.setItem("petsJWT", JSON.stringify({token: user.token, username: user.user.username, user_id: user.user.id}))
-             navigate(`/users/dashboard`)
+                if (user.length) {
+                    setError(user)
+                } else {
+                    console.log(user)
+                    setCurrentUser(user.user)
+                    setUserLoggedIn(true)
+                    localStorage.setItem("petsJWT", JSON.stringify({token: user.token, username: user.user.username, user_id: user.user.id}))
+                    navigate(`/users/${user.user.id}/dashboard`)
+
+                }
+       
             })
         }
-    
+        
+    console.log(error)
 
   return (
     <div className='signup-page'>
     <h1 className='page-title'>Sign Up</h1>
+    {error && error.map(error => <p key={error}>{error}</p>)}
     <form className='signup-form' onSubmit={handleFormSubmit}>
             <label>Username</label>
             <input type='text' name='username' value={formData.username} onChange={handleFormChange}/>

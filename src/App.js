@@ -8,6 +8,9 @@ import Header from './components/Header';
 import { LoginContext } from './contexts/LoginContext';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom";
+import UserJobs from './pages/UserJobs';
+import AddNewJob from './pages/AddNewJob';
+import Job from './pages/Job';
 
 function App() {
   const navigate = useNavigate();
@@ -64,10 +67,17 @@ function App() {
 
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/jobs' element={<Jobs />} />
+        <Route path='/users/:id/jobs/:job_id' element={<Job />} />
+
         <Route path='/users/login' element={<Login />} />
         <Route path='/users/signup' element={<SignUp />} />
-        <Route path='/users/dashboard' element={<Dashboard />} />
-        <Route path='/jobs' element={<Jobs />} />
+
+        <Route path='/users/:id/dashboard' element={<Dashboard />} />
+        <Route path='/users/:id/jobs' element={<UserJobs />} />
+        <Route path='/users/:id/jobs/new' element={<AddNewJob />} />
+
+      
       </Routes>
 
       </LoginContext.Provider>

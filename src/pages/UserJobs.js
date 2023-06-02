@@ -5,53 +5,51 @@ import { useContext } from 'react';
 import { useState, useEffect } from 'react';
 import JobCard from '../components/JobCard'
 
-export default function Jobs() {
+export default function UserJobs() {
 
-    const [jobs, setJobs] = useState(null);
     const {currentUser, setCurrentUser} = useContext(LoginContext);
     const [userLoggedIn, setUserLoggedIn] = useState('false');
-    const params = useParams()
     const navigate = useNavigate();
 
+    const [jobs, setJobs] = useState(null);
+
+    const params = useParams()
+
     useEffect(() => {
-            fetchAllJobs(params.id)
+            fetchJobs(params.id)
             .then(res => res.json())
             .then(data => setJobs(data))
         }, [])
 
-  const fetchAllJobs = async (id) => {
-    return fetch(`http://project4-rails-api.herokuapp.com/jobs`)
+  const fetchJobs = async (id) => {
+    return fetch(`http://project4-rails-api.herokuapp.com/users/${id}/jobs`)
 
   }
 
   const handleAddNewJob = () => {
-    if (currentUser && userLoggedIn) {
-      console.log(currentUser)
-      console.log(userLoggedIn)
-      navigate(`/users/${currentUser.id}/jobs/new`)
-    }
-      else {
-        console.log(currentUser)
-          navigate('/users/login')
+      if (currentUser && userLoggedIn) {
+        navigate(`/users/${params.id}/jobs/new`)
       }
-  }
+        else {
+            navigate('/users/login')
+        }
+    }
 
   let display;
 
   if (jobs === null) {
     display = <p>Loading...</p>
   } else if (jobs === []) {
-    display = <p>No Jobs Found!</p>
+    display = <p>You haven't posted any jobs yet!</p>
   } else {
     display = jobs.map(job => <JobCard key={job.id} job={job}/>)
   }
 
   return (
     <div>
-        <h1>Browse Jobs:</h1>
+        <h1>My Jobs:</h1>
         {display}
         <button onClick={handleAddNewJob}>Add new Job Posting</button>
-
     </div>
   )
 }
