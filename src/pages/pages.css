@@ -1,0 +1,22 @@
+.page-title {
+    text-align: center;
+}
+
+.login-page, .signup-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-form, .signup-form {
+    background-color: darkolivegreen;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 50vw;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}

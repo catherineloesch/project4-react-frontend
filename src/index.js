@@ -8,9 +8,9 @@ import { AppState } from './AppState';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <AppState>
-    <Router>
-      <App />
-    </Router>
+  <Router>
+    <App />
+  </Router>
   </AppState>
 );
 

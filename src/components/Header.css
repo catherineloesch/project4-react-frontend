@@ -1,0 +1,10 @@
+.header {
+    background-color: darkolivegreen;
+    color: white;
+
+}
+
+.header .app-title {
+    text-align: center;
+    margin: 0;
+}

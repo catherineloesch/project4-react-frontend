@@ -1,9 +1,10 @@
 import React from 'react'
+import './pages.css'
 
 export default function Home() {
   return (
     <div>
-      <h1>HOME</h1>
+      <h1 className='page-title'>HOME</h1>
     </div>
   )
 }
