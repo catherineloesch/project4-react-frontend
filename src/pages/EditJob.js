@@ -1,66 +1,84 @@
 import React from 'react'
-import { useState, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import { LoginContext } from '../contexts/LoginContext';
-
 import './pages.css'
 
-export default function AddNewJob() {
+
+export default function EditJob() {
     const { API_URL } = useContext(LoginContext);
+    const token = JSON.parse(localStorage.getItem('petsJWT')) 
 
     const params = useParams()
-    const token = JSON.parse(localStorage.getItem('petsJWT')) 
     const navigate = useNavigate();
 
-    const [formData, setFormData] = useState({
-        "title": "",
-        "description": "",
-        "job_type": "",
-        "pay": "",
-        "start_date": "",
-        "start_time": "",
-        "end_date": "",
-        "end_time": "",
-        "location": "",
-        "user_id": params.id
-    })
+    const [formData, setFormData] = useState({})
+    const [job, setJob] = useState({})
+
+    async function fetchJob() {
+        return fetch(API_URL + `/users/${params.id}/jobs/${params.job_id}`)
+
+    }
+
+    useEffect(
+        () => { fetchJob(params.id,params.job_id)
+        .then(results => results.json())
+        .then(data => {
+            setJob(data)
+            setFormData({
+                title: data.title,
+                description: data.description,
+                job_type: data.job_type,
+                pay: data.pay,
+                start_date: data.start_date,
+                start_time: data.start_time,
+                end_date: data.end_date,
+                end_time: data.end_time,
+                location: data.location
+            })
+        })
+    }, [params.id, params.job_id])
+
+    async function updateJob(user_id, job_id, updatedJob, token) {
+        const url = API_URL + `/users/${user_id}/jobs/${job_id}`
+        const fetchOptions = {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + token.token
+            },
+            body: JSON.stringify(updatedJob)
+        }
+
+        const response = await fetch(url, fetchOptions);
+        if (!response.ok) {
+            const errorMessage = await response.text();
+            throw new Error(errorMessage);
+        }
+    
+        return response.json();
+    }
+  
 
     const handleFormChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
-    async function createNewJob(user_id, formData, token) {
-        const url = API_URL + `/users/${user_id}/jobs`
-        
-        const fetchOptions = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + token.token 
-            },
-            body: JSON.stringify(formData)
-        };
-
-        try {
-            const response = await fetch(url, fetchOptions);
-            const data = await response.json()
-            return data
-
-        } catch(error) {
-            console.log(error)
-        }
-}
-  async function handleFormSubmit (e) {
+    async function handleFormSubmit (e) {
         e.preventDefault();
-        const newJob = await createNewJob(params.id, formData, token)
-        if (!newJob.errors) {
-            navigate(`/users/${params.id}/jobs/${newJob.id}`)
+        const updatedJob = await updateJob(params.id, params.job_id,formData, token)
+        if (!updatedJob.errors) {
+            navigate(`/users/${params.id}/jobs/${updatedJob.id}`)
         }
     }
 
+   
+
+
+
   return (
     <div className='new-job-page'>
-    <h1>Add new job:</h1>
+    <h1>Edit job:</h1>
         <form className='new-job-form' onSubmit={handleFormSubmit}>
 
         <label>Title</label>

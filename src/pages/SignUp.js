@@ -1,18 +1,12 @@
 import React from 'react'
-import { useState } from 'react';
-// import { useAppState } from './../AppState';
-import './pages.css'
-
-import { useContext } from 'react';
-import { LoginContext } from '../contexts/LoginContext';
+import { useState, useContext } from 'react';
 import { Link, useNavigate } from "react-router-dom";
-
+import { LoginContext } from '../contexts/LoginContext';
+import './pages.css'
 
 export default function SignUp() {
 
-    const {currentUser, setCurrentUser} = useContext(LoginContext);
-    const {userLoggedIn, setUserLoggedIn} = useContext(LoginContext);
-
+    const { setCurrentUser,  setUserLoggedIn, API_URL} = useContext(LoginContext);
     const navigate = useNavigate();
 
     const [error, setError] = useState(null)
@@ -26,50 +20,43 @@ export default function SignUp() {
         description: ""
     })
 
-    // const { dispatch } = useAppState();
-
-    const action = {
-            type: "signup",
-            payload: formData
-    }
-
- 
-
-    const handleFormChange = (e) => {
-        setFormData({
-                  ...formData,
-                    [e.target.name]: e.target.value
-                })
-    }
-
-    const handleFormSubmit = (e) => {
-        e.preventDefault();
-        // console.log(action.type)
-        // dispatch(action['type']);
-        fetch("http://project4-rails-api.herokuapp.com/users", {
+    const createNewUser = async (newUser) => {
+        const url = API_URL + "/users"
+        const fetchOptions = {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Accept": "application/json"
             },
-            body: JSON.stringify(action.payload)
-        })
-            .then(response => response.json())
-            .then(user => {
-                if (user.length) {
-                    setError(user)
-                } else {
-                    console.log(user)
-                    setCurrentUser(user.user)
-                    setUserLoggedIn(true)
-                    localStorage.setItem("petsJWT", JSON.stringify({token: user.token, username: user.user.username, user_id: user.user.id}))
-                    navigate(`/users/${user.user.id}/dashboard`)
+            body: JSON.stringify(newUser)
+        };
 
-                }
-       
-            })
-        }
+        const response = await fetch(url, fetchOptions);
         
-    console.log(error)
+        if (!response.ok) {
+            const errorMessage = await response.text();
+            throw new Error(errorMessage);
+
+        }
+        return response.json();
+    }
+ 
+    const handleFormChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value })
+    }
+
+    const handleFormSubmit = async (e) => {
+        e.preventDefault();
+        const user = await createNewUser(formData)
+        if (user.length) {
+            setError(user)
+        } else {
+            setCurrentUser(user.user)
+            setUserLoggedIn(true)
+            localStorage.setItem("petsJWT", JSON.stringify({token: user.token, username: user.user.username, user_id: user.user.id}))
+            navigate(`/users/${user.user.id}/dashboard`)
+        }   
+    }
 
   return (
     <div className='signup-page'>
@@ -86,20 +73,19 @@ export default function SignUp() {
             <input type='text' name='email' value={formData.email} onChange={handleFormChange}/>
 
             <label>Name</label>
-            <input type='text' name='display_name' value={formData.displayName} onChange={handleFormChange} />
+            <input type='text' name='display_name' value={formData.display_name} onChange={handleFormChange} />
             
             <label>Address</label>
             <input type='text' name='address' value={formData.address} onChange={handleFormChange} />
 
             <label>About Me</label>
-            <input type='text' name='description' value={formData.description} onChange={handleFormChange}/>
+            <textarea type='text' name='description' value={formData.description} onChange={handleFormChange}/>
             
             <label>Age</label>
             <input type='text' name='age' value={formData.age} onChange={handleFormChange} />
 
-
-
             <input type='submit' value="Sign Up"/>
+            <h4>Already have an account? <Link to='/users/login'>Login</Link></h4>
         </form>
       
     </div>

@@ -1,53 +1,40 @@
 import React from 'react'
 import { useState, useContext } from 'react';
-// import { useAppState } from '../AppState';
-import './pages.css'
-import { LoginContext } from '../contexts/LoginContext';
 import { Link, useNavigate } from "react-router-dom";
-
+import { LoginContext } from '../contexts/LoginContext';
+import './pages.css'
 
 export default function Login() {
-    const {currentUser, setCurrentUser} = useContext(LoginContext);
-    const {userLoggedIn, setUserLoggedIn} = useContext(LoginContext);
-    const [error, setError] = useState(null)
-
+    const { setCurrentUser, setUserLoggedIn, API_URL} = useContext(LoginContext);
     const navigate = useNavigate();
 
+    const [error, setError] = useState(null)
     const [formData, setFormData] = useState({
         username: "",
         password: ""
     })
 
+    const logUserIn = async (loginDetails) => {
+        const url = API_URL + "/users/login"
 
-    // const [userData, setUserData] = useState(null)
-    // const {state, dispatch} = useAppState();
-    // console.log(state)
+        const fetchOptions = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(loginDetails)
+        };
+        const response = await fetch(url, fetchOptions);
+        
+        if (!response.ok) {
+            const errorMessage = await response.text();
+            throw new Error(errorMessage);
 
-    // useEffect(() => {
-    //     if (userData) {
-    //         console.log(userData)
-    //         const {token, user} = userData
-    //         dispatch({type: "login", payload: {token: token, user: user.username}})
-    //         }}
-    // , [userData])
-
-    const action = {
-            type: "login",
-            payload: formData
         }
+        return response.json();
 
-
-    // const action = {
-    //     login: () => {
-    //         return fetch("http://project4-rails-api.herokuapp.com" + "/users/login", {
-    //             method: "POST",
-    //                             headers: {
-    //                                 "Content-Type": "application/json"
-    //                             },
-    //                             body: JSON.stringify(formData)
-    //         }).then(response => response.json())
-    //     }
-    // }
+    }
 
     const handleFormChange = (e) => {
         setFormData({
@@ -56,31 +43,20 @@ export default function Login() {
                 })
     }
 
-    const handleFormSubmit = (e) => {
+    const handleFormSubmit = async (e) => {
         e.preventDefault();
-        
-        // dispatch({type: action['type']});
+        const user = await logUserIn(formData)
 
-        fetch("http://project4-rails-api.herokuapp.com/users/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(action.payload)
-        })
-            .then(response => response.json())
-            .then(user => {
-
-                if (user.error) {
-                    setError(user)}
-                else {
-                setCurrentUser(user.user)
-                setUserLoggedIn(true)
-                localStorage.setItem("petsJWT", JSON.stringify({token: user.token, username: user.user.username, user_id: user.user.id}))
-                navigate(`/users/${user.user.id}/dashboard`)
-                }})}
-        // action['login']().then(data => { setUserData(data) })
-    console.log(error)
+        if (user.error) {
+            setError(user)
+        }
+        else {
+            setCurrentUser(user.user)
+            setUserLoggedIn(true)
+            localStorage.setItem("petsJWT", JSON.stringify({token: user.token, username: user.user.username, user_id: user.user.id}))
+            navigate(`/users/${user.user.id}/dashboard`)
+        }
+    }
         
     
 
@@ -96,6 +72,9 @@ export default function Login() {
             <input type='password' name='password' value={formData.password} onChange={handleFormChange}/>
             
             <input type='submit' value="Log In"/>
+
+            <h4>Don't have an account? <Link to='/users/signup'>Sign Up</Link></h4>
+
         </form>
 
       

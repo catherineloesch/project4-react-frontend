@@ -1,20 +1,18 @@
 import React from 'react'
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect, useContext } from 'react';
+import { useNavigate} from "react-router-dom";
 import { LoginContext } from "../contexts/LoginContext"
-import { useContext } from 'react';
-import { useState, useEffect } from 'react';
 import JobCard from '../components/JobCard'
 
 export default function Jobs() {
 
-    const [jobs, setJobs] = useState(null);
-    const {currentUser, setCurrentUser} = useContext(LoginContext);
-    const [userLoggedIn, setUserLoggedIn] = useState('false');
-    const params = useParams()
+    const {currentUser, userLoggedIn} = useContext(LoginContext);
     const navigate = useNavigate();
 
+    const [jobs, setJobs] = useState(null);
+
     useEffect(() => {
-            fetchAllJobs(params.id)
+            fetchAllJobs()
             .then(res => res.json())
             .then(data => setJobs(data))
         }, [])

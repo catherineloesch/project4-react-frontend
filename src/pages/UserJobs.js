@@ -1,19 +1,17 @@
 import React from 'react'
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { LoginContext } from "../contexts/LoginContext"
 import { useContext } from 'react';
 import { useState, useEffect } from 'react';
-import JobCard from '../components/JobCard'
+import UserJobCard from '../components/UserJobCard'
 
 export default function UserJobs() {
 
-    const {currentUser, setCurrentUser} = useContext(LoginContext);
-    const [userLoggedIn, setUserLoggedIn] = useState('false');
+    const {currentUser, userLoggedIn} = useContext(LoginContext);
     const navigate = useNavigate();
-
+    const params = useParams()
     const [jobs, setJobs] = useState(null);
 
-    const params = useParams()
 
     useEffect(() => {
             fetchJobs(params.id)
@@ -26,14 +24,9 @@ export default function UserJobs() {
 
   }
 
-  const handleAddNewJob = () => {
-      if (currentUser && userLoggedIn) {
-        navigate(`/users/${params.id}/jobs/new`)
-      }
-        else {
-            navigate('/users/login')
-        }
-    }
+  const handleAddNewJob = () => ((currentUser && userLoggedIn) ? navigate(`/users/${params.id}/jobs/new`) : navigate('/users/login'))
+
+
 
   let display;
 
@@ -42,7 +35,7 @@ export default function UserJobs() {
   } else if (jobs === []) {
     display = <p>You haven't posted any jobs yet!</p>
   } else {
-    display = jobs.map(job => <JobCard key={job.id} job={job}/>)
+    display = jobs.map(job => <UserJobCard key={job.id} job={job}/>)
   }
 
   return (
