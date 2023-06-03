@@ -26,7 +26,6 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [userLoggedIn, setUserLoggedIn] = useState('false');
 
-  
   const verifyToken = async (token) => {
     const url = `http://project4-rails-api.herokuapp.com/users/auto_login`
     const fetchOptions = {

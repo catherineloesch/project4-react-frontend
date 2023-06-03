@@ -1,3 +1,39 @@
+/* 
+    -> fonts dowloaded from fontsquirrel.com
+    -> .woff files located in assets/fonts folder
+*/
+
+@font-face {
+  font-family: 'barlow';
+  src: url('./assets/fonts/barlow-regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'barlow';
+  src: url('./assets/fonts/barlow-bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+
+}
+
+@font-face {
+  font-family: 'barlow';
+  src: url('./assets/fonts/barlow-italic.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+
+}
+
+@font-face {
+  font-family: 'barlow';
+  src: url('./assets/fonts/barlow-bold-italic.woff') format('woff');
+  font-weight: bold;
+  font-style: italic;
+}
+
+
 @font-face {
   font-family: 'roboto';
   src: url('./assets/fonts/roboto-regular.woff') format('woff');
@@ -30,10 +66,11 @@
 
 body {
   margin: 0;
-  font-family: 'roboto', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  padding: 0;
+  font-family: 'barlow', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .btn {
-  font-family: 'roboto', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: 'barlow', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-size: 1.6vh;
 }

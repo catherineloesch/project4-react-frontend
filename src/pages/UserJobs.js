@@ -6,17 +6,17 @@ import UserJobCard from '../components/UserJobCard'
 
 export default function UserJobs() {
 
-  const {currentUser, userLoggedIn} = useContext(LoginContext);
+  const {currentUser, userLoggedIn, API_URL} = useContext(LoginContext);
+  
   const navigate = useNavigate();
   const params = useParams()
   const [jobs, setJobs] = useState(null);
 
 
-
   const fetchJobs = async (id) => {
-    return fetch(`http://project4-rails-api.herokuapp.com/users/${id}/jobs`)
+    const url = API_URL + `/users/${id}/jobs`
+    return fetch(url)
   }
-
 
   useEffect(
     () => {fetchJobs(params.id)

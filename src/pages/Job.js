@@ -1,6 +1,7 @@
 import React from 'react'
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
+import { LoginContext } from "../contexts/LoginContext"
 import JobCard from '../components/JobCard'
 import "./../components/Card.css"
 
@@ -8,9 +9,12 @@ import "./../components/Card.css"
 export default function Job() {
     const params = useParams()
     const [job, setJob] = useState(null);
+    const {API_URL} = useContext(LoginContext);
+
 
     const fetchJob = async (id, job_id) => {
-        return fetch(`http://project4-rails-api.herokuapp.com/users/${id}/jobs/${job_id}`)
+      const url = API_URL + `/users/${id}/jobs/${job_id}`
+        return fetch(url)
     
     }
 

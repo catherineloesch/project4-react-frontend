@@ -11,3 +11,6 @@ fonts:
 - 'Roboto' by Christian Robertson
   - source: fontquirrel
   - url: 'https://www.fontsquirrel.com/fonts/roboto'
+- 'Barlow' by Tribby
+  - source: fontquirrel
+  - url: 'https://www.fontsquirrel.com/fonts/barlow'

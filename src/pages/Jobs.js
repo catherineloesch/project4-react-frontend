@@ -6,7 +6,7 @@ import JobCard from '../components/JobCard'
 import "./pages.css"
 
 export default function Jobs() {
-  const {currentUser, userLoggedIn} = useContext(LoginContext);
+  const {currentUser, userLoggedIn, API_URL} = useContext(LoginContext);
   const navigate = useNavigate();
 
   const [jobs, setJobs] = useState(null);
@@ -18,7 +18,8 @@ export default function Jobs() {
       }, [])
 
   const fetchAllJobs = async (id) => {
-    return fetch(`http://project4-rails-api.herokuapp.com/jobs`)
+    const url = API_URL + '/jobs'
+    return fetch(url)
 
   }
 
