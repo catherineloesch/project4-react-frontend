@@ -7,4 +7,7 @@ fonts:
 
 - 'Lilly Regular' by Apostrophic Labs
   - source: fontquirrel
-    - https://www.fontsquirrel.com/fonts/lilly
+  - https://www.fontsquirrel.com/fonts/lilly
+- 'Roboto' by Christian Robertson
+  - source: fontquirrel
+  - url: 'https://www.fontsquirrel.com/fonts/roboto'

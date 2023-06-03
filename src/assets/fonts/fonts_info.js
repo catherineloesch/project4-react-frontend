@@ -3,5 +3,13 @@ const lilly = {
     by: 'Apostrophic Labs',
     source: 'fontsquirrel',
     url: 'https://www.fontsquirrel.com/fonts/lilly',
-    usage: ['header']
+    usage: 'header'
+}
+
+const roboto = {
+    fontName: 'Roboto',
+    by: 'Christian Robertson',
+    source: 'fontsquirrel',
+    url: 'https://www.fontsquirrel.com/fonts/roboto',
+    usage: 'body'
 }
