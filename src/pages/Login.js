@@ -68,7 +68,7 @@ export default function Login() {
             <label>Password</label>
             <input type='password' name='password' value={formData.password} onChange={handleFormChange}/>
             
-            <input type='submit' value="Log In"/>
+            <input type='submit' className='btn' value="Log In"/>
 
             <h4>Don't have an account? <Link to='/users/signup'>Sign Up</Link></h4>
 

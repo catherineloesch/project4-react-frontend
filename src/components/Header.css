@@ -1,10 +1,40 @@
-.header {
-    background-color: darkolivegreen;
-    color: white;
+
+ @font-face {
+    font-family: 'lillyregular';
+    src: url('./../assets/fonts/lilly-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 
 }
 
-.header .app-title {
-    text-align: center;
+.header {
+    background-color: darkolivegreen;
+    color: white;
     margin: 0;
+
+}
+
+.header .title-container {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    gap: 3vw;
+}
+
+.header .title-container .app-title {
+   text-align: center;
+    margin: 0;
+    color: #ffff80;
+    font-family: 'lillyregular', 'Chicle', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 5vh;
+    padding-top: 2vh;
+
+}
+
+.header .title-container .title-image-paw {
+    height: 5vh;
+    padding-top: 2vh;
+    display: inline;
+    transform: rotate(45deg);
 }

@@ -13,18 +13,18 @@ export default function EditJob() {
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({})
-    const [job, setJob] = useState({})
-
     async function fetchJob() {
         return fetch(API_URL + `/users/${params.id}/jobs/${params.job_id}`)
 
     }
 
     useEffect(
-        () => { fetchJob(params.id,params.job_id)
+        
+        () => { 
+            
+            fetchJob(params.id,params.job_id)
         .then(results => results.json())
         .then(data => {
-            setJob(data)
             setFormData({
                 title: data.title,
                 description: data.description,
@@ -37,7 +37,7 @@ export default function EditJob() {
                 location: data.location
             })
         })
-    }, [params.id, params.job_id])
+    }, [params.id, params.job_id, fetchJob])
 
     async function updateJob(user_id, job_id, updatedJob, token) {
         const url = API_URL + `/users/${user_id}/jobs/${job_id}`
@@ -108,7 +108,7 @@ export default function EditJob() {
         <label>Location</label>
         <input type='text' name='location' value={formData.location} onChange={handleFormChange} />
 
-        <input type='submit' value="Post Job"/>
+        <input type='submit' className='btn' value="Post Job"/>
 
         </form>
     </div>

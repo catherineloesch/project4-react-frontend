@@ -53,8 +53,12 @@ function App() {
     if (token) {
       verifyToken(token);
     } else {
-      navigate('/users/login')
-    }    }, []);
+      console.log(window.location.pathname)
+      if (window.location.pathname !== '/jobs' && window.location.pathname !== '/') {
+        navigate('/users/login')
+      }
+     
+    }    }, [navigate]);
   
   return (
     <div className="App">

@@ -2,6 +2,8 @@
     text-align: center;
 }
 
+
+/* Login + Sign Up + new Job Pages */
 .login-page, .signup-page, .new-job-page {
     display: flex;
     flex-direction: column;
@@ -19,4 +21,64 @@
     justify-content: center;
     align-items: center;
     border-radius: 10px;
+}
+
+/* Jobs Page */
+.jobs-title-container {
+    display: flex;
+    flex-direction: row;
+    gap: 40vw;
+    align-items: center;
+
+}
+
+.browse-jobs-title {
+    display: inline
+}
+
+.jobs-title-container  .btn-add-job {
+    height: 50%
+}
+
+
+/* Notification Page after account is successfully deleted */
+
+.notification-account-deleted {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    gap: 4vh;
+    margin: 0;
+}
+
+.account-deleted-text-container {
+    width: 60vw;
+    display: flex;
+    flex-direction: column;
+    gap: 5vh;
+    height: 85vh;
+}
+.account-deleted-text-container p {
+    font-size: 4.5vh;
+    padding-left: 15vw;
+    padding-right: 15vw;
+}
+
+.account-deleted-text-container a {
+    font-size: 3vh;
+    text-decoration: none;
+    color: darkolivegreen;
+    font-weight: 500;
+}
+
+.account-deleted-img-container {
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    background-color: darkolivegreen;
+}
+.account-deleted-img {
+   width: 100%;
 }

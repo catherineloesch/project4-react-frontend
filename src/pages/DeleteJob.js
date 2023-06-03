@@ -3,7 +3,7 @@ import { useState, useEffect, useContext } from 'react';
 import { LoginContext } from '../contexts/LoginContext';
 import { useNavigate, useParams } from "react-router-dom";
 import './pages.css'
-import JobCard from '../components/JobCard'
+import CardContent from '../components/CardContent'
 
 
 export default function DeleteJob() {
@@ -64,9 +64,9 @@ export default function DeleteJob() {
   return (
     <div className='new-job-page'>
     <h1>Are you sure you want to delete the following job:</h1>
-        <button onClick={handleDelete}>Yes, delete</button>
-        <button onClick={handleCancel}>Cancel</button>
-    <JobCard job={job} />
+        <button className='btn' onClick={handleDelete}>Yes, delete</button>
+        <button className='btn' onClick={handleCancel}>Cancel</button>
+    <CardContent job={job} />
    
     </div>
   )

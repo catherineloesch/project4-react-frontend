@@ -3,19 +3,19 @@ import { useState, useEffect, useContext } from 'react';
 import { useNavigate} from "react-router-dom";
 import { LoginContext } from "../contexts/LoginContext"
 import JobCard from '../components/JobCard'
+import "./pages.css"
 
 export default function Jobs() {
+  const {currentUser, userLoggedIn} = useContext(LoginContext);
+  const navigate = useNavigate();
 
-    const {currentUser, userLoggedIn} = useContext(LoginContext);
-    const navigate = useNavigate();
+  const [jobs, setJobs] = useState(null);
 
-    const [jobs, setJobs] = useState(null);
-
-    useEffect(() => {
-            fetchAllJobs()
-            .then(res => res.json())
-            .then(data => setJobs(data))
-        }, [])
+  useEffect(() => {
+          fetchAllJobs()
+          .then(res => res.json())
+          .then(data => setJobs(data))
+      }, [])
 
   const fetchAllJobs = async (id) => {
     return fetch(`http://project4-rails-api.herokuapp.com/jobs`)
@@ -45,10 +45,16 @@ export default function Jobs() {
   }
 
   return (
-    <div>
-        <h1>Browse Jobs:</h1>
-        {display}
-        <button onClick={handleAddNewJob}>Add new Job Posting</button>
+    <div className='jobs'>
+        <section className='jobs-title-container'>
+          <h1 className='browse-jobs-title'>Browse Jobs:</h1>
+          <button className='btn btn-add-job' onClick={handleAddNewJob}>Add new Job Posting</button>
+        </section>
+
+        <section>
+          {display}
+        </section>
+        
 
     </div>
   )

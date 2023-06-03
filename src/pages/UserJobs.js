@@ -22,7 +22,7 @@ export default function UserJobs() {
     () => {fetchJobs(params.id)
     .then(res => res.json())
     .then(data => setJobs(data))}
-, [])
+, [params.id])
 
   const handleAddNewJob = () => {
     (currentUser && userLoggedIn) ? navigate(`/users/${params.id}/jobs/new`) : navigate('/users/login')
@@ -42,7 +42,7 @@ export default function UserJobs() {
     <div>
         <h1>My Jobs:</h1>
         {display}
-        <button onClick={handleAddNewJob}>Add new Job Posting</button>
+        <button className='btn btn-add-job' onClick={handleAddNewJob}>Add new Job Posting</button>
     </div>
   )
 }

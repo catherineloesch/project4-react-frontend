@@ -18,7 +18,7 @@ export default function Job() {
        fetchJob(params.id, params.job_id)
         .then(res => res.json())
         .then(data => setJob(data))
-    }, [])
+    }, [params.id, params.job_id])
    
 
     // const handleDelete = () => {

@@ -92,8 +92,8 @@ export default function DeleteJob() {
     <h1>Are you sure you want to delete your account?</h1>
     <label>Password</label>
     <input type='password' name='password' value={formData.password} onChange={handleFormChange}/>
-        <button onClick={handleDelete}>Yes, delete</button>
-        <button onClick={handleCancel}>Cancel</button>
+        <button className='btn' onClick={handleDelete}>Yes, delete</button>
+        <button className='btn' onClick={handleCancel}>Cancel</button>
 
    
     </div>

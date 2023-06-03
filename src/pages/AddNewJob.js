@@ -90,7 +90,7 @@ export default function AddNewJob() {
         <label>Location</label>
         <input type='text' name='location' value={formData.location} onChange={handleFormChange} />
 
-        <input type='submit' value="Post Job"/>
+        <input type='submit' className='btn' value="Post Job"/>
 
         </form>
     </div>

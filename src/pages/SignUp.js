@@ -84,7 +84,7 @@ export default function SignUp() {
             <label>Age</label>
             <input type='text' name='age' value={formData.age} onChange={handleFormChange} />
 
-            <input type='submit' value="Sign Up"/>
+            <input type='submit' className='btn' value="Sign Up"/>
             <h4>Already have an account? <Link to='/users/login'>Login</Link></h4>
         </form>
       
