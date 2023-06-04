@@ -91,59 +91,48 @@
   /* font-family: 'roboto', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
 
 }
-/* 
-html {
-
-  overflow-x: hidden !important;
-  width: 100vw !important;  
-  background-color: var(--lightolive);
-
-} */
-
-
-
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: var(--font-main);
-  /* overflow-x: hidden !important; */
-  /* max-height: 100%; */
-  
 }
 
 body {
-  
   background: rgb(209,228,176);
   background: linear-gradient(90deg, rgba(209,228,176,1) 0%, rgba(240,255,212,1) 50%, rgba(209,228,176,1) 100%);
   width: 100%;
   height: 100vh;
-
-
-
 }
 
-/* .App {
-  width: 100%;
-  text-align: center
-} */
+.App { 
+  margin-top: 135px;  /* account for header covering text */
+}
 
-/* .btn {
+.btn {
   font-family: var(--font-main);
   font-size: 1.75vh;
   border-radius: 6px;
   padding: 0.4vh 0.4vw;
-} */
-/* 
+}
+
 a {
   text-decoration: none;
-} */
+}
 
-/* @media screen and (max-width: 825px) {
-  html { width: 100vw !important;}
-  * {
-    outline: 1px solid red;
-    overflow-x: hidden;
+/* media queries */
+
+@media screen and (max-width: 530px) {
+
+  .App {
+    margin-top: 190px;
   }
-} */
+
+}
+
+@media screen and (max-width: 400px) {
+  .App {
+    margin-top: 170px;
+  }
+}

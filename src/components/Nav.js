@@ -9,7 +9,6 @@ import "./Header.css"
 export default function Nav(props) {
   const navigate = useNavigate();
   const { currentUser, setCurrentUser, userLoggedIn, setUserLoggedIn} = useContext(LoginContext);
-  const [navActive, setNavActive] = useState(false)
 
   const handleLogOut = () => {
     localStorage.removeItem("petsJWT")
@@ -45,8 +44,8 @@ export default function Nav(props) {
   
   return (
     <nav className='nav'>
-      <ul className={props.showHamburgerMenu ? 'nav-list active' : 'nav-list'} onClick={() => setNavActive(!navActive)}>
-          {navLinks.map((navLink, index) => (navLink ? <li key={index}>{navLink}</li> : null))}
+      <ul className={props.showHamburgerMenu ? 'nav-list active' : 'nav-list'} >
+          {navLinks.map((navLink, index) => (navLink ? <li key={index} onClick={()=>(props.setShowHamburgerMenu(false))}>{navLink}</li> : null))}
       
           {/* toggle menu: when hamburger menu is visble, cross icon will display, when it's not visible, hamburger icon will display */}
       </ul>
