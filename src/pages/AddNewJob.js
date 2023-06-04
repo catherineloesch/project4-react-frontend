@@ -2,7 +2,6 @@ import React from 'react'
 import { useState, useContext } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import { LoginContext } from '../contexts/LoginContext';
-
 import './pages.css'
 
 export default function AddNewJob() {
@@ -11,6 +10,14 @@ export default function AddNewJob() {
     const params = useParams()
     const token = JSON.parse(localStorage.getItem('petsJWT')) 
     const navigate = useNavigate();
+
+    const job_types = [
+        'Dog Walking',
+        'Boarding',
+        'Pet + House Sitting',
+        'Doggy Day Care',
+        'Drop-In Visit(s)'
+    ]
 
     const [formData, setFormData] = useState({
         "title": "",
@@ -52,6 +59,7 @@ export default function AddNewJob() {
 }
   async function handleFormSubmit (e) {
         e.preventDefault();
+        console.log(formData)
         const newJob = await createNewJob(params.id, formData, token)
         if (!newJob.errors) {
             navigate(`/users/${params.id}/jobs/${newJob.id}`)
@@ -70,8 +78,10 @@ export default function AddNewJob() {
         <textarea type='text' name='description' value={formData.description} onChange={handleFormChange} />
 
         <label>Job Type</label>
-        <input type='text' name='job_type' value={formData.job_type} onChange={handleFormChange} />
-        
+        <select name='job_type' onChange={handleFormChange}>
+            {job_types.map((t, i) => (<option key={i} value={t}>{t}</option>))}
+        </select>
+
         <label>pay</label>
         <input type='text' name='pay' value={formData.pay} onChange={handleFormChange} />
         

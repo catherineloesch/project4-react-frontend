@@ -35,7 +35,7 @@ const handleEdit = () => {
 
   return (
     <div>
-    {params.job_id ? <h3>{props.job.title}</h3> :  <Link to={`/users/${props.job.user_id}/jobs/${props.job.id}`}><h3>{props.job.title}</h3></Link>}
+    {params.job_id ? <h2>{props.job.title}</h2> :  <Link to={`/users/${props.job.user_id}/jobs/${props.job.id}`}><h3>{props.job.title}</h3></Link>}
    
         <p>details: {props.job.description}</p>
         {props.job.location && <p>location: {props.job.location}</p>}
