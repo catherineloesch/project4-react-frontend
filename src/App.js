@@ -47,17 +47,20 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    let token = JSON.parse(localStorage.getItem('petsJWT'))
-    if (token) {
-      verifyToken(token);
-    } else {
-      console.log(window.location.pathname)
-      if (window.location.pathname !== '/jobs' && window.location.pathname !== '/') {
-        navigate('/users/login')
-      }
+  // useEffect(() => {
+  //   let token = JSON.parse(localStorage.getItem('petsJWT'))
+  //   if (token) {
+  //     verifyToken(token);
+  //   } else {
+  //     const unprotectedRoutes = ['/', '/jobs', '/signup', '/users/login', '/users/signup', 'users/accountdeleted']
+
+  //     console.log(window.location.pathname)
+  //     console.log(!unprotectedRoutes.includes( window.location.pathname))
+  //     if (!unprotectedRoutes.includes(window.location.pathname)) {
+  //       navigate('/users/login')
+  //     }
      
-    }    }, [navigate]);
+  //   }    }, [navigate]);
   
   return (
     <div className="App">

@@ -21,3 +21,11 @@ const barlow = {
     url: 'https://www.fontsquirrel.com/fonts/barlow',
     usage: 'body'
 }
+
+const nunito = {
+    fontName: 'Nunito',
+    by: 'Vernon Adams, Cyreal, Jacques Le Bailly',
+    source: 'Google Fonts',
+    url: 'https://fonts.google.com/specimen/Nunito',
+    usage: 'body'
+}

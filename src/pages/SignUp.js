@@ -8,12 +8,13 @@ export default function SignUp() {
 
     const { setCurrentUser,  setUserLoggedIn, API_URL} = useContext(LoginContext);
     const navigate = useNavigate();
+    const [token, setToken] = useState(null)
 
     const [error, setError] = useState(null)
     const [formData, setFormData] = useState({
         username: "",
         password: "",
-        displayName: "",
+        display_name: "",
         age: "",
         email: "",
         address: "",
@@ -40,10 +41,103 @@ export default function SignUp() {
         }
         return response.json();
     }
+
+
+    // const createNewUser = async (newUser) => {
+    //     const url = 'http://localhost:4000' + '/signup'
+    //     const fetchOptions = {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             "Accept": "application/json"
+    //         },
+    //         body: JSON.stringify({ "user": newUser})
+    //     };
+        
+
+
+    //     let response = await fetch(url, fetchOptions)
+    //     console.log(response)
+
+
+    //     const auth = response.headers.get('Authorization').split(' ')[1]
+        
+    //     async function saveToken() {
+    //         setToken(auth)
+    //         console.log('auth', auth)
+    //         console.log('token', token)
+    //     }
+
+    //     await saveToken()
+        // .then(response => {
+        //     setToken(response.headers.get('Authorization').split(' ')[1])
+        // });
+   
+        // if (!response.ok) {
+        //     const errorMessage = await response.text();
+        //     throw new Error(errorMessage);
+
+        // }
+    //     return response.json()
+    // }
+
+    // async function retrieveCurrentUserFromAPI() {
+
+    //     if (token) {
+    //         const url = 'http://localhost:4000/current_user/info'
+        
+    //         const fetchOptions = {
+    //             method: 'GET',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //                 'Authorization': 'Bearer ' + token
+    //         }}
+
+    //         const newUser = await fetch(url, fetchOptions).then(res => res.json())
+    //         return newUser
+
+    //     } else {
+    //         console.log('no token')
+    //         return null
+    //     }
+
+    // }
+
+
+
  
     const handleFormChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
+
+    // const handleFormSubmit = async (e) => {
+    //     e.preventDefault();
+
+    //     const apiResponse = await createNewUser(formData)
+    //     console.log('apiResponse')
+    //     console.log(apiResponse)
+        
+    //     if (apiResponse) {
+    //         let newUser = await retrieveCurrentUserFromAPI()
+    //         if (newUser==null) {
+    //             await new Promise(r => setTimeout(r, 5000));
+    //             newUser = await retrieveCurrentUserFromAPI()
+
+    //         }
+    //         console.log('newUser')
+    //         console.log(newUser)
+    //     }
+
+  
+        // error handling goes here
+       
+
+            // setCurrentUser(user.user)
+            // setUserLoggedIn(true)
+            // localStorage.setItem("petsJWT", JSON.stringify({token: user.token, username: user.user.username, user_id: user.user.id}))
+            // navigate(`/users/${user.user.id}/dashboard`)
+    
+    // }
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
@@ -53,10 +147,14 @@ export default function SignUp() {
         } else {
             setCurrentUser(user.user)
             setUserLoggedIn(true)
+            console.log('user')
+            console.log(user.user)
             localStorage.setItem("petsJWT", JSON.stringify({token: user.token, username: user.user.username, user_id: user.user.id}))
             navigate(`/users/${user.user.id}/dashboard`)
         }   
     }
+
+
 
   return (
     <div className='signup-page'>
