@@ -14,6 +14,7 @@ export default function Header() {
 
   return (
     <div className='header'>
+      
         <div>
           <h1 className='app-title'>Pawnee Pets <i className={pawIcon.className}></i></h1>
         </div>
@@ -21,8 +22,9 @@ export default function Header() {
         <div className='mobile-toggle-icons' onClick={() => setShowHamburgerMenu(!showHamburgerMenu)}>
           <i className={showHamburgerMenu ? closeIcon.className : hamburgerIcon.className}></i>
         </div>
-        
-        <Nav />
+     
+
+        <Nav showHamburgerMenu={showHamburgerMenu}/>
         {/*currentUser&&userLoggedIn ? <h1>welcome {currentUser.username}</h1> : <h1>Please sign in</h1>*/}
     </div>
   )

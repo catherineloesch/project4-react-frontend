@@ -6,9 +6,10 @@ import { homeIcon} from './../assets/icons'
 
 import "./Header.css"
 
-export default function Nav() {
+export default function Nav(props) {
   const navigate = useNavigate();
   const { currentUser, setCurrentUser, userLoggedIn, setUserLoggedIn} = useContext(LoginContext);
+  const [navActive, setNavActive] = useState(false)
 
   const handleLogOut = () => {
     localStorage.removeItem("petsJWT")
@@ -24,6 +25,7 @@ export default function Nav() {
   } else {
     id = ""
   }
+
 
 
   const navLinks = [
@@ -43,15 +45,12 @@ export default function Nav() {
   
   return (
     <nav className='nav'>
-      {/*<ul className='nav' id={showHamburgerMenu ? 'nav-mobile-show' : 'nav-mobile-hide' >*/}
-      <ul className='nav-list'>
+      <ul className={props.showHamburgerMenu ? 'nav-list active' : 'nav-list'} onClick={() => setNavActive(!navActive)}>
           {navLinks.map((navLink, index) => (navLink ? <li key={index}>{navLink}</li> : null))}
       
           {/* toggle menu: when hamburger menu is visble, cross icon will display, when it's not visible, hamburger icon will display */}
       </ul>
-      {/*<div onClick={() => (setShowHamburgerMenu(!showHamburgerMenu))}>
-        {showHamburgerMenu ? <div className='icon-close'>{closeIcon}</div>:<div className='icon-hamburger'>{hamburgerIcon}</div>}
-    </div> */}
+
     
   </nav>
   )

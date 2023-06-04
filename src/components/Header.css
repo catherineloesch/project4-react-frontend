@@ -258,6 +258,10 @@
 
 @media screen and (max-width: 850px) {
 
+    .app-title,  .fa-paw{
+        font-size: 7vw;
+    }
+
     .nav .nav-list {
         background-color: var(--darkolive-a);
         display: flex;
@@ -270,9 +274,20 @@
         height: auto;
         position: absolute;
         top: 0;
-        left: 0;
+     
+        left: -110%;
         align-items: stretch;
         padding: 80px 0 30px 0;
+        z-index: -1;
+    }
+
+    .nav .nav-list.active {
+        left: 0%;
+    }
+
+    .mobile-toggle-icons {
+        display: block;
+
     }
 
     .nav .nav-list a {
@@ -282,4 +297,6 @@
 
     
     }
+
+
 }
