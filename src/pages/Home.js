@@ -6,7 +6,11 @@ import { Link } from 'react-router-dom'
 
 export default function Home() {
   return (
-    <div>
+    <div className='home'>
+    <img src={require('./../assets/images/dog_vector.png')} alt=""  className='dog-vector-img'  />
+    <img src={require('./../assets/images/dog_cat.jpg')} alt="photograph a dog and a cat" className='dog-cat-img'  />
+    <img src={require('./../assets/images/pitbull_vector.png')} alt=""  className='pitbull-vector-img'  />
+
       <section>
         <h2> Welcome to Pawnee Pets!</h2>
        
@@ -124,6 +128,15 @@ export default function Home() {
 
 
         </ul>
+
+        <img src={require('./../assets/images/kittens.jpg')} alt="photograph two kittens" className='kittens-img'  />
+        
+        <img src={require('./../assets/images/puppy1.jpg')} alt="photograph puppy" className='puppy1-img'  />
+        <img src={require('./../assets/images/rabbit.jpg')} alt="" className='rabbit-img'  />
+        <img src={require('./../assets/images/puppy2.jpg')} alt="photograph puppy"  className='puppy2-img'  />
+        
+        <img src={require('./../assets/images/english_cocker_spaniel.jpg')} alt=""  className='ecs-img'  />
+
         
 
 

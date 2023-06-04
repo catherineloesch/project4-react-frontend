@@ -82,3 +82,32 @@
 .account-deleted-img {
    width: 100%;
 }
+
+/* home images */
+
+.home .dog-cat-img {
+    width: 15%;
+}
+
+.home .kittens-img {
+    width: 15%;
+}
+.home .puppy1-img {
+    width: 15%;
+}
+.home .puppy2-img {
+    width: 15%;
+}
+.home .dog-vector-img {
+    width: 10%;
+}
+.home .ecs-img {
+    width: 30%;
+}
+.home .rabbit-img {
+    width: 25%;
+}
+
+.pitbull-vector-img {
+    width: 8%;
+}
