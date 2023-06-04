@@ -3,6 +3,7 @@ import React from 'react'
 import { useContext } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { LoginContext } from '../contexts/LoginContext';
+import { pawIconR, pawIconL, pawIcon } from './../assets/icons';
 
 import "./Card.css"
 
@@ -18,11 +19,14 @@ export default function JobCard(props) {
         navigate(`/users/${props.job.user_id}/jobs/${props.job.id}/delete`)
     }
 }
-
+console.log(userLoggedIn)
 const handleEdit = () => {
     if (userLoggedIn && currentUser.id == props.job.user_id)
     navigate(`/users/${props.job.user_id}/jobs/${props.job.id}/edit`)
 }
+  
+  const jobTitle = ( <h2><i className={pawIconL.className}></i>&nbsp;&nbsp;{props.job.title}&nbsp;&nbsp;<i className={pawIconR.className}></i></h2>)
+
   let buttons;
 
   if (userLoggedIn && currentUser) {
@@ -35,8 +39,9 @@ const handleEdit = () => {
 
   return (
     <div>
-    {params.job_id ? <h2>{props.job.title}</h2> :  <Link to={`/users/${props.job.user_id}/jobs/${props.job.id}`}><h3>{props.job.title}</h3></Link>}
-   
+    {
+      params.job_id ? jobTitle : <Link to={`/users/${props.job.user_id}/jobs/${props.job.id}`}>{jobTitle}</Link>
+    }
         <p>details: {props.job.description}</p>
         {props.job.location && <p>location: {props.job.location}</p>}
         {props.job.pay && <p>pay: {props.job.pay}</p>}

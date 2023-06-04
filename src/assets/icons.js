@@ -21,6 +21,20 @@ const pawIcon = {
       html: (<i class="fa-solid fa-paw"></i>)
 }
 
+const pawIconL = {
+      source: 'FontAwesome',
+      url: 'https://fontawesome.com/icons/paw?f=classic&s=solid&rt=rotate-270',
+      className: "fa-solid fa-paw fa-rotate-270",
+      html: (<i class="fa-solid fa-paw fa-rotate-270"></i>)
+}
+
+const pawIconR = {
+      source: 'FontAwesome',
+      url: 'https://fontawesome.com/icons/paw?f=classic&s=solid&rt=rotate-90',
+      className: "fa-solid fa-paw fa-rotate-90",
+      html: (<i class="fa-solid fa-paw fa-rotate-90"></i>)
+}
+
 //header nav links
 const homeIcon = {
       source: 'FontAwesome',
@@ -44,6 +58,41 @@ const hamburgerIcon = {
       html: (<i class="fa-solid fa-bars"></i>)
 }
 
+// Home Page
+
+const catIcon = {
+      source: 'FontAwesome',
+      url: 'https://fontawesome.com/icons/cat?f=classic&s=solid',
+      className: "fa-solid fa-cat",
+      html: (<i class="fa-solid fa-cat"></i>)
+}
+
+const dogIcon = {
+      source: 'FontAwesome',
+      url: 'https://fontawesome.com/icons/dog?f=classic&s=solid',
+      className: "fa-solid fa-dog",
+      html: (<i class="fa-solid fa-dog"></i>)
+}
+
+const boneIcon = {
+      source: 'FontAwesome',
+      url: 'https://fontawesome.com/icons/bone?f=classic&s=solid',
+      className: "fa-solid fa-bone",
+      html: (<i class="fa-solid fa-bone"></i>)
+}
 
 
-export { hamburgerIcon, closeIcon, homeIcon, pawIcon};
+
+
+
+export { 
+      hamburgerIcon,
+      pawIconR,
+      pawIconL, 
+      closeIcon, 
+      homeIcon, 
+      pawIcon, 
+      catIcon, 
+      dogIcon,
+      boneIcon
+ };
