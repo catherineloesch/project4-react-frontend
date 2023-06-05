@@ -2,6 +2,7 @@ import React from 'react'
 import { useContext, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { LoginContext } from '../contexts/LoginContext';
+import { logUserOut } from './../api/user_api'
 import { homeIcon} from './../assets/icons'
 
 import "./Header.css"
@@ -9,42 +10,24 @@ import "./Header.css"
 export default function Nav(props) {
   const navigate = useNavigate();
   const { currentUser, setCurrentUser, userLoggedIn, setUserLoggedIn, API_URL} = useContext(LoginContext);
-  const [error, setError] = useState(null)
-  const setUser = async (user) => {
-    await setCurrentUser(null)
-    await setUserLoggedIn(false)
-}
-
-  const logUserOut = async () => {
-    const url = API_URL + "/logout"
-    const token = JSON.parse(localStorage.getItem('petsJWT'))
-
-    const fetchOptions = {
-        method: "DELETE",
-        headers: {
-                   'Content-Type': 'application/json',
-                   'Authorization': 'Bearer ' + token.token
-                  }}
-
-    const response = await fetch(url, fetchOptions);
-    if (!response.ok) {
-      const errorMessage = await response.text();
-      throw new Error(errorMessage);
-
-    }
-    return response.json();
-  }
+  const [errors, setErrors] = useState(null)
 
   const handleLogOut = async () => {
     const apiResponse = await logUserOut()
-    if (apiResponse.status !== 200) {
-      setError(apiResponse)
+
+    if (apiResponse.error) {
+      setErrors(apiResponse.message.split('.')[1])
+
     } else {
+
+      await setCurrentUser(null)
+      await setUserLoggedIn(false)
+
       localStorage.removeItem("petsJWT")
-      await setUser()
       navigate('/')
     }
   }
+  
 
   let id;
   if (currentUser) {

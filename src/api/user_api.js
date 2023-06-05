@@ -1,8 +1,4 @@
-import { useContext } from 'react';
-import { LoginContext } from '../contexts/LoginContext';
 import { API_URL } from './api_url';
-
-
 
 export const createNewUser = async (newUser) => {
     const url = API_URL + '/signup'
@@ -16,18 +12,7 @@ export const createNewUser = async (newUser) => {
     };
     
     let response = await fetch(url, fetchOptions)
-    console.log('response');
-    console.log(response);
    
-    
-    // async function saveToken() {
-    // }
-
-    // await saveToken()
-    // .then(response => {
-    //     setToken(response.headers.get('Authorization').split(' ')[1])
-    // });
-
     if (!response.ok) {
         const error = await response.json()
         return {error: true, code: error.status.code, message: error.status.message}
@@ -37,13 +22,10 @@ export const createNewUser = async (newUser) => {
         localStorage.setItem("petsJWT", JSON.stringify({token: auth, user: newUser.email}))
         return response.json()
     }
-   
 }
 
 export const logUserIn = async (loginDetails) => {
     const url = API_URL + "/login"
-    
-
     const fetchOptions = {
         method: "POST",
         headers: {
@@ -76,7 +58,6 @@ export const logUserOut = async () => {
     const url = API_URL + "/logout"
     const token = JSON.parse(localStorage.getItem('petsJWT'))
 
-
     const fetchOptions = {
         method: "DELETE",
         headers: {
@@ -85,14 +66,15 @@ export const logUserOut = async () => {
                   }}
 
     const response = await fetch(url, fetchOptions);
+
     if (!response.ok) {
-      const errorMessage = await response.text();
-      throw new Error(errorMessage);
+        const error = await response.json()
+        return {error: true, code: error.status.code, message: error.status.message}
 
+    } else {
+        return response.json()
     }
-    return response.json();
 }
-
 
 export const getCurrentUser = async () => {
     const url = API_URL + "/current_user"

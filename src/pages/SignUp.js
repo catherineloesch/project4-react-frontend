@@ -7,7 +7,7 @@ import './pages.css'
 
 export default function SignUp() {
 
-    const { currentUser, setCurrentUser, userLoggedIn, setUserLoggedIn, API_URL} = useContext(LoginContext);
+    const { setCurrentUser, setUserLoggedIn } = useContext(LoginContext);
     const navigate = useNavigate();
     const [errors, setErrors] = useState(null);
     const [formData, setFormData] = useState({
@@ -42,8 +42,6 @@ export default function SignUp() {
             navigate(`/users/${apiResponse.data.id}/dashboard`)
         }
     }
-
-
 
     // ------------------------------------------------------------------------------------------
         ///backend api without devise: project4-rails-api

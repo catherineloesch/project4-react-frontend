@@ -83,7 +83,6 @@ function App() {
   //     }
      
   //   }    }, [navigate]);
-  console.log(API_URL)
   
   return (
     <div className="App">
