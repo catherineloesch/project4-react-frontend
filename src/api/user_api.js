@@ -1,5 +1,9 @@
 import { API_URL } from './api_url';
 
+// ------------------------------------------------------------------------------------------------
+    // SIGN UP
+// ------------------------------------------------------------------------------------------------
+
 export const createNewUser = async (newUser) => {
     const url = API_URL + '/signup'
     const fetchOptions = {
@@ -24,6 +28,10 @@ export const createNewUser = async (newUser) => {
     }
 }
 
+// ------------------------------------------------------------------------------------------------
+    // LOG IN
+// ------------------------------------------------------------------------------------------------
+
 export const logUserIn = async (loginDetails) => {
     const url = API_URL + "/login"
     const fetchOptions = {
@@ -36,23 +44,21 @@ export const logUserIn = async (loginDetails) => {
     };
 
     const response = await fetch(url, fetchOptions);
-    const auth = response.headers.get('Authorization').split(' ')[1]
-    async function saveToken() {
-        localStorage.setItem("petsJWT", JSON.stringify({token: auth, user: loginDetails.email}))
-    }
 
-    await saveToken()
-    
     if (!response.ok) {
-        const errorMessage = await response.text();
-        throw new Error(errorMessage);
+        const error = await response.json()
+        return error
 
+    } else {
+        const auth = response.headers.get('Authorization').split(' ')[1]
+        localStorage.setItem("petsJWT", JSON.stringify({token: auth, user: loginDetails.email}))
+        return response.json()
     }
-    return response.json();
-
 }
 
-
+// ------------------------------------------------------------------------------------------------
+    //LOG OUT
+// ------------------------------------------------------------------------------------------------
 
 export const logUserOut = async () => {
     const url = API_URL + "/logout"
@@ -75,6 +81,10 @@ export const logUserOut = async () => {
         return response.json()
     }
 }
+
+// ------------------------------------------------------------------------------------------------
+    // GET CURRENT USER
+// ------------------------------------------------------------------------------------------------
 
 export const getCurrentUser = async () => {
     const url = API_URL + "/current_user"
