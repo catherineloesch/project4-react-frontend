@@ -8,14 +8,42 @@ import "./Header.css"
 
 export default function Nav(props) {
   const navigate = useNavigate();
-  const { currentUser, setCurrentUser, userLoggedIn, setUserLoggedIn} = useContext(LoginContext);
+  const { currentUser, setCurrentUser, userLoggedIn, setUserLoggedIn, API_URL} = useContext(LoginContext);
+  const [error, setError] = useState(null)
+  const setUser = async (user) => {
+    await setCurrentUser(null)
+    await setUserLoggedIn(false)
+}
 
-  const handleLogOut = () => {
-    localStorage.removeItem("petsJWT")
-    setUserLoggedIn(false)
-    setCurrentUser(null)
-    navigate('/')
+  const logUserOut = async () => {
+    const url = API_URL + "/logout"
+    const token = JSON.parse(localStorage.getItem('petsJWT'))
 
+    const fetchOptions = {
+        method: "DELETE",
+        headers: {
+                   'Content-Type': 'application/json',
+                   'Authorization': 'Bearer ' + token.token
+                  }}
+
+    const response = await fetch(url, fetchOptions);
+    if (!response.ok) {
+      const errorMessage = await response.text();
+      throw new Error(errorMessage);
+
+    }
+    return response.json();
+  }
+
+  const handleLogOut = async () => {
+    const apiResponse = await logUserOut()
+    if (apiResponse.status !== 200) {
+      setError(apiResponse)
+    } else {
+      localStorage.removeItem("petsJWT")
+      await setUser()
+      navigate('/')
+    }
   }
 
   let id;

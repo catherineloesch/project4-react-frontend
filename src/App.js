@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import { LoginContext } from './contexts/LoginContext';
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
+import {API_URL} from './api/api_url';
 
 import Header from './components/Header';
 import Home from './pages/Home';
@@ -21,31 +22,52 @@ import DeleteJob from './pages/DeleteJob';
 function App() {
   const navigate = useNavigate();
   
-  // Variables shard with child components via useContext:
-  const API_URL = "http://project4-rails-api.herokuapp.com"
+  //--------------------------------------------------------------------------
+  // Variables shard with child components via useContext
+  //--------------------------------------------------------------------------
+
   const [currentUser, setCurrentUser] = useState(null);
   const [userLoggedIn, setUserLoggedIn] = useState('false');
 
-  const verifyToken = async (token) => {
-    const url = `http://project4-rails-api.herokuapp.com/users/auto_login`
-    const fetchOptions = {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + token.token 
-    }}
+  
+  // const verifyToken = async (token) => {
+  //   const url = `http://project4-rails-api.herokuapp.com/users/auto_login`
+  //   const fetchOptions = {
+  //       method: 'GET',
+  //       headers: {
+  //           'Content-Type': 'application/json',
+  //           'Authorization': 'Bearer ' + token.token 
+  //   }}
 
-    try {
-        const response = await fetch(url, fetchOptions);
-        const data = await response.json()
-        setUserLoggedIn(true)
-        setCurrentUser(data) 
+  //   try {
+  //       const response = await fetch(url, fetchOptions);
+  //       const data = await response.json()
+  //       setUserLoggedIn(true)
+  //       setCurrentUser(data) 
 
-    } catch(error) {
+  //   } catch(error) {
+  //     setUserLoggedIn(false)
+  //     setCurrentUser(null)
+  //   }
+  // }
+
+  const lookForToken = async () => {
+    const token = JSON.parse(localStorage.getItem('petsJWT'));
+    if (token) {
+      // need to validate token
+      setUserLoggedIn(true)
+      // get current user
+      console.log('need to look for user')
+    } else {
       setUserLoggedIn(false)
       setCurrentUser(null)
+      
     }
   }
+
+  useEffect(() => {
+    lookForToken()
+  }, [])
 
   // useEffect(() => {
   //   let token = JSON.parse(localStorage.getItem('petsJWT'))
@@ -61,6 +83,7 @@ function App() {
   //     }
      
   //   }    }, [navigate]);
+  console.log(API_URL)
   
   return (
     <div className="App">

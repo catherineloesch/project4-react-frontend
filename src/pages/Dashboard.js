@@ -5,10 +5,13 @@ import { LoginContext } from "../contexts/LoginContext"
 import './pages.css'
 
 export default function Dashboard({ verifyToken }) {
-  const {userLoggedIn} = useContext(LoginContext);
+  const {userLoggedIn, currentUser} = useContext(LoginContext);
 
   const navigate = useNavigate();
   const params = useParams()
+  console.log('DASHBOARD')
+  console.log(currentUser)
+  console.log(userLoggedIn)
 
   useEffect(() => {
     if (!userLoggedIn) {
@@ -19,7 +22,10 @@ export default function Dashboard({ verifyToken }) {
 
   return (
     <div>
-        <h1 className='page-title'>Dashboard</h1>
+        {currentUser ? 
+          <h1 className='page-title'>{currentUser.display_name}'s Dashboard</h1> : 
+          <h1 className='page-title'>Dashboard</h1> }
+          
         <Link to={`/users/${params.id}/jobs/new`}><div>Post new job</div></Link>
         <Link to={`/users/${params.id}/jobs`}><div>View my current job listings</div></Link>
         
