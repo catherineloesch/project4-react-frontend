@@ -21,6 +21,7 @@
     color: var(--yellow);
     font-family: var(--font-editorial);
 }
+
 .header .app-title:hover {
     cursor: pointer;
 }

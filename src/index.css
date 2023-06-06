@@ -28,13 +28,15 @@
    
   /* colour variables */
   --darkolive: rgb(85, 107, 47);
+  --deepolive:  rgb(41, 53, 22);
   --lightolive: rgb(210, 228, 179);
   --yellow: rgb(255, 255, 128);
   --primary: rgb(255, 255, 255);
+  --forms: #7f9756;
 
   --darkolive-shadow: rgba(167, 216, 81, 0.35);
   --darkolive-a: rgba(59, 87, 8, 0.712);
-  --crimson: rgba(198, 66, 0, 0.885);
+  --crimson: rgba(191, 86, 41, 0.908);
 }
 
 * {
@@ -63,7 +65,50 @@ body {
   font-family: var(--font-main);
 }
 
+input[type=text], input[type=password], select, textarea {
+  border: 2px solid var(--darkolive);
+  background-color: var(--lightolive);
+  color: black;
+  border-radius: 0.25em;
+  padding: 0.75em;
+  font-size: 18px;
+  
+}
+
+input[type=text], input[type=password], select {
+    height: 2em;
+    width: 80%;
+}
+
+
+textarea {
+  height: 6em;
+  width: 80%;
+}
+
+input[type=text]::placeholder, input[type=password]::placeholder, select::placeholder, textarea::placeholder {
+  color: var(--darkolive);
+}
+
+input[type=submit] {
+  width: 40%;
+  height: 3em;
+  background-color: var(--lightolive);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+  cursor: pointer;
+  border-radius:0.45em;
+}
+
+input[type=submit]:hover {
+  transform: scale(1.1);
+}
+
 a { text-decoration: none; }
+ul, li { list-style: none; }
+
 
 /* media queries */
 

@@ -11,6 +11,7 @@ import SignUp from './pages/SignUp';
 import Dashboard from './pages/Dashboard';
 import DeleteAccount from './pages/DeleteAccount';
 import NotificationAccountDeleted from './pages/NotificationAccountDeleted';
+import PageNotFound from './pages/PageNotFound';
 
 import Jobs from './pages/Jobs';
 import UserJobs from './pages/UserJobs';
@@ -61,7 +62,7 @@ function App() {
           {/* unprotected job routes: don't need token to view jobs (INDEX+SHOW) */}
           <Route path='/jobs' element={<Jobs />} />
           <Route path='/users/:id/jobs/:job_id' element={<Job />} />
-      
+          <Route path='*' element={<PageNotFound />} />
         </Routes>
 
       </LoginContext.Provider>

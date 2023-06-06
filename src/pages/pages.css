@@ -2,26 +2,63 @@
     text-align: center;
 }
 
+/* pages containing user input forms */
 
-/* Login + Sign Up + new Job Pages */
-.login-page, .signup-page, .new-job-page {
+.login-page, 
+.signup-page, 
+.new-job-page,
+.edit-job-page,
+.application-page {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.login-form, 
+.signup-form, 
+.new-job-form,
+.edit-job-form,
+.application-form {
+    margin: 0;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
+    color: var(--primary);
+    width: 30em;
+    height: 35em;
+    position: relative;
+    border-radius: 1em;
+    box-shadow:  0 8px 32px 0 var(--darkolive-shadow);
+   
+    background: url('./../assets/images/paws_bones.jpg');
+    background-size:-1%;    
+    /* border: 3px solid var(--darkolive); */
 }
 
-.login-form, .signup-form, .new-job-form {
-    background-color: darkolivegreen;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    width: 50vw;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
+form h1 {
+    width: 100%;
+    border-radius: 50%;
+    height: auto;
+    margin: 0;
+    padding: 10px;
+    color: var(--yellow);
+    font-size: 3rem;
 }
+
+form a {
+    color: var(--yellow);
+}
+
+
+
+
+
+
 
 /* Jobs Page */
 .jobs-title-container {
@@ -69,7 +106,7 @@
 .account-deleted-text-container a {
     font-size: 3vh;
     text-decoration: none;
-    color: darkolivegreen;
+    color: var(--darkolive);
     font-weight: 500;
 }
 
@@ -77,10 +114,25 @@
     width: 40vw;
     display: flex;
     flex-direction: column;
-    background-color: darkolivegreen;
+    background-color: var(--darkolive);
 }
 .account-deleted-img {
    width: 100%;
+}
+
+.not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 3rem;
+}
+
+.not-found h1 {
+    font-family: var(--font-editorial);
+    color: var(--darkolive);
+    margin-top: 2rem;
 }
 
 /* home images */
@@ -106,4 +158,11 @@
 
 .pitbull-vector-img {
     width: 8%;
+}
+
+/* gifs */
+
+.rs-gif {
+    border-radius: 8px;
+    border: 3px solid var(--darkolive);
 }

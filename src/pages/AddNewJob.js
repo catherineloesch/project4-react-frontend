@@ -36,8 +36,7 @@ export default function AddNewJob() {
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
-
-  async function handleFormSubmit (e) {
+    async function handleFormSubmit (e) {
         e.preventDefault();
         createNewJob(params.id, formData, token).then(newJob => {
 
@@ -51,40 +50,86 @@ export default function AddNewJob() {
 
   return (
     <div className='new-job-page'>
-    <h1>Add new job:</h1>
-        {error && <div className='error-message'>Server Error. Job could not be created.</div>}
+    
         <form className='new-job-form' onSubmit={handleFormSubmit}>
-
-        <label>Title</label>
-        <input type='text' name='title' value={formData.title} onChange={handleFormChange} />
-
-        <label>Description</label>
-        <textarea type='text' name='description' value={formData.description} onChange={handleFormChange} />
-
-        <label>Job Type</label>
-        <select name='job_type' onChange={handleFormChange}>
-            {job_types.map((t, i) => (<option key={i} value={t}>{t}</option>))}
-        </select>
-
-        <label>pay</label>
-        <input type='text' name='pay' value={formData.pay} onChange={handleFormChange} />
+            <h1>Add new job:</h1>  
+            <div className='error-message'>{error ? "Server Error. Job could not be created." : " "}</div>
         
-        <label>Start Date:</label>
-        <input type='text' name='start_date' value={formData.start_date} onChange={handleFormChange} />
-        
-        <label>Start Time</label>
-        <input type='text' name='start_time' value={formData.start_time} onChange={handleFormChange} />
-       
-        <label>End Date</label>
-        <input type='text' name='end_date' value={formData.end_date} onChange={handleFormChange} />
-        
-        <label>End Time</label>
-        <input type='text' name='end_time' value={formData.end_time} onChange={handleFormChange} />
-        
-        <label>Location</label>
-        <input type='text' name='location' value={formData.location} onChange={handleFormChange} />
+            <label>Title</label>
+            <input
+                type='text'
+                name='title'
+                placeholder=''
+                value={formData.title}
+                onChange={handleFormChange}
+            />
 
-        <input type='submit' className='btn' value="Post Job"/>
+            <label>Description</label>
+            <textarea
+                type='text'
+                name='description'
+                value={formData.description}
+                onChange={handleFormChange}
+            />
+
+            <label>Job Type</label>
+            <select name='job_type' onChange={handleFormChange}>
+                {job_types.map((t, i) => (<option key={i} value={t}>{t}</option>))}
+            </select>
+
+            <label>pay</label>
+            <input
+                type='text'
+                name='pay'
+                value={formData.pay}
+                onChange={handleFormChange}
+            />
+            
+            <label>Start Date:</label>
+            <input
+                type='text'
+                name='start_date'
+                value={formData.start_date}
+                onChange={handleFormChange}
+            />
+        
+            <label>Start Time</label>
+            <input
+                type='text'
+                name='start_time'
+                value={formData.start_time}
+                onChange={handleFormChange}
+            />
+        
+            <label>End Date</label>
+            <input
+                type='text'
+                name='end_date'
+                value={formData.end_date}
+                onChange={handleFormChange}
+            />
+            
+            <label>End Time</label>
+            <input
+                type='text'
+                name='end_time'
+                value={formData.end_time}
+                onChange={handleFormChange}
+            />
+            
+            <label>Location</label>
+            <input
+                type='text'
+                name='location'
+                value={formData.location}
+                onChange={handleFormChange}
+            />
+
+            <input
+                type='submit'
+                className='btn'
+                value="Post Job"
+            />
 
         </form>
     </div>

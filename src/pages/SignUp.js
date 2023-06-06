@@ -43,53 +43,71 @@ export default function SignUp() {
         }
     }
 
-    // ------------------------------------------------------------------------------------------
-        ///backend api without devise: project4-rails-api
-        //API_URL = "http://project4-rails-api.herokuapp.com"
-
-        // const handleFormSubmit = async (e) => {
-        //     e.preventDefault();
-        //     const user = await createNewUser(formData)
-        //     if (user.length) {
-        //         setError(user)
-        //     } else {
-        //         setCurrentUser(user.user)
-        //         setUserLoggedIn(true)
-        //        
-        //         localStorage.setItem("petsJWT", JSON.stringify({token: user.token, username: user.user.username, user_id: user.user.id}))
-        //         navigate(`/users/${user.user.id}/dashboard`)
-        //     }   
-        // }
-    // -------------------------------------------------------------------------------------------
 
   return (
     <div className='signup-page'>
-    <h1 className='page-title'>Sign Up</h1>
-    {errors && <h4>Error: {errors}!</h4>}
-    <form className='signup-form' onSubmit={handleFormSubmit}>
-            <label>Username</label>
-            <input type='text' name='username' value={formData.username} onChange={handleFormChange}/>
+  
+        <form className='signup-form' onSubmit={handleFormSubmit}>
+            <h1 className='page-title'>Sign Up</h1>
+            {errors && <h4>Error: {errors}!</h4>}
+           
+            <input
+                type='text'
+                name='email'
+                placeholder='email'
+                value={formData.email}
+                onChange={handleFormChange}
+            />
 
-            <label>Password</label>
-            <input type='password' name='password' value={formData.password} onChange={handleFormChange}/>
+            <input
+                type='password'
+                name='password'
+                placeholder='password'
+                value={formData.password}
+                onChange={handleFormChange}
+            />
 
-            <label>Email</label>
-            <input type='text' name='email' value={formData.email} onChange={handleFormChange}/>
-
-            <label>Name</label>
-            <input type='text' name='display_name' value={formData.display_name} onChange={handleFormChange} />
+            <input
+                type='text'
+                name='display_name'
+                placeholder='Name'
+                value={formData.display_name}
+                onChange={handleFormChange} 
+            />
             
-            <label>Address</label>
-            <input type='text' name='address' value={formData.address} onChange={handleFormChange} />
+            <input
+                type='text'
+                name='address'
+                placeholder='Address'
+                value={formData.address}
+                onChange={handleFormChange}
+            />
 
-            <label>About Me</label>
-            <textarea type='text' name='description' value={formData.description} onChange={handleFormChange}/>
+            <textarea
+                type='text'
+                name='description'
+                placeholder="Tell us about yourself"
+                value={formData.description}
+                onChange={handleFormChange}
+            />
             
-            <label>Age</label>
-            <input type='text' name='age' value={formData.age} onChange={handleFormChange} />
+            <input
+                type='text'
+                name='age'
+                placeholder='Age'
+                value={formData.age}
+                onChange={handleFormChange}
+            />
 
-            <input type='submit' className='btn' value="Sign Up"/>
-            <h4>Already have an account? <Link to='/users/login'>Login</Link></h4>
+            <input
+                type='submit'
+                className='btn'
+                value="Sign Up"
+            />
+
+            <h4>Already have an account?</h4>
+            <Link to='/users/login'>Login</Link>
+            
         </form>
       
     </div>

@@ -10,6 +10,7 @@ export default function Login() {
     const navigate = useNavigate();
 
     const [errors, setErrors] = useState(null);
+
     const [formData, setFormData] = useState({
         email: "",
         password: ""
@@ -35,18 +36,35 @@ export default function Login() {
     
   return (
     <div className='login-page'>
-        <h1 className='page-title'>Login</h1>
-       
-            {errors && <h4>Error: {errors}!</h4>}
+
 
         <form className="login-form" onSubmit={handleFormSubmit}>
-            <label>Email</label>
-            <input type='text' name='email' value={formData.email} onChange={handleFormChange}/>
+
+        <h1 className='page-title'>Login</h1>
+       
+        {errors && <h4>Error: {errors}!</h4>}
+           
+            <input
+                type='text'
+                name='email'
+                placeholder='email'
+                value={formData.email}
+                onChange={handleFormChange}
+            />
             
-            <label>Password</label>
-            <input type='password' name='password' value={formData.password} onChange={handleFormChange}/>
+            <input
+                type='password'
+                name='password'
+                placeholder='password'
+                value={formData.password}
+                onChange={handleFormChange}
+            />
             
-            <input type='submit' className='btn' value="Log In"/>
+            <input
+                type='submit'
+                className='btn'
+                value="Log In"
+            />
 
             <h4>Don't have an account? <Link to='/users/signup'>Sign Up</Link></h4>
         </form>

@@ -84,6 +84,35 @@ export const logUserOut = async () => {
 }
 
 // ------------------------------------------------------------------------------------------------
+    //DELETE USER
+// ------------------------------------------------------------------------------------------------
+
+export const deleteAccount = async (user_id) => {
+    const url = API_URL + `/users/${user_id}`
+    const token = JSON.parse(localStorage.getItem('petsJWT'))
+  
+    const fetchOptions = {
+        method: "DELETE",
+        headers: {
+                   'Content-Type': 'application/json',
+                   'Authorization': 'Bearer ' + token.token
+                  }}
+
+    const response = await fetch(url, fetchOptions);
+
+    if (!response.ok) {
+        const error = await response.json()
+        return {error: true, code: error.status.code, message: error.status.message}
+
+    } else {
+        return response.json()
+    }
+}
+
+
+
+
+// ------------------------------------------------------------------------------------------------
     // GET CURRENT USER DATA
 // ------------------------------------------------------------------------------------------------
 
@@ -139,8 +168,6 @@ const token = JSON.parse(localStorage.getItem('petsJWT'))
    }
  }
 }
-
-
 
 
 
