@@ -28,7 +28,6 @@ export default function Dashboard({ verifyToken }) {
       setUserLoggedIn(false)
       setCurrentUser(null)
       navigate(`/users/login`)
-      console.log(currentUser)
     }
 
   }, [])
@@ -37,16 +36,15 @@ export default function Dashboard({ verifyToken }) {
 
   return (
     <div>
-        {currentUser ? 
+        {
+          currentUser ? 
           <h1 className='page-title'>{currentUser.display_name}'s Dashboard</h1> : 
-          <h1 className='page-title'>Dashboard</h1> }
+          <h1 className='page-title'>Dashboard</h1>
+        }
 
         <Link to={`/users/${params.id}/jobs/new`}><div>Post new job</div></Link>
         <Link to={`/users/${params.id}/jobs`}><div>View my current job listings</div></Link>
-        
-        <Link to={`/`}><div>Change Password</div></Link>
-        <Link to={`/`}><div>Change Username</div></Link>
-        <Link to={`/`}><div>Edit Profile</div></Link>
+        <Link to={`/users/${params.id}/edit`}><div>Edit Profile</div></Link>
         <Link to={`/users/${params.id}/delete`}><div>Delete Account</div></Link>
         
     </div>

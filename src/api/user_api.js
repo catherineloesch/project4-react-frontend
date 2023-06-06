@@ -171,8 +171,32 @@ const token = JSON.parse(localStorage.getItem('petsJWT'))
 
 
 
+// ------------------------------------------------------------------------------------------------
+    // UPDATE USER
+// ------------------------------------------------------------------------------------------------
 
+export const updateUser = async (user_id, updates) => {
+    const token = JSON.parse(localStorage.getItem('petsJWT'))
 
+    const url = API_URL + `/users/${user_id}`
+    const fetchOptions = {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token.token
+        },
+        body: JSON.stringify(updates)
+    }
+
+    const response = await fetch(url, fetchOptions);
+
+    if (response.ok) {
+        const data = await response.json()
+        return data
+    } else {
+        return {error: response.statusText, status: response.status}
+    }
+}
 
 
 

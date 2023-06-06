@@ -9,11 +9,9 @@ import './pages.css'
 
 
 export default function EditJob() {
-    const { currentUser, setCurrentUser, setUserLoggedIn } = useContext(LoginContext);
+    const { setCurrentUser, setUserLoggedIn } = useContext(LoginContext);
     const [errors, setErrors] = useState(null);
-
-    const token = JSON.parse(localStorage.getItem('petsJWT')) 
-
+    
     const job_types = [
         'Dog Walking',
         'Boarding',
@@ -67,7 +65,7 @@ export default function EditJob() {
 
     async function handleFormSubmit (e) {
         e.preventDefault();
-        const apiResponse = await updateJob(params.id, params.job_id,formData, token)
+        const apiResponse = await updateJob(params.id, params.job_id,formData)
         if (apiResponse.error) {
             setErrors(apiResponse)
         } else {

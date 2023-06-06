@@ -24,7 +24,8 @@ export const fetchUserJobs = async (id) => {
 }
 
 //CREATE new job
-export const createNewJob = async (user_id, newJob, token) => {
+export const createNewJob = async (user_id, newJob) => {
+    const token = JSON.parse(localStorage.getItem('petsJWT'))
     const url = API_URL + `/users/${user_id}/jobs`
     const fetchOptions = {
         method: "POST",
@@ -47,7 +48,9 @@ export const createNewJob = async (user_id, newJob, token) => {
 
 
 //UPDATE
-export const updateJob = async (user_id, job_id, updatedJob, token) => {
+export const updateJob = async (user_id, job_id, updatedJob) => {
+    const token = JSON.parse(localStorage.getItem('petsJWT'))
+
     const url = API_URL + `/users/${user_id}/jobs/${job_id}`
     const fetchOptions = {
         method: "PATCH",
@@ -68,9 +71,10 @@ export const updateJob = async (user_id, job_id, updatedJob, token) => {
 
 }
 //DELETE
-export const deleteJob = async(user_id, job_id, token) => {
+export const deleteJob = async(user_id, job_id) => {
+    const token = JSON.parse(localStorage.getItem('petsJWT'))
+
     const url = API_URL + `/users/${user_id}/jobs/${job_id}`
-    console.log(url)
     const fetchOptions = {
         method: "DELETE",
         headers: {
@@ -79,7 +83,6 @@ export const deleteJob = async(user_id, job_id, token) => {
         }
     }
     const response = await fetch(url, fetchOptions);
-    console.log(response)
     if (response.ok) {
         const data = await response.json()
         return data

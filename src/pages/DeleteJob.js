@@ -9,11 +9,10 @@ import { deleteJob } from './../api/job_api'
 
 
 export default function DeleteJob() {
-    const { currentUser, userLoggedIn, setCurrentUser, setUserLoggedIn } = useContext(LoginContext);
+    const { setCurrentUser, setUserLoggedIn } = useContext(LoginContext);
 
     const { API_URL } = useContext(LoginContext);
     const params = useParams()
-    const token = JSON.parse(localStorage.getItem('petsJWT')) 
     const navigate = useNavigate();
     const [job, setJob] = useState({})
 
@@ -39,26 +38,16 @@ export default function DeleteJob() {
         })}
     }, [params.id, params.job_id])
 
-  
-
-
-  
-
- 
+    const handleCancel = () => {
+        navigate(`/users/${params.id}/jobs`)
+    }
 
     async function handleDelete (e) {
-        const deletedJob = await deleteJob(params.id, params.job_id, token)
-        console.log(deletedJob)
+        const deletedJob = await deleteJob(params.id, params.job_id)
         if (!deletedJob.errors) {
             navigate(`/users/${params.id}/jobs`)
         }
     }
-
-    const handleCancel = () => (navigate(`/users/${params.id}/jobs`))
-
-   
-
-
 
   return (
     <div className='new-job-page'>

@@ -8,7 +8,6 @@ export default function AddNewJob() {
     const [error, setError] = useState(false);
 
     const params = useParams()
-    const token = JSON.parse(localStorage.getItem('petsJWT')) 
     const navigate = useNavigate();
 
     const job_types = [
@@ -38,7 +37,7 @@ export default function AddNewJob() {
 
     async function handleFormSubmit (e) {
         e.preventDefault();
-        createNewJob(params.id, formData, token).then(newJob => {
+        createNewJob(params.id, formData).then(newJob => {
 
         if (!newJob.error) {
             navigate(`/users/${params.id}/jobs/${newJob.id}`)
