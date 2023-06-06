@@ -7,7 +7,7 @@ import JobCard from '../components/JobCard'
 import "./pages.css"
 
 export default function Jobs() {
-  const {currentUser, userLoggedIn, API_URL} = useContext(LoginContext);
+  const {currentUser, userLoggedIn } = useContext(LoginContext);
   const navigate = useNavigate();
 
   const [jobs, setJobs] = useState(null);

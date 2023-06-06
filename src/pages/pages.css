@@ -86,9 +86,8 @@
 /* home images */
 
 .home .dog-cat-img {
-    width: 15%;
+    width: 25%;
 }
-
 .home .kittens-img {
     width: 15%;
 }
@@ -97,9 +96,6 @@
 }
 .home .puppy2-img {
     width: 15%;
-}
-.home .dog-vector-img {
-    width: 10%;
 }
 .home .ecs-img {
     width: 30%;

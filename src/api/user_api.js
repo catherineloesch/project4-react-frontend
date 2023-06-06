@@ -73,8 +73,6 @@ export const logUserOut = async () => {
                   }}
 
     const response = await fetch(url, fetchOptions);
-    console.log('response')
-    console.log(response)
 
     if (!response.ok) {
         const error = await response.json()
@@ -86,7 +84,7 @@ export const logUserOut = async () => {
 }
 
 // ------------------------------------------------------------------------------------------------
-    // GET CURRENT USER
+    // GET CURRENT USER DATA
 // ------------------------------------------------------------------------------------------------
 
 export const getCurrentUser = async () => {
@@ -111,19 +109,14 @@ export const getCurrentUser = async () => {
     
 }
 
-
-
 // ------------------------------------------------------------------------------------------------
-    // AUTHENTICATION: Check if token is expired
+    // AUTHENTICATION: CHECK IF TOKEN IS EXPIRED
 // ------------------------------------------------------------------------------------------------
 
 const decodeToken = (token) => {
 
     const base64String = token.split('.')[1];
-    const decodedValue = JSON.parse(Buffer.from(base64String,    
-                         'base64').toString('ascii'));
-    console.log('decodedJwt')
-    console.log(decodedValue);
+    const decodedValue = JSON.parse(Buffer.from(base64String, 'base64').toString('ascii'));
     return decodedValue;
 
 }
@@ -136,8 +129,7 @@ const checkTokenExp = (token_exp) => {
 
 export const authenticateUser = () => {
 const token = JSON.parse(localStorage.getItem('petsJWT'))
-console.log('token')
-console.log(token)
+
  if ((token !== null && token !== undefined)) {
    const payload = decodeToken(token.token)
 

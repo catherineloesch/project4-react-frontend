@@ -14,6 +14,7 @@
     left: 50%;
     transform: translate(-50%);
     justify-self: start;
+    z-index:3;
 }
 
 .header .app-title { /* <h1> with nested <i> */

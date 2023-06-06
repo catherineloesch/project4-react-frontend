@@ -2,27 +2,48 @@ import React from 'react'
 import { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import { LoginContext } from '../contexts/LoginContext';
+import { authenticateUser } from './../api/user_api'
+import { updateJob, fetchUserJob } from '../api/job_api';
+
 import './pages.css'
 
 
 export default function EditJob() {
-    const { API_URL } = useContext(LoginContext);
+    const { currentUser, setCurrentUser, setUserLoggedIn } = useContext(LoginContext);
+
     const token = JSON.parse(localStorage.getItem('petsJWT')) 
+
+    const job_types = [
+        'Dog Walking',
+        'Boarding',
+        'Pet + House Sitting',
+        'Doggy Day Care',
+        'Drop-In Visit(s)'
+    ]
 
     const params = useParams()
     const navigate = useNavigate();
 
     const [formData, setFormData] = useState({})
-    async function fetchJob() {
-        return fetch(API_URL + `/users/${params.id}/jobs/${params.job_id}`)
 
-    }
 
     useEffect(
-        
+
         () => { 
-            
-            fetchJob(params.id,params.job_id)
+
+            const auth = authenticateUser()
+
+            if (auth === true) {
+                console.log('User authenticated:', auth)
+            } else {
+              setUserLoggedIn(false)
+              setCurrentUser(null)
+              navigate(`/users/login`)
+              console.log(currentUser)
+            }
+
+            console.log('fetching job...')
+            fetchUserJob(params.id,params.job_id)
         .then(results => results.json())
         .then(data => {
             setFormData({
@@ -37,28 +58,9 @@ export default function EditJob() {
                 location: data.location
             })
         })
-    }, [params.id, params.job_id, fetchJob])
+    }, [params.id, params.job_id])
 
-    async function updateJob(user_id, job_id, updatedJob, token) {
-        const url = API_URL + `/users/${user_id}/jobs/${job_id}`
-        const fetchOptions = {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + token.token
-            },
-            body: JSON.stringify(updatedJob)
-        }
 
-        const response = await fetch(url, fetchOptions);
-        if (!response.ok) {
-            const errorMessage = await response.text();
-            throw new Error(errorMessage);
-        }
-    
-        return response.json();
-    }
-  
 
     const handleFormChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -88,8 +90,10 @@ export default function EditJob() {
         <textarea type='text' name='description' value={formData.description} onChange={handleFormChange} />
 
         <label>Job Type</label>
-        <input type='text' name='job_type' value={formData.job_type} onChange={handleFormChange} />
-        
+        <select name='job_type' onChange={handleFormChange}>
+            {job_types.map((t, i) => (<option key={i} value={t}>{t}</option>))}
+        </select>
+
         <label>pay</label>
         <input type='text' name='pay' value={formData.pay} onChange={handleFormChange} />
         
@@ -108,7 +112,7 @@ export default function EditJob() {
         <label>Location</label>
         <input type='text' name='location' value={formData.location} onChange={handleFormChange} />
 
-        <input type='submit' className='btn' value="Post Job"/>
+        <input type='submit' className='btn' value="Save Changes"/>
 
         </form>
     </div>

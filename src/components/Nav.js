@@ -5,7 +5,6 @@ import { LoginContext } from '../contexts/LoginContext';
 import { getCurrentUser, authenticateUser, logUserOut } from './../api/user_api'
 
 import { homeIcon} from './../assets/icons'
-
 import "./Header.css"
 
 export default function Nav(props) {
@@ -41,7 +40,6 @@ export default function Nav(props) {
 
 
   const handleLogOut = async () => {
-    console.log('logging user out')
     const apiResponse = await logUserOut()
 
     if (apiResponse.error) {
@@ -52,20 +50,17 @@ export default function Nav(props) {
 
       await setCurrentUser(null)
       await setUserLoggedIn(false)
-
       localStorage.removeItem("petsJWT")
       navigate('/')
     }
   }
   
-
   let id;
   if (currentUser) {
      id = currentUser.id
   } else {
     id = null
   }
-
 
   const navLinks = [
     // Home + Job links are always displayed
@@ -81,7 +76,6 @@ export default function Nav(props) {
     (userLoggedIn && <Link to="/" className='nav-link'><div onClick={handleLogOut}>Log Out</div></Link>),
   ]
 
-  
   return (
     <nav className='nav'>
       <ul className={props.showHamburgerMenu ? 'nav-list active' : 'nav-list'} >

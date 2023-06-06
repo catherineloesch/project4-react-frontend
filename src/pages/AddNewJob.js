@@ -1,7 +1,6 @@
 import React from 'react'
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
-import { LoginContext } from '../contexts/LoginContext';
 import { createNewJob } from './../api/job_api';
 import './pages.css'
 

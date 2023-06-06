@@ -4,8 +4,9 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { LoginContext } from "../contexts/LoginContext"
 import { getCurrentUser, authenticateUser } from './../api/user_api'
 import './pages.css'
+
 export default function Dashboard({ verifyToken }) {
-  const {userLoggedIn, currentUser, setCurrentUser, setUserLoggedIn } = useContext(LoginContext);
+  const { currentUser, setCurrentUser, setUserLoggedIn } = useContext(LoginContext);
 
   const navigate = useNavigate();
   const params = useParams()
@@ -29,7 +30,6 @@ export default function Dashboard({ verifyToken }) {
       navigate(`/users/login`)
       console.log(currentUser)
     }
-
 
   }, [])
 

@@ -2,7 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import { LoginContext } from './contexts/LoginContext';
 import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-import {API_URL} from './api/api_url';
+import { API_URL } from './api/api_url';
 
 import Header from './components/Header';
 import Home from './pages/Home';
@@ -23,68 +23,12 @@ function App() {
   const navigate = useNavigate();
   
   //--------------------------------------------------------------------------
-  // Variables shard with child components via useContext
+  // Variables shared with child components via useContext
   //--------------------------------------------------------------------------
 
   const [currentUser, setCurrentUser] = useState(null);
   const [userLoggedIn, setUserLoggedIn] = useState('false');
 
-  
-  // const verifyToken = async (token) => {
-  //   const url = `http://project4-rails-api.herokuapp.com/users/auto_login`
-  //   const fetchOptions = {
-  //       method: 'GET',
-  //       headers: {
-  //           'Content-Type': 'application/json',
-  //           'Authorization': 'Bearer ' + token.token 
-  //   }}
-
-  //   try {
-  //       const response = await fetch(url, fetchOptions);
-  //       const data = await response.json()
-  //       setUserLoggedIn(true)
-  //       setCurrentUser(data) 
-
-  //   } catch(error) {
-  //     setUserLoggedIn(false)
-  //     setCurrentUser(null)
-  //   }
-  // }
-
-
-  // const lookForToken = async () => {
-  //   const token = JSON.parse(localStorage.getItem('petsJWT'));
-  //   if (token) {
-  //     // need to validate token
-  //     setUserLoggedIn(true)
-  //     // get current user
-  //     console.log('need to look for user')
-  //   } else {
-  //     setUserLoggedIn(false)
-  //     setCurrentUser(null)
-      
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   lookForToken()
-  // }, [])
-
-  // useEffect(() => {
-  //   let token = JSON.parse(localStorage.getItem('petsJWT'))
-  //   if (token) {
-  //     verifyToken(token);
-  //   } else {
-  //     const unprotectedRoutes = ['/', '/jobs', '/signup', '/users/login', '/users/signup', 'users/accountdeleted']
-
-  //     console.log(window.location.pathname)
-  //     console.log(!unprotectedRoutes.includes( window.location.pathname))
-  //     if (!unprotectedRoutes.includes(window.location.pathname)) {
-  //       navigate('/users/login')
-  //     }
-     
-  //   }    }, [navigate]);
-  
   return (
     <div className="App">
       {/* LoginContext variables are accessible in children components */}

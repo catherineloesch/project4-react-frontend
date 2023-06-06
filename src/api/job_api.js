@@ -5,10 +5,16 @@ export const fetchAllJobs = async (id) => {
     return fetch(API_URL + '/jobs')
 }
 
-//get one job
-export const fetchJob = async (id, job_id) => {
+//get one job by id (unprotected)
+export const fetchJob = async (job_id) => {
     const url = API_URL + `/jobs/${job_id}`
       return fetch(url)
+}
+
+//get one job user_id and job_id(protected)
+export const fetchUserJob = async(user_id, job_id) => {
+    const job = await fetch(API_URL + `/users/${user_id}/jobs/${job_id}`)
+    return job
 }
 
 //CREATE new job
@@ -33,4 +39,24 @@ export const createNewJob = async (user_id, newJob, token) => {
     }
 }
 
-//SHOW -> retrieve one job from db
+
+//UPDATE
+export const updateJob = async (user_id, job_id, updatedJob, token) => {
+    const url = API_URL + `/users/${user_id}/jobs/${job_id}`
+    const fetchOptions = {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token.token
+        },
+        body: JSON.stringify(updatedJob)
+    }
+
+    const response = await fetch(url, fetchOptions);
+    if (!response.ok) {
+        const errorMessage = await response.text();
+        throw new Error(errorMessage);
+    }
+
+    return response.json();
+}
