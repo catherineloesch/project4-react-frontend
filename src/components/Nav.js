@@ -1,8 +1,9 @@
 import React from 'react'
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { LoginContext } from '../contexts/LoginContext';
-import { logUserOut } from './../api/user_api'
+import { getCurrentUser, authenticateUser, logUserOut } from './../api/user_api'
+
 import { homeIcon} from './../assets/icons'
 
 import "./Header.css"
@@ -12,11 +13,40 @@ export default function Nav(props) {
   const { currentUser, setCurrentUser, userLoggedIn, setUserLoggedIn, API_URL} = useContext(LoginContext);
   const [errors, setErrors] = useState(null)
 
+
+  const getUser = async() => {
+    const apiResponse = await getCurrentUser()
+    if (apiResponse !== null && apiResponse !== undefined) {
+    setCurrentUser(apiResponse)
+    setUserLoggedIn(true)
+  }}
+
+  useEffect(() => {
+    const auth = authenticateUser()
+
+    if (auth === true) {
+        getUser().then((user) => {
+          setCurrentUser(user)
+          setUserLoggedIn(true)
+        })
+        console.log('User authenticated:', auth)
+    } else {
+      setUserLoggedIn(false)
+      setCurrentUser(null)
+      console.log(currentUser)
+    }
+
+
+  }, [])
+
+
   const handleLogOut = async () => {
+    console.log('logging user out')
     const apiResponse = await logUserOut()
 
     if (apiResponse.error) {
       setErrors(apiResponse.message.split('.')[1])
+      console.log(apiResponse.message)
 
     } else {
 
@@ -33,9 +63,8 @@ export default function Nav(props) {
   if (currentUser) {
      id = currentUser.id
   } else {
-    id = ""
+    id = null
   }
-
 
 
   const navLinks = [
@@ -48,7 +77,7 @@ export default function Nav(props) {
     (!userLoggedIn && <Link to="/users/login" className='nav-link'><div>Login</div></Link>),
     
     // If user IS logged in: show Log Out + Dashboard links
-    (userLoggedIn && <Link to={`/users/${id}/dashboard`} className='nav-link'><div>Dashboard</div></Link>),
+    (userLoggedIn && <Link to={id ? `/users/${id}/dashboard` : "/users/login"} className='nav-link'><div>Dashboard</div></Link>),
     (userLoggedIn && <Link to="/" className='nav-link'><div onClick={handleLogOut}>Log Out</div></Link>),
   ]
 

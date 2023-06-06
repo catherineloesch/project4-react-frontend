@@ -2,10 +2,11 @@ import React from 'react'
 import { useState, useContext } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import { LoginContext } from '../contexts/LoginContext';
+import { createNewJob } from './../api/job_api';
 import './pages.css'
 
 export default function AddNewJob() {
-    const { API_URL } = useContext(LoginContext);
+    const [error, setError] = useState(false);
 
     const params = useParams()
     const token = JSON.parse(localStorage.getItem('petsJWT')) 
@@ -36,39 +37,23 @@ export default function AddNewJob() {
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
-    async function createNewJob(user_id, formData, token) {
-        const url = API_URL + `/users/${user_id}/jobs`
-        
-        const fetchOptions = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + token.token 
-            },
-            body: JSON.stringify(formData)
-        };
 
-        try {
-            const response = await fetch(url, fetchOptions);
-            const data = await response.json()
-            return data
-
-        } catch(error) {
-            console.log(error)
-        }
-}
   async function handleFormSubmit (e) {
         e.preventDefault();
-        console.log(formData)
-        const newJob = await createNewJob(params.id, formData, token)
-        if (!newJob.errors) {
+        createNewJob(params.id, formData, token).then(newJob => {
+
+        if (!newJob.error) {
             navigate(`/users/${params.id}/jobs/${newJob.id}`)
-        }
+        } else {
+            console.log(newJob)
+            setError(true)
+        }})
     }
 
   return (
     <div className='new-job-page'>
     <h1>Add new job:</h1>
+        {error && <div className='error-message'>Server Error. Job could not be created.</div>}
         <form className='new-job-form' onSubmit={handleFormSubmit}>
 
         <label>Title</label>

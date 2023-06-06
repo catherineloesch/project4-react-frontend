@@ -22,10 +22,10 @@ const barlow = {
     usage: 'body'
 }
 
-const nunito = {
-    fontName: 'Nunito',
-    by: 'Vernon Adams, Cyreal, Jacques Le Bailly',
-    source: 'Google Fonts',
-    url: 'https://fonts.google.com/specimen/Nunito',
+const quicksand = {
+    fontName: 'Quicksand',
+    by: 'Andrew Paglinawan',
+    source: 'BestFonts.pro',
+    url: 'https://en.bestfonts.pro/font/quicksand',
     usage: 'body'
 }

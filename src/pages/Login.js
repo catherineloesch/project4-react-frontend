@@ -22,13 +22,16 @@ export default function Login() {
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         const apiResponse = await logUserIn(formData)
+        console.log(apiResponse)
 
         if (apiResponse.error) {
             setErrors(apiResponse.error.slice(0, -1))
 
         } else {
+            console.log('user logged in---------------')
             await setCurrentUser(apiResponse.data)
             await setUserLoggedIn(true)
+            console.log(`/users/${apiResponse.data.id}/dashboard`)
             navigate(`/users/${apiResponse.data.id}/dashboard`)
         }
     }
@@ -49,7 +52,6 @@ export default function Login() {
             <input type='submit' className='btn' value="Log In"/>
 
             <h4>Don't have an account? <Link to='/users/signup'>Sign Up</Link></h4>
-
         </form>
     </div>
   )

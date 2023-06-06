@@ -1,79 +1,31 @@
-/* 
-    -> fonts dowloaded from fontsquirrel.com
-    -> .woff files located in assets/fonts folder
-*/
+/* fonts: .woff files located in assets/fonts folder */
 
 @font-face {
-  font-family: 'barlow';
-  src: url('./assets/fonts/barlow-regular.woff') format('woff');
+  font-family: 'quicksand';
+  src: url('./assets/fonts/quicksand-medium.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'barlow';
-  src: url('./assets/fonts/barlow-bold.woff') format('woff');
+  font-family: 'quicksand';
+  src: url('./assets/fonts/quicksand-bold.woff') format('woff');
   font-weight: bold;
   font-style: normal;
-
 }
 
 @font-face {
-  font-family: 'barlow';
-  src: url('./assets/fonts/barlow-italic.woff') format('woff');
-  font-weight: normal;
-  font-style: italic;
-
-}
-
-@font-face {
-  font-family: 'barlow';
-  src: url('./assets/fonts/barlow-bold-italic.woff') format('woff');
-  font-weight: bold;
-  font-style: italic;
-}
-
-
-@font-face {
-  font-family: 'roboto';
-  src: url('./assets/fonts/roboto-regular.woff') format('woff');
+  font-family: 'Lilly';
+  src: url('./assets/fonts/lilly.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
-
-@font-face {
-  font-family: 'roboto';
-  src: url('./assets/fonts/roboto-bold.woff') format('woff');
-  font-weight: bold;
-  font-style: normal;
-
-}
-
-@font-face {
-  font-family: 'roboto';
-  src: url('./assets/fonts/roboto-italic.woff') format('woff');
-  font-weight: normal;
-  font-style: italic;
-
-}
-
-@font-face {
-  font-family: 'roboto';
-  src: url('./assets/fonts/roboto-bold-italic.woff') format('woff');
-  font-weight: bold;
-  font-style: italic;
-}
-
-/* @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap'); */
-
-
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
-
-
 
 :root {
+  /* font variables */
+  --font-main: 'quicksand', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  --font-editorial: 'Lilly', 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+   
   /* colour variables */
   --darkolive: rgb(85, 107, 47);
   --lightolive: rgb(210, 228, 179);
@@ -83,13 +35,6 @@
   --darkolive-shadow: rgba(167, 216, 81, 0.35);
   --darkolive-a: rgba(59, 87, 8, 0.712);
   --crimson: rgba(198, 66, 0, 0.885);
-
-   /* font variables */
-  --font-main: 'Quicksand', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  --font-editorial: 'Lilly', 'Chicle', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  
-  /* font-family: 'roboto', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
-
 }
 
 * {
@@ -100,39 +45,36 @@
 }
 
 body {
-  background: rgb(209,228,176);
-  background: linear-gradient(90deg, rgba(209,228,176,1) 0%, rgba(240,255,212,1) 50%, rgba(209,228,176,1) 100%);
   width: 100%;
   height: 100vh;
+  background: rgb(209,228,176);
+  background:
+    linear-gradient(90deg,
+      rgba(209,228,176,1) 0%,
+      rgba(240,255,212,1) 50%,
+      rgba(209,228,176,1) 100%);
 }
 
 .App { 
   margin-top: 135px;  /* account for header covering text */
 }
 
-.btn {
+.btn, input, select, textarea {
   font-family: var(--font-main);
-  font-size: 1.75vh;
-  border-radius: 6px;
-  padding: 0.4vh 0.4vw;
 }
 
-a {
-  text-decoration: none;
-}
+a { text-decoration: none; }
 
 /* media queries */
 
 @media screen and (max-width: 530px) {
 
-  .App {
-    margin-top: 190px;
-  }
+  .App { margin-top: 190px; }
 
 }
 
 @media screen and (max-width: 400px) {
-  .App {
-    margin-top: 170px;
-  }
+
+  .App { margin-top: 170px; }
+
 }

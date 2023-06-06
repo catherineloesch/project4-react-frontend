@@ -1,4 +1,5 @@
 import { API_URL } from './api_url';
+import { Buffer } from 'buffer'
 
 // ------------------------------------------------------------------------------------------------
     // SIGN UP
@@ -72,6 +73,8 @@ export const logUserOut = async () => {
                   }}
 
     const response = await fetch(url, fetchOptions);
+    console.log('response')
+    console.log(response)
 
     if (!response.ok) {
         const error = await response.json()
@@ -99,15 +102,66 @@ export const getCurrentUser = async () => {
 
     const response = await fetch(url, fetchOptions);
     if (!response.ok) {
-      const errorMessage = await response.text();
-      console.log('errorMessage');
-      console.log(errorMessage);
+        const error = await response.json()
+        return {error: true, code: error.status.code, message: error.status.message}
 
+    } else {
+        return response.json()
     }
-    return response.json();
+    
 }
 
 
+
+// ------------------------------------------------------------------------------------------------
+    // AUTHENTICATION: Check if token is expired
+// ------------------------------------------------------------------------------------------------
+
+const decodeToken = (token) => {
+
+    const base64String = token.split('.')[1];
+    const decodedValue = JSON.parse(Buffer.from(base64String,    
+                         'base64').toString('ascii'));
+    console.log('decodedJwt')
+    console.log(decodedValue);
+    return decodedValue;
+
+}
+
+const checkTokenExp = (token_exp) => {
+  const currentTime = Math.round(Date.now()/1000)
+  return (currentTime < token_exp)
+
+}
+
+export const authenticateUser = () => {
+const token = JSON.parse(localStorage.getItem('petsJWT'))
+console.log('token')
+console.log(token)
+ if ((token !== null && token !== undefined)) {
+   const payload = decodeToken(token.token)
+
+   if (payload !== null && payload !== undefined) {
+     const userIsAuthenticated = checkTokenExp(payload.exp)
+     return userIsAuthenticated
+   }
+ }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // -----------------------------------------------------------
         //With Devise
     // -----------------------------------------------------------
 

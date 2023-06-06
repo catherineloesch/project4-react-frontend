@@ -25,7 +25,7 @@ const handleEdit = () => {
     navigate(`/users/${props.job.user_id}/jobs/${props.job.id}/edit`)
 }
   
-  const jobTitle = ( <h2><i className={pawIconL.className}></i>&nbsp;&nbsp;{props.job.title}&nbsp;&nbsp;<i className={pawIconR.className}></i></h2>)
+  const jobTitle = ( <h2><i className={pawIconL.className}></i>{props.job.title}<i className={pawIconR.className}></i></h2>)
 
   let buttons;
 

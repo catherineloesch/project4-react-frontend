@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect, useContext } from 'react';
 import { useNavigate} from "react-router-dom";
 import { LoginContext } from "../contexts/LoginContext"
+import { fetchAllJobs } from '../api/job_api';
 import JobCard from '../components/JobCard'
 import "./pages.css"
 
@@ -17,21 +18,11 @@ export default function Jobs() {
           .then(data => setJobs(data))
       }, [])
 
-  const fetchAllJobs = async (id) => {
-    const url = API_URL + '/jobs'
-    return fetch(url)
-
-  }
-
   const handleAddNewJob = () => {
-    if (currentUser && userLoggedIn) {
-      console.log(currentUser)
-      console.log(userLoggedIn)
+    if (currentUser && userLoggedIn) { //valid token?
       navigate(`/users/${currentUser.id}/jobs/new`)
-    }
-      else {
-        console.log(currentUser)
-          navigate('/users/login')
+    } else {
+        navigate('/users/login')
       }
   }
 

@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { LoginContext } from "../contexts/LoginContext"
+import { fetchJob } from "../api/job_api"
 import JobCard from '../components/JobCard'
 import "./../components/Card.css"
 
@@ -11,17 +12,13 @@ export default function Job() {
     const [job, setJob] = useState(null);
     const {API_URL} = useContext(LoginContext);
 
-
-    const fetchJob = async (id, job_id) => {
-      const url = API_URL + `/users/${id}/jobs/${job_id}`
-        return fetch(url)
-    
-    }
-
     useEffect(() => {
        fetchJob(params.id, params.job_id)
         .then(res => res.json())
-        .then(data => setJob(data))
+        .then(data => {
+          console.log('useEffect')
+          console.log(data)
+          setJob(data)})
     }, [params.id, params.job_id])
    
 

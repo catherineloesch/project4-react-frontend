@@ -1,0 +1,11 @@
+.fa-rotate-270 {   /* paw icon next to app title <i> */
+    /* font-size: 2.75rem; */
+    transform: rotate(-15deg);
+    margin-right: 0.6rem;
+    /* margin-right: 15px; */
+}
+
+.fa-rotate-90 {
+    transform: rotate(15deg);
+    margin-left: 0.6rem;
+}

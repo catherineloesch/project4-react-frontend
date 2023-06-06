@@ -51,23 +51,24 @@ function App() {
   //   }
   // }
 
-  const lookForToken = async () => {
-    const token = JSON.parse(localStorage.getItem('petsJWT'));
-    if (token) {
-      // need to validate token
-      setUserLoggedIn(true)
-      // get current user
-      console.log('need to look for user')
-    } else {
-      setUserLoggedIn(false)
-      setCurrentUser(null)
-      
-    }
-  }
 
-  useEffect(() => {
-    lookForToken()
-  }, [])
+  // const lookForToken = async () => {
+  //   const token = JSON.parse(localStorage.getItem('petsJWT'));
+  //   if (token) {
+  //     // need to validate token
+  //     setUserLoggedIn(true)
+  //     // get current user
+  //     console.log('need to look for user')
+  //   } else {
+  //     setUserLoggedIn(false)
+  //     setCurrentUser(null)
+      
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   lookForToken()
+  // }, [])
 
   // useEffect(() => {
   //   let token = JSON.parse(localStorage.getItem('petsJWT'))
