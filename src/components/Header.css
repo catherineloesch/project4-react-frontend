@@ -20,7 +20,9 @@
 .header .app-title { /* <h1> with nested <i> */
     color: var(--yellow);
     font-family: var(--font-editorial);
-
+}
+.header .app-title:hover {
+    cursor: pointer;
 }
 
 .header .fa-paw {   /* paw icon next to app title <i> */

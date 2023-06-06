@@ -11,8 +11,7 @@ export default function JobCard(props) {
   const navigate = useNavigate();
   const params = useParams()
 
-  const { currentUser } = useContext(LoginContext);
-  const { userLoggedIn } = useContext(LoginContext);
+  const { currentUser, userLoggedIn } = useContext(LoginContext);
 
   const handleDelete = () => {
     if (userLoggedIn && currentUser.id == props.job.user_id) {

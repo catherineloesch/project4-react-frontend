@@ -10,6 +10,7 @@ import './pages.css'
 
 export default function EditJob() {
     const { currentUser, setCurrentUser, setUserLoggedIn } = useContext(LoginContext);
+    const [errors, setErrors] = useState(null);
 
     const token = JSON.parse(localStorage.getItem('petsJWT')) 
 
@@ -33,34 +34,32 @@ export default function EditJob() {
 
             const auth = authenticateUser()
 
-            if (auth === true) {
-                console.log('User authenticated:', auth)
+            if (auth !== true) {
+                setUserLoggedIn(false)
+                setCurrentUser(null)
+                navigate(`/users/login`)
             } else {
-              setUserLoggedIn(false)
-              setCurrentUser(null)
-              navigate(`/users/login`)
-              console.log(currentUser)
+            console.log('User authenticated:', auth)
+            fetchUserJob(params.id,params.job_id)
+            .then(results => results.json())
+            .then(data => {
+                setFormData({
+                    title: data.title,
+                    description: data.description,
+                    job_type: data.job_type,
+                    pay: data.pay,
+                    start_date: data.start_date,
+                    start_time: data.start_time,
+                    end_date: data.end_date,
+                    end_time: data.end_time,
+                    location: data.location
+                })
+            })
+
+             
             }
 
-            console.log('fetching job...')
-            fetchUserJob(params.id,params.job_id)
-        .then(results => results.json())
-        .then(data => {
-            setFormData({
-                title: data.title,
-                description: data.description,
-                job_type: data.job_type,
-                pay: data.pay,
-                start_date: data.start_date,
-                start_time: data.start_time,
-                end_date: data.end_date,
-                end_time: data.end_time,
-                location: data.location
-            })
-        })
     }, [params.id, params.job_id])
-
-
 
     const handleFormChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -68,19 +67,18 @@ export default function EditJob() {
 
     async function handleFormSubmit (e) {
         e.preventDefault();
-        const updatedJob = await updateJob(params.id, params.job_id,formData, token)
-        if (!updatedJob.errors) {
-            navigate(`/users/${params.id}/jobs/${updatedJob.id}`)
+        const apiResponse = await updateJob(params.id, params.job_id,formData, token)
+        if (apiResponse.error) {
+            setErrors(apiResponse)
+        } else {
+            navigate(`/users/${params.id}/jobs/${apiResponse.id}`)
         }
     }
-
-   
-
-
 
   return (
     <div className='new-job-page'>
     <h1>Edit job:</h1>
+    {errors && <h4>Server Error: {errors.status} {errors.error}!</h4>}
         <form className='new-job-form' onSubmit={handleFormSubmit}>
 
         <label>Title</label>

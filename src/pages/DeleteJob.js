@@ -4,9 +4,13 @@ import { LoginContext } from '../contexts/LoginContext';
 import { useNavigate, useParams } from "react-router-dom";
 import './pages.css'
 import CardContent from '../components/CardContent'
+import { authenticateUser } from './../api/user_api'
+import { deleteJob } from './../api/job_api'
 
 
 export default function DeleteJob() {
+    const { currentUser, userLoggedIn, setCurrentUser, setUserLoggedIn } = useContext(LoginContext);
+
     const { API_URL } = useContext(LoginContext);
     const params = useParams()
     const token = JSON.parse(localStorage.getItem('petsJWT')) 
@@ -16,33 +20,28 @@ export default function DeleteJob() {
     async function fetchJob() {
         return fetch(API_URL + `/users/${params.id}/jobs/${params.job_id}`)
     }
-
     useEffect(
-        () => { fetchJob(params.id,params.job_id)
+
+        () => { 
+
+            const auth = authenticateUser()
+
+            if (auth !== true) {
+                setUserLoggedIn(false)
+                setCurrentUser(null)
+                navigate(`/users/login`)
+            } else {
+
+        fetchJob(params.id,params.job_id)
         .then(results => results.json())
         .then(data => {
             setJob(data)
-        })
+        })}
     }, [params.id, params.job_id])
 
-    async function deleteJob(user_id, job_id, token) {
-        const url = API_URL + `/users/${user_id}/jobs/${job_id}`
-        const fetchOptions = {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": "Bearer " + token.token
-            }
-        }
-        const response = await fetch(url, fetchOptions);
-        
-        if (!response.ok) {
-            const errorMessage = await response.text();
-            throw new Error(errorMessage);
-        }
-    
-        return response.json();
-    }
+  
+
+
   
 
  

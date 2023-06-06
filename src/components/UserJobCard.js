@@ -2,20 +2,29 @@ import React from 'react'
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { LoginContext } from '../contexts/LoginContext';
+import { authenticateUser } from './../api/user_api'
+
 import "./Card.css"
 
 export default function UserJobCard(props) {
     const navigate = useNavigate();
-    const { currentUser, userLoggedIn } = useContext(LoginContext);
+    const { currentUser, userLoggedIn, setCurrentUser, setUserLoggedIn } = useContext(LoginContext);
 
     const handleDelete = () => {
-        if (userLoggedIn && currentUser.id == props.job.user_id) {
+        const auth = authenticateUser()
+
+        if (auth === true) {
+            console.log('User authenticated:', auth)
             navigate(`/users/${props.job.user_id}/jobs/${props.job.id}/delete`)
-        }
+        } else {
+          setUserLoggedIn(false)
+          setCurrentUser(null)
+          navigate(`/users/login`)
+        }  
     }
 
     const handleEdit = () => {
-        if (userLoggedIn && currentUser.id == props.job.user_id)
+        if (currentUser && currentUser.id == props.job.user_id)
         navigate(`/users/${props.job.user_id}/jobs/${props.job.id}/edit`)
     }
 

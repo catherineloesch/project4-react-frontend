@@ -1,21 +1,25 @@
 import React from 'react'
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { fetchJob } from "../api/job_api"
 import JobCard from '../components/JobCard'
+import { LoginContext } from '../contexts/LoginContext';
+import { Link } from "react-router-dom";
+
+
 import "./../components/Card.css"
 
 
 export default function Job() {
     const params = useParams()
     const [job, setJob] = useState(null);
+    const { userLoggedIn, currentUser } = useContext(LoginContext);
+
 
     useEffect(() => {
        fetchJob(params.job_id)
         .then(res => res.json())
         .then(data => {
-          console.log('useEffect')
-          console.log(data)
           setJob(data)})
     }, [params.id, params.job_id])
    
@@ -58,9 +62,8 @@ export default function Job() {
 
   return (
     <div>
-    
+      {userLoggedIn && currentUser ? <Link to={`/users/${currentUser.id}/jobs`}>See all my job listings</Link> : null}
         {display}
-
     </div>
   )
 }

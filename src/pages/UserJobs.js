@@ -3,26 +3,33 @@ import { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import { LoginContext } from "../contexts/LoginContext"
 import UserJobCard from '../components/UserJobCard'
+import { fetchUserJobs } from '../api/job_api'
+import { authenticateUser } from './../api/user_api'
 
 export default function UserJobs() {
 
-  const {currentUser, userLoggedIn, API_URL} = useContext(LoginContext);
+  const { currentUser, setCurrentUser, userLoggedIn, setUserLoggedIn } = useContext(LoginContext);
   
   const navigate = useNavigate();
   const params = useParams()
   const [jobs, setJobs] = useState(null);
 
-
-  const fetchJobs = async (id) => {
-    const url = API_URL + `/users/${id}/jobs`
-    return fetch(url)
-  }
-
   useEffect(
-    () => {fetchJobs(params.id)
+    () => {
+      const auth = authenticateUser()
+
+      if (auth === true) {
+          console.log('User authenticated:', auth)
+      } else {
+        setUserLoggedIn(false)
+        setCurrentUser(null)
+        navigate(`/users/login`)
+      }
+      
+    fetchUserJobs(params.id)
     .then(res => res.json())
     .then(data => setJobs(data))}
-, [params.id])
+    , [params.id])
 
   const handleAddNewJob = () => {
     (currentUser && userLoggedIn) ? navigate(`/users/${params.id}/jobs/new`) : navigate('/users/login')

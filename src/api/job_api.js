@@ -17,6 +17,12 @@ export const fetchUserJob = async(user_id, job_id) => {
     return job
 }
 
+//get all jobs posted by one user   (protected)
+export const fetchUserJobs = async (id) => {
+    const url = API_URL + `/users/${id}/jobs`
+    return fetch(url)
+}
+
 //CREATE new job
 export const createNewJob = async (user_id, newJob, token) => {
     const url = API_URL + `/users/${user_id}/jobs`
@@ -53,10 +59,31 @@ export const updateJob = async (user_id, job_id, updatedJob, token) => {
     }
 
     const response = await fetch(url, fetchOptions);
-    if (!response.ok) {
-        const errorMessage = await response.text();
-        throw new Error(errorMessage);
+    if (response.ok) {
+        const data = await response.json()
+        return data
+    } else {
+        return {error: response.statusText, status: response.status}
     }
 
-    return response.json();
+}
+//DELETE
+export const deleteJob = async(user_id, job_id, token) => {
+    const url = API_URL + `/users/${user_id}/jobs/${job_id}`
+    console.log(url)
+    const fetchOptions = {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer " + token.token
+        }
+    }
+    const response = await fetch(url, fetchOptions);
+    console.log(response)
+    if (response.ok) {
+        const data = await response.json()
+        return data
+    } else {
+        return {error: response.statusText, status: response.status}
+    }
 }
