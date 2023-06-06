@@ -43,7 +43,8 @@ export default function Dashboard({ verifyToken }) {
         }
 
         <Link to={`/users/${params.id}/jobs/new`}><div>Post new job</div></Link>
-        <Link to={`/users/${params.id}/jobs`}><div>View my current job listings</div></Link>
+        <Link to={`/users/${params.id}/jobs`}><div>View my current job posts</div></Link>
+        <Link to={`/users/${params.id}/profile`}><div>View my Profile</div></Link>
         <Link to={`/users/${params.id}/edit`}><div>Edit Profile</div></Link>
         <Link to={`/users/${params.id}/delete`}><div>Delete Account</div></Link>
         

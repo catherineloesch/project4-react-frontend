@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useContext, useEffect } from 'react';
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import { LoginContext } from '../contexts/LoginContext';
 import { getCurrentUser, authenticateUser, updateUser } from '../api/user_api';
@@ -52,7 +52,7 @@ export default function EditUser() {
     const handleFormSubmit = async (e) => {
         e.preventDefault();
         const apiResponse = await updateUser(params.id, formData)
-        
+
         if (apiResponse.error) {
             setErrors(apiResponse)
         } else {
