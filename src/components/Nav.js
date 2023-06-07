@@ -29,6 +29,7 @@ export default function Nav(props) {
           setUserLoggedIn(true)
         })
         console.log('User authenticated:', auth)
+        console.log(currentUser)
     } else {
       setUserLoggedIn(false)
       setCurrentUser(null)
@@ -58,7 +59,11 @@ export default function Nav(props) {
   let id;
   if (currentUser) {
      id = currentUser.id
-  } else {
+  } else if (props.userId)
+  {
+    id = props.userId
+  }
+  else {
     id = null
   }
 

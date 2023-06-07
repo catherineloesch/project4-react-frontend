@@ -14,12 +14,22 @@ export default function UserJobs() {
   const params = useParams()
   const [jobs, setJobs] = useState(null);
 
+  
+
   useEffect(
     () => {
       const auth = authenticateUser()
 
       if (auth === true) {
           console.log('User authenticated:', auth)
+          setUserLoggedIn(true)
+
+        
+
+
+
+
+
       } else {
         setUserLoggedIn(false)
         setCurrentUser(null)
@@ -42,7 +52,7 @@ export default function UserJobs() {
   } else if (jobs === []) {
     display = <p>You haven't posted any jobs yet!</p>
   } else {
-    display = jobs.map(job => <UserJobCard key={job.id} job={job}/>)
+    display = jobs.map(job => <UserJobCard key={job.id} job={job} />)
   }
 
   return (

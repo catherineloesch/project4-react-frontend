@@ -3,19 +3,35 @@ import { useState, useEffect, useContext } from 'react';
 import { useNavigate} from "react-router-dom";
 import { LoginContext } from "../contexts/LoginContext"
 import { fetchAllJobs } from '../api/job_api';
-import JobCard from '../components/JobCard'
+import { getCurrentUser, authenticateUser } from './../api/user_api'
+import JobData from '../components/JobData'
 import "./pages.css"
 
-export default function Jobs() {
-  const {currentUser, userLoggedIn } = useContext(LoginContext);
+export default function Jobs(props) {
+  
+  const {currentUser, userLoggedIn, setCurrentUser, setUserLoggedIn  } = useContext(LoginContext);
+
   const navigate = useNavigate();
 
   const [jobs, setJobs] = useState(null);
 
+  const getUser = async() => {
+    const apiResponse = await getCurrentUser()
+    if (apiResponse !== null && apiResponse !== undefined) {
+    setCurrentUser(apiResponse)
+    setUserLoggedIn(true)
+    props.setUserId(apiResponse.id)
+}}
+
   useEffect(() => {
-          fetchAllJobs()
-          .then(res => res.json())
-          .then(data => setJobs(data))
+    const auth = authenticateUser()
+     if (auth === true) {
+       getUser()
+      }
+      
+    fetchAllJobs()
+    .then(res => res.json())
+    .then(data => setJobs(data))
       }, [])
 
   const handleAddNewJob = () => {
@@ -33,7 +49,7 @@ export default function Jobs() {
   } else if (jobs === []) {
     display = <p>No Jobs Found!</p>
   } else {
-    display = jobs.map(job => <JobCard key={job.id} job={job}/>)
+    display = jobs.map(job => <JobData key={job.id} job={job}/>)
   }
 
   return (

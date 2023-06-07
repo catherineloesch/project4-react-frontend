@@ -31,19 +31,21 @@ function App() {
 
   const [currentUser, setCurrentUser] = useState(null);
   const [userLoggedIn, setUserLoggedIn] = useState('false');
+  
+  const [userId, setUserId] = useState(null);
 
   return (
     <div className="App">
       {/* LoginContext variables are accessible in children components */}
       <LoginContext.Provider value={{currentUser, setCurrentUser, userLoggedIn, setUserLoggedIn, API_URL}}>
 
-        <Header />
+        <Header userId={userId}/>
 
         <Routes>
 
           {/* HOME */}
           {/* Landing page: unprotected route, don't need token to access */}
-          <Route path='/' element={<Home />} />
+          <Route path='/' element={<Home setUserId={setUserId}/>} />
         
           {/* USER ROUTES */}
           {/* protected routes: can only be accessed with valid JWT token */}
@@ -57,12 +59,12 @@ function App() {
           <Route path='/users/accountdeleted' element={<NotificationAccountDeleted />} />
 
           {/* JOB ROUTES */}
-          <Route path='/users/:id/jobs' element={<UserJobs />} />
+          <Route path='/users/:id/jobs' element={<UserJobs setUserId={setUserId}/>} />
           <Route path='/users/:id/jobs/new' element={<AddNewJob />} />
           <Route path='/users/:id/jobs/:job_id/edit' element={<EditJob />} />
           <Route path='/users/:id/jobs/:job_id/delete' element={<DeleteJob />} />
 
-          <Route path='/jobs' element={<Jobs />} />
+          <Route path='/jobs' element={<Jobs setUserId={setUserId}/>} />
           <Route path='/users/:id/jobs/:job_id' element={<Job />} />
           <Route path='*' element={<PageNotFound />} />
         </Routes>

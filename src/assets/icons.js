@@ -81,7 +81,28 @@ const boneIcon = {
       html: (<i class="fa-solid fa-bone"></i>)
 }
 
+//CRUD
 
+const deleteIcon = {
+      source: 'FontAwesome',
+      url: 'https://fontawesome.com/icons/trash?f=classic&s=solid',
+      className: "fa-solid fa-trash",
+      html: (<i class="fa-solid fa-trash"></i>)
+}
+
+const editIcon = {
+      source: 'FontAwesome',
+      url: 'https://fontawesome.com/icons/pen-to-square?f=classic&s=solid',
+      className:"fa-solid fa-pen-to-square",
+      html: (<i class="fa-solid fa-pen-to-square"></i>)
+}
+
+const plusIcon = {
+      source: 'FontAwesome',
+      url: 'https://fontawesome.com/icons/plus?f=classic&s=solid',
+      className:"fa-solid fa-plus",
+      html: (<i class="fa-solid fa-plus"></i>)
+}
 
 
 
@@ -94,5 +115,8 @@ export {
       pawIcon, 
       catIcon, 
       dogIcon,
-      boneIcon
+      boneIcon,
+      editIcon,
+      deleteIcon,
+      plusIcon
  };

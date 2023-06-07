@@ -1,11 +1,35 @@
 import React from 'react'
+import { useEffect, useContext } from 'react';
+import { getCurrentUser, authenticateUser } from './../api/user_api'
+import { LoginContext } from "../contexts/LoginContext"
+
 import './pages.css'
 // import { pawIcon } from './../assets/icons'
 import { Link } from 'react-router-dom'
 
 
 
-export default function Home() {
+export default function Home(props) {
+  const { setCurrentUser, setUserLoggedIn  } = useContext(LoginContext);
+
+  const getUser = async() => {
+    const apiResponse = await getCurrentUser()
+    if (apiResponse !== null && apiResponse !== undefined) {
+    setCurrentUser(apiResponse)
+    setUserLoggedIn(true)
+    props.setUserId(apiResponse.id)
+}}
+
+
+  useEffect(() => {
+    const auth = authenticateUser()
+     if (auth === true) {
+       getUser()
+      }
+
+      }, [])
+
+
   return (
     <div className='home'>
     <img src={require('./../assets/images/pitbull_vector.png')} alt=""  className='pitbull-vector-img'  />

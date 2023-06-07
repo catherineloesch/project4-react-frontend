@@ -8,7 +8,7 @@ import Nav from "./Nav";
 import "./Header.css"
 
 
-export default function Header() {
+export default function Header(props) {
   const {currentUser, userLoggedIn} = useContext(LoginContext);
   const navigate = useNavigate();
 
@@ -25,7 +25,7 @@ export default function Header() {
           <i className={showHamburgerMenu ? closeIcon.className : hamburgerIcon.className}></i>
         </div>
      
-        <Nav showHamburgerMenu={showHamburgerMenu} setShowHamburgerMenu={setShowHamburgerMenu}/>
+        <Nav showHamburgerMenu={showHamburgerMenu} setShowHamburgerMenu={setShowHamburgerMenu} userId={props.userId}/>
 
         {/*currentUser&&userLoggedIn ? <h1>welcome {currentUser.username}</h1> : <h1>Please sign in</h1>*/}
 
