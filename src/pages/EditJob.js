@@ -6,6 +6,7 @@ import { authenticateUser } from './../api/user_api'
 import { updateJob, fetchUserJob } from '../api/job_api';
 
 import './pages.css'
+import './../components/Forms.css'
 
 
 export default function EditJob() {

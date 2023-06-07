@@ -3,6 +3,8 @@ import { useState } from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import { createNewJob } from './../api/job_api';
 import './pages.css'
+import './../components/Forms.css'
+
 
 export default function AddNewJob() {
     const [error, setError] = useState(false);

@@ -41,7 +41,7 @@ export default function Dashboard({ verifyToken }) {
           <h1 className='page-title'>{currentUser.display_name}'s Dashboard</h1> : 
           <h1 className='page-title'>Dashboard</h1>
         }
-
+        
         <Link to={`/users/${params.id}/jobs/new`}><div>Post new job</div></Link>
         <Link to={`/users/${params.id}/jobs`}><div>View my current job posts</div></Link>
         <Link to={`/users/${params.id}/profile`}><div>View my Profile</div></Link>

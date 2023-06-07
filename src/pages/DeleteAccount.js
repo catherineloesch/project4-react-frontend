@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { logUserIn, getCurrentUser, authenticateUser, deleteAccount } from './../api/user_api';
 
 import './pages.css'
+import './../components/Forms.css'
 
 
 export default function DeleteAccount() {

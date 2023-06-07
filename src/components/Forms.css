@@ -1,0 +1,181 @@
+
+/* pages containing user input forms */
+
+.login-page, 
+.signup-page, 
+.new-job-page,
+.edit-job-page,
+.application-page {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.login-form, 
+.signup-form, 
+.new-job-form,
+.edit-job-form,
+.application-form {
+    margin: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    color: var(--primary);
+    width: 500px;
+    height: 35em;
+    position: relative;
+    border-radius: 1em;
+    box-shadow:  0 8px 32px 0 var(--darkolive-shadow);
+   
+    background: url('./../assets/images/paws_bones.jpg');
+    background-size: 100em;    
+    /* border: 3px solid var(--darkolive); */
+}
+
+.signup-form {
+    height: 40em;
+    padding-bottom: 1em;
+    background: url('./../assets/images/pitbull_vector.png');
+    background-size: 100%;
+    background-color: rgb(68, 35, 7);
+    
+}
+
+.signup-form p {
+    color: black;
+}
+
+.signup-form a {
+    color: darkred;
+    
+}
+
+.login-form {
+    height: 25em;
+     /*padding-bottom: 1em; */
+    background: url('./../assets/images/paws_bones.jpg');
+    background-position: -4rem;
+    background-size: 300%;
+    /* background-color: rgb(68, 35, 7); */
+
+    
+}
+.login-form a {
+    padding-bottom: 1.5rem;
+
+    
+}
+
+/* .signup-form p {
+    color: black;
+}
+
+.signup-form a {
+    color: darkred;
+    
+} */
+
+form h1 {  /* form title */
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 10px;
+    color: var(--lightolive);
+    font-size: 2rem;
+}
+
+form a { /* form nav links */
+    color: var(--yellow);
+    font-size: 18px;
+}
+
+form p {
+    color: var(--primary);
+    font-size: 18px;
+}
+
+/* user input */
+input[type=text],
+input[type=password],
+select,
+textarea
+{
+    border: 3px solid var(--darkolive);
+    background-color: var(--lightolive);
+    color: black;
+    border-radius: 0.25em;
+    padding: 0.75em;
+    font-size: 17px;
+    outline: none;
+    
+}
+input[type=text]:focus,
+input[type=password]:focus,
+select:focus,
+textarea:focus
+{
+    border: 3px solid var(--crimson);
+
+}
+  
+input[type=text],
+input[type=password],
+select
+{
+    height: 2.1em;
+    width: 80%;
+}
+  
+textarea {
+    height: 9em;
+    width: 80%;
+}
+
+/* input field placeholder text */
+input[type=text]::placeholder,
+input[type=password]::placeholder,
+select::placeholder,
+textarea::placeholder
+{
+    color: var(--darkolive);
+}
+  
+/* submit buttons */
+input[type=submit] {
+width: 35%;
+height: 2.5em;
+background-color: rgb(68, 35, 7);
+border: 2px solid var(--lightolive);
+color: var(--lightolive);
+display: flex;
+justify-content: center;
+align-items: center;
+transition: 0.5s;
+cursor: pointer;
+border-radius:0.45em;
+font-size: 17px;
+}
+  
+input[type=submit]:hover {
+    transform: scale(1.08);
+    color: var(--yellow);
+    border: 2px solid var(--yellow);
+}
+
+/* media queries */
+
+@media only screen and (max-width: 620px) {
+    .login-form, 
+    .signup-form, 
+    .new-job-form,
+    .edit-job-form,
+    .application-form 
+    {
+        width: 90vw;
+    }
+}

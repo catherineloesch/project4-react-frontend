@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { LoginContext } from '../contexts/LoginContext';
 import { createNewUser } from '../api/user_api';
 import './pages.css'
+import './../components/Forms.css'
 
 export default function SignUp() {
 
@@ -47,7 +48,7 @@ export default function SignUp() {
     <div className='signup-page'>
   
         <form className='signup-form' onSubmit={handleFormSubmit}>
-            <h1 className='page-title'>Sign Up</h1>
+            <h1 className='page-title'>Register</h1>
             {errors && <h4>Error: {errors}!</h4>}
            
             <input
@@ -73,11 +74,20 @@ export default function SignUp() {
                 value={formData.display_name}
                 onChange={handleFormChange} 
             />
+
+                  
+            <input
+                type='text'
+                name='age'
+                placeholder='Age'
+                value={formData.age}
+                onChange={handleFormChange}
+            />
             
             <input
                 type='text'
                 name='address'
-                placeholder='Address'
+                placeholder='Location'
                 value={formData.address}
                 onChange={handleFormChange}
             />
@@ -89,14 +99,6 @@ export default function SignUp() {
                 value={formData.description}
                 onChange={handleFormChange}
             />
-            
-            <input
-                type='text'
-                name='age'
-                placeholder='Age'
-                value={formData.age}
-                onChange={handleFormChange}
-            />
 
             <input
                 type='submit'
@@ -104,7 +106,7 @@ export default function SignUp() {
                 value="Sign Up"
             />
 
-            <h4>Already have an account?</h4>
+            <p>Already have an account?</p>
             <Link to='/users/login'>Login</Link>
             
         </form>

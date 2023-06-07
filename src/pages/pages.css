@@ -2,60 +2,6 @@
     text-align: center;
 }
 
-/* pages containing user input forms */
-
-.login-page, 
-.signup-page, 
-.new-job-page,
-.edit-job-page,
-.application-page {
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-}
-
-.login-form, 
-.signup-form, 
-.new-job-form,
-.edit-job-form,
-.application-form {
-    margin: 0;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    color: var(--primary);
-    width: 30em;
-    height: 35em;
-    position: relative;
-    border-radius: 1em;
-    box-shadow:  0 8px 32px 0 var(--darkolive-shadow);
-   
-    background: url('./../assets/images/paws_bones.jpg');
-    background-size:-1%;    
-    /* border: 3px solid var(--darkolive); */
-}
-
-form h1 {
-    width: 100%;
-    border-radius: 50%;
-    height: auto;
-    margin: 0;
-    padding: 10px;
-    color: var(--yellow);
-    font-size: 3rem;
-}
-
-form a {
-    color: var(--yellow);
-}
-
-
-
 
 
 

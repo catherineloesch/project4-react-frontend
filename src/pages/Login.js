@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { LoginContext } from '../contexts/LoginContext';
 import { logUserIn } from '../api/user_api';
 import './pages.css'
+import './../components/Forms.css'
 
 export default function Login() {
     const { setCurrentUser, setUserLoggedIn } = useContext(LoginContext);
@@ -66,7 +67,8 @@ export default function Login() {
                 value="Log In"
             />
 
-            <h4>Don't have an account? <Link to='/users/signup'>Sign Up</Link></h4>
+            <p>Don't have an account?</p>
+            <Link to='/users/signup'>Sign Up</Link>
         </form>
     </div>
   )
