@@ -6,6 +6,7 @@ import { fetchAllJobs } from '../api/job_api';
 import { getCurrentUser, authenticateUser } from './../api/user_api'
 import JobData from '../components/JobData'
 import "./pages.css"
+import CardGrid from '../components/CardGrid';
 
 export default function Jobs(props) {
   
@@ -31,7 +32,9 @@ export default function Jobs(props) {
       
     fetchAllJobs()
     .then(res => res.json())
-    .then(data => setJobs(data))
+    .then(data => {
+      console.log(data)
+      setJobs(data)})
       }, [])
 
   const handleAddNewJob = () => {
@@ -45,6 +48,7 @@ export default function Jobs(props) {
   let display;
 
   if (jobs === null) {
+    console.log('jobs is null')
     display = <p>Loading...</p>
   } else if (jobs === []) {
     display = <p>No Jobs Found!</p>
@@ -59,8 +63,10 @@ export default function Jobs(props) {
           <button className='btn btn-add-job' onClick={handleAddNewJob}>Add new Job Posting</button>
         </section>
 
+        <CardGrid jobs={jobs}/>
+
         <section>
-          {display}
+          {jobs && jobs.length}
         </section>
         
 

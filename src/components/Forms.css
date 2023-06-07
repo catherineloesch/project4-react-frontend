@@ -5,6 +5,7 @@
 .signup-page, 
 .new-job-page,
 .edit-job-page,
+.edit-user-page,
 .application-page {
     height: 100vh;
     width: 100%;
@@ -18,6 +19,7 @@
 .signup-form, 
 .new-job-form,
 .edit-job-form,
+.edit-user-form,
 .application-form {
     margin: 0;
     box-sizing: border-box;
@@ -32,7 +34,7 @@
     border-radius: 1em;
     box-shadow:  0 8px 32px 0 var(--darkolive-shadow);
    
-    background: url('./../assets/images/paws_bones.jpg');
+    /* background: url('./../assets/images/paws_bones.jpg'); */
     background-size: 100em;    
     /* border: 3px solid var(--darkolive); */
 }
@@ -58,27 +60,31 @@
 .login-form {
     height: 25em;
      /*padding-bottom: 1em; */
-    background: url('./../assets/images/paws_bones.jpg');
-    background-position: -4rem;
-    background-size: 300%;
-    /* background-color: rgb(68, 35, 7); */
-
+    background: url('./../assets/images/ai_puppy.png');
+    background-size: 150%;
+    background-color: rgb(185, 154, 127);
+    background-position-y: -1.5rem;
+    background-position-x: -7.5rem
     
 }
+
+.login-form h1 {
+    color: var(--crimson);
+}
+
 .login-form a {
     padding-bottom: 1.5rem;
+    color: var(--crimson);
+    font-weight:bold;
 
     
 }
 
-/* .signup-form p {
-    color: black;
-}
-
-.signup-form a {
-    color: darkred;
+.login-form p {
+    color: var(--crimson);
+    font-weight:bold;
     
-} */
+}
 
 form h1 {  /* form title */
     width: 100%;
@@ -87,6 +93,7 @@ form h1 {  /* form title */
     padding: 10px;
     color: var(--lightolive);
     font-size: 2rem;
+    text-align: center;
 }
 
 form a { /* form nav links */
@@ -98,6 +105,21 @@ form p {
     color: var(--primary);
     font-size: 18px;
 }
+
+
+.new-job-form {
+    height: 50em;
+ 
+    justify-content: space-between;
+    padding-bottom: 2em;
+    padding-top: 2em;
+    background-size: 190%;
+    background-position-y:0.5rem;
+    background-color:  rgb(136, 52, 52);
+
+}
+
+
 
 .datePicker {
     display: flex;
@@ -119,21 +141,30 @@ form p {
 
 .date-input {
     height: 2.1em;
-    width: 80%;
+    width: 60%;
     display: flex;
     align-items: center;
     justify-content:flex-start;
     background-color: var(--lightolive);
     border: 2px solid var(--darkolive);
 }
-.datPicker input::placeholder
-{
-    color: var(--darkolive);
+
+.time-container input, .type-container select {
+    width: 60% !important
 }
-  
+
 .date-input:focus {
-    border: 3px solid var(--crimson);
+    border: 3px solid var(--crimson)!important;
    
+}
+
+.date-container, .time-container, .type-container {
+    height: 2.1em;
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 0.25em;
 }
 
 
@@ -167,11 +198,18 @@ select
 {
     height: 2.1em;
     width: 80%;
+
 }
   
 textarea {
     height: 9em;
     width: 80%;
+}
+
+select {
+    height: 100%;
+    padding: 0;
+    padding-left: 1em;
 }
 
 /* input field placeholder text */
@@ -215,5 +253,31 @@ input[type=submit]:hover {
     .application-form 
     {
         width: 90vw;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+
+    .new-job-form {
+        height: 60em;
+            
+    }
+
+
+    .new-job-form input, .new-job-form select {
+        padding: 1em auto;
+            
+    }
+
+    .date-container, .time-container, .type-container {
+     
+
+        flex-direction: column;
+        /* height: 2.1em;
+        width: 80%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        border-radius: 0.25em; */
     }
 }

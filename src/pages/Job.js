@@ -66,7 +66,7 @@ export default function Job(props) {
 
   return (
     <div>
-      {userLoggedIn && currentUser ? <Link to={`/users/${currentUser.id}/jobs`}>See all my job listings</Link> : null}
+      {userLoggedIn && currentUser ? <Link className='btn-all-jobs' to={`/users/${currentUser.id}/jobs`}>See all my job listings</Link> : null}
         {display}
     </div>
   )

@@ -61,9 +61,9 @@ export default function EditUser() {
     }
 
   return (
-    <div className='signup-page'>
+    <div className='edit-user-page'>
   
-        <form className='edit-uder-form' onSubmit={handleFormSubmit}>
+        <form className='edit-user-form' onSubmit={handleFormSubmit}>
             <h1 className='page-title'>Edit Profile</h1>
             {errors && <h4>Server Error: {errors.status} {errors.error}!</h4>}
            

@@ -3,10 +3,11 @@ import React from 'react'
 import { useContext } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { LoginContext } from '../contexts/LoginContext';
-import { pawIconR, pawIconL, pawIcon } from './../assets/icons';
+import { pawIconR, pawIconL, pawIcon, deleteIcon, editIcon } from './../assets/icons';
 
-import "./Card.css"
+
 import JobData from './JobData';
+import "./Card.css"
 
 export default function JobCard(props) {
   const navigate = useNavigate();
@@ -38,15 +39,27 @@ const handleEdit = () => {
 
   if (userLoggedIn && currentUser) {
     if (currentUser.id == props.job.user_id) {
-    buttons = <div> <button className='btn btn-delete-job' onClick={handleDelete}>delete</button>
-        <button className='btn btn-edit-job' onClick={handleEdit}>edit</button></div>
+    buttons = (
+      <div className='card-btn-container'> 
+
+        <button className='btn btn-delete-job' onClick={handleDelete}>
+          <i className={deleteIcon.className}></i>
+        </button>
+
+        <button className='btn btn-edit-job' onClick={handleEdit}>
+          <i className={editIcon.className}></i>
+        </button>  
+
+      </div>)
+
   } else {
-    buttons = <button className='btn btn-apply'>Apply</button>
+    buttons = null
   }}
 
   return (
-    <div>
+    <div className='job-card'>
       <JobData job={props.job}/>
+      {buttons}
     </div>
   )
 }

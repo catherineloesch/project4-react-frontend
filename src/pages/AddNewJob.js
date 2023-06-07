@@ -28,9 +28,9 @@ export default function AddNewJob() {
         "description": "",
         "job_type": "",
         "pay": "",
-        "start_date": new Date(),
+        "start_date": "",
         "start_time": "",
-        "end_date": new Date(),
+        "end_date": "",
         "end_time": "",
         "location": "",
         "user_id": params.id
@@ -41,23 +41,18 @@ export default function AddNewJob() {
     }
 
     const handleEndDateChange = (date) => {
-        console.log ('end_date')
-        console.log(date)
         setFormData({...formData, end_date: date })
-        console.log(formData)
     }
 
     const handleStartDateChange = (date) => {
-        console.log ('start_date')
-        const dateUk = moment.tz(date, "Greenwich").format();
-        
-        const bsDate = (new Date(moment.tz(date, "Greenwich").format()))
-
-        setFormData({...formData, start_date: bsDate })
+        console.log(date)
+        console.log(date.toISOString())
+        setFormData({...formData, start_date: date })
     }
 
     async function handleFormSubmit (e) {
         e.preventDefault();
+        console.log(formData)
         createNewJob(params.id, formData).then(newJob => {
 
         if (!newJob.error) {
@@ -96,68 +91,83 @@ export default function AddNewJob() {
         <form className='new-job-form' onSubmit={handleFormSubmit}>
             <h1>Add new job:</h1>  
             <div className='error-message'>{error ? "Server Error. Job could not be created." : " "}</div>
-        
-            <label>Title</label>
             <input
                 type='text'
                 name='title'
-                placeholder=''
+                placeholder='Title'
                 value={formData.title}
                 onChange={handleFormChange}
+                autoComplete="off"
             />
-
-            <label>Description</label>
+           
             <textarea
                 type='text'
                 name='description'
+                placeholder='Details'
                 value={formData.description}
                 onChange={handleFormChange}
+                autoComplete="off"
             />
 
-            <label>Job Type</label>
-            <select name='job_type' onChange={handleFormChange}>
-                {job_types.map((t, i) => (<option key={i} value={t}>{t}</option>))}
-            </select>
-
-            <label>pay</label>
-            <input
-                type='text'
-                name='pay'
-                value={formData.pay}
-                onChange={handleFormChange}
-            />
-            
-            <label>Start Date:</label>
-            <div className='date-input'>{startDateInput}</div>
-            
-        
-            <label>Start Time</label>
-            <input
-                type='text'
-                name='start_time'
-                value={formData.start_time}
-                onChange={handleFormChange}
-            />
-        
-            <label>End Date</label>
-            <div className='date-input'>{endDateInput}</div>
-           
-            
-            <label>End Time</label>
-            <input
-                type='text'
-                name='end_time'
-                value={formData.end_time}
-                onChange={handleFormChange}
-            />
-            
-            <label>Location</label>
             <input
                 type='text'
                 name='location'
+                placeholder='Location'
                 value={formData.location}
                 onChange={handleFormChange}
+                autoComplete="off"
             />
+
+            <input
+                type='text'
+                name='pay'
+                placeholder='Pay'
+                value={formData.pay}
+                onChange={handleFormChange}
+                autoComplete="off"
+            />
+
+            <div className='type-container'>
+                <label>Job Type</label>
+                <select name='job_type' onChange={handleFormChange}>
+                    {job_types.map((t, i) => (<option key={i} value={t}>{t}</option>))}
+                </select>
+            </div>
+
+            <div className='date-container'>
+                <label>Start Date:</label>
+                <div className='date-input'>{startDateInput}</div>
+            </div>
+
+            <div className='time-container'>
+                <label>Start Time</label>
+                <input
+                    className='time-input'
+                    type='text'
+                    name='start_time'
+                    value={formData.start_time}
+                    onChange={handleFormChange}
+                    autoComplete="off"
+                />
+            </div>
+  
+            <div className='date-container'>
+                <label>End Date</label>
+                <div className='date-input'>{endDateInput}</div>
+            </div>
+            
+            <div className='time-container'>
+                <label>End Time</label>
+                <input
+                    type='text'
+                    name='end_time'
+                    value={formData.end_time}
+                    onChange={handleFormChange}
+                    autoComplete="off"
+                />
+            </div>
+
+
 
             <input
                 type='submit'
