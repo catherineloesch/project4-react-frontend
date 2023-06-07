@@ -30,7 +30,7 @@ export default function JobData(props) {
 
     //date formatting
     const displayDate = (d) => {
-        return `${parseInt(d.slice(8, 10))+1 }/${d.slice(5, 7)}/${d.slice(0, 4)}`
+        return `${parseInt(d.slice(8, 10)) }/${d.slice(5, 7)}/${d.slice(0, 4)}`
     }
     
 

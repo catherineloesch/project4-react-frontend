@@ -99,22 +99,43 @@ form p {
     font-size: 18px;
 }
 
-form * {
-    border: 2px solid red
+.datePicker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border: none;
+
+}
+
+
+.datePicker input {
+    background-color: none !important;
+    width: 100% !important;
+    border: none!important;
+    height: 1.5em!important;
+
 }
 
 .date-input {
     height: 2.1em;
-    width: 100%;
+    width: 80%;
     display: flex;
     align-items: center;
-    justify-content: center;
-    background-color: blue;
+    justify-content:flex-start;
+    background-color: var(--lightolive);
+    border: 2px solid var(--darkolive);
+}
+.datPicker input::placeholder
+{
+    color: var(--darkolive);
+}
+  
+.date-input:focus {
+    border: 3px solid var(--crimson);
+   
 }
 
-.date {
-    background-color: red;
-}
 
 /* user input */
 input[type=text],
@@ -122,7 +143,7 @@ input[type=password],
 select,
 textarea
 {
-    border: 3px solid var(--darkolive);
+ 
     background-color: var(--lightolive);
     color: black;
     border-radius: 0.25em;

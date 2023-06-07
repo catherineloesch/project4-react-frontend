@@ -6,7 +6,7 @@ import './pages.css'
 import './../components/Forms.css'
 import DatePicker from'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 
 export default function AddNewJob() {
@@ -28,9 +28,9 @@ export default function AddNewJob() {
         "description": "",
         "job_type": "",
         "pay": "",
-        "start_date": "",
+        "start_date": new Date(),
         "start_time": "",
-        "end_date": "",
+        "end_date": new Date(),
         "end_time": "",
         "location": "",
         "user_id": params.id
@@ -39,14 +39,21 @@ export default function AddNewJob() {
     const handleFormChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
-    
+
     const handleEndDateChange = (date) => {
+        console.log ('end_date')
+        console.log(date)
         setFormData({...formData, end_date: date })
         console.log(formData)
     }
 
     const handleStartDateChange = (date) => {
-        setFormData({...formData, start_date: date })
+        console.log ('start_date')
+        const dateUk = moment.tz(date, "Greenwich").format();
+        
+        const bsDate = (new Date(moment.tz(date, "Greenwich").format()))
+
+        setFormData({...formData, start_date: bsDate })
     }
 
     async function handleFormSubmit (e) {
@@ -61,27 +68,27 @@ export default function AddNewJob() {
         }})
     }
 
-    const startDateInput = (<DatePicker
-        showIcon
+    const startDateInput = (<div><DatePicker
+        
         name='start_date'
         autoComplete="off"
         selected={formData.start_date}
         onChange={handleStartDateChange}
         dateFormat="dd/MM/yyyy"
         minDate={new Date()}
-
-    />)
-    const endDateInput = ( <DatePicker
-        className='date'
-        placeholderText= {new Date()}
-        showIcon
+        wrapperClassName="datePicker"
+        
+    /></div>)
+    const endDateInput = ( <div><DatePicker
         name='end_date'
         autoComplete="off"
         selected={formData.end_date}
         onChange={handleEndDateChange}
         dateFormat="dd/MM/yyyy"
         minDate={new Date()}
-        />)
+        wrapperClassName="datePicker"
+
+    /></div>)
 
     return (
     <div className='new-job-page'>
