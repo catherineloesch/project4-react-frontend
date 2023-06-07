@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import "./../components/Card.css"
 
 
-export default function Job() {
+export default function Job(props) {
     const params = useParams()
     const [job, setJob] = useState(null);
     const { userLoggedIn, currentUser } = useContext(LoginContext);
@@ -20,7 +20,11 @@ export default function Job() {
        fetchJob(params.job_id)
         .then(res => res.json())
         .then(data => {
-          setJob(data)})
+          setJob(data)
+          props.setUserId(params.id)
+        }
+          
+          )
     }, [params.id, params.job_id])
    
 

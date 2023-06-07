@@ -65,7 +65,7 @@ function App() {
           <Route path='/users/:id/jobs/:job_id/delete' element={<DeleteJob />} />
 
           <Route path='/jobs' element={<Jobs setUserId={setUserId}/>} />
-          <Route path='/users/:id/jobs/:job_id' element={<Job />} />
+          <Route path='/users/:id/jobs/:job_id' element={<Job setUserId={setUserId} />} />
           <Route path='*' element={<PageNotFound />} />
         </Routes>
 

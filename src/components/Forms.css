@@ -99,6 +99,23 @@ form p {
     font-size: 18px;
 }
 
+form * {
+    border: 2px solid red
+}
+
+.date-input {
+    height: 2.1em;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: blue;
+}
+
+.date {
+    background-color: red;
+}
+
 /* user input */
 input[type=text],
 input[type=password],

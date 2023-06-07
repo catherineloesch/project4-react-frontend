@@ -11,7 +11,8 @@ import "./Card.css"
 export default function JobData(props) {
 
     const { setUserLoggedIn } = useContext(LoginContext);
-
+    const navigate = useNavigate();
+    const params = useParams()
     useEffect(
         () => {
           const auth = authenticateUser()
@@ -25,13 +26,13 @@ export default function JobData(props) {
         , [])
 
     
-    const navigate = useNavigate();
-    const params = useParams()
+  
 
     //date formatting
     const displayDate = (d) => {
-        return `${d.slice(8, 10)}/${d.slice(5, 7)}/${d.slice(0, 4)}`
+        return `${parseInt(d.slice(8, 10))+1 }/${d.slice(5, 7)}/${d.slice(0, 4)}`
     }
+    
 
     //time formatting
     const displayTime = (t) => {

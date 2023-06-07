@@ -6,6 +6,7 @@ import { LoginContext } from '../contexts/LoginContext';
 import { pawIconR, pawIconL, pawIcon } from './../assets/icons';
 
 import "./Card.css"
+import JobData from './JobData';
 
 export default function JobCard(props) {
   const navigate = useNavigate();
@@ -45,21 +46,7 @@ const handleEdit = () => {
 
   return (
     <div>
-    {
-      params.job_id ? jobTitle : <Link to={`/users/${props.job.user_id}/jobs/${props.job.id}`}>{jobTitle}</Link>
-    }
-        <p>details: {props.job.description}</p>
-
-        {props.job.location && <p>location: {props.job.location}</p>}
-        {props.job.pay && <p>pay: {props.job.pay}</p>}
-        {props.job.job_type && <p>type: {props.job.job_type}</p>}
-        {props.job.start_date && <p>start date: {displayDate(props.job.start_date)}</p>}
-        {props.job.start_time && <p>start time: {displayTime(props.job.start_time)}</p>}
-        {props.job.end_date && <p>end date: {displayDate(props.job.end_date)}</p>}
-        {props.job.end_time && <p>end time: {displayTime(props.job.end_time)}</p>}
-        <p>job posted: {displayDate(props.job.created_at)}</p>
-
-        <div>{buttons}</div>
+      <JobData job={props.job}/>
     </div>
   )
 }
