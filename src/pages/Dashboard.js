@@ -1,5 +1,4 @@
-import React from 'react'
-import { useEffect, useContext } from 'react';
+import React, { useContext, useEffect } from 'react'
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { LoginContext } from "../contexts/LoginContext"
 import { getCurrentUser, authenticateUser } from './../api/user_api'
@@ -8,7 +7,6 @@ import './pages.css'
 
 export default function Dashboard(props) {
   const { currentUser, setCurrentUser, setUserLoggedIn } = useContext(LoginContext);
-
   const navigate = useNavigate();
   const params = useParams()
 
@@ -21,11 +19,14 @@ export default function Dashboard(props) {
 
   useEffect(() => {
     const auth = authenticateUser()
+    console.log('UE')
 
     if (auth === true) {
+      console.log('user is authenticated')
         getUser()
         console.log('User authenticated:', auth)
     } else {
+      console.log('user is not authenticated')
       localStorage.removeItem("petsJWT")
       setUserLoggedIn(false)
       setCurrentUser(null)
@@ -36,7 +37,6 @@ export default function Dashboard(props) {
 
   let dashBoardTitleText;
 
-
   if (currentUser && currentUser.display_name) {
     dashBoardTitleText = currentUser.display_name;
   } else if (props.userName) {
@@ -44,8 +44,6 @@ export default function Dashboard(props) {
   } else {
     dashBoardTitleText = null
   }
-
-
 
   return (
     <div className='dashboard-page'>
@@ -66,6 +64,7 @@ export default function Dashboard(props) {
             <Link to={`/users/${params.id}/edit`}><span><i className={editIcon.className}></i>&nbsp;&nbsp; Edit Profile</span></Link>
             <Link to={`/users/${params.id}/delete`}><span><i className={deleteIcon.className}></i>&nbsp;&nbsp; Delete Account</span></Link>
           </div>
+
           <img src={require('./../assets/images/dog_computer.jpg')} alt="photograph of dog with computer"  className='dog-pc-img2' />
 
         </div>

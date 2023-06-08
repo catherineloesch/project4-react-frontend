@@ -1,17 +1,13 @@
-import React from 'react'
-import { useState } from 'react';
+import React, { useState } from 'react'
 import { useNavigate, useParams } from "react-router-dom";
+import DatePicker from'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css'
 import { createNewJob } from './../api/job_api';
 import './pages.css'
 import './../components/Forms.css'
-import DatePicker from'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css'
-import moment from 'moment-timezone';
-
 
 export default function AddNewJob() {
     const [error, setError] = useState(false);
-
     const params = useParams()
     const navigate = useNavigate();
 
@@ -45,20 +41,15 @@ export default function AddNewJob() {
     }
 
     const handleStartDateChange = (date) => {
-        console.log(date)
-        console.log(date.toISOString())
         setFormData({...formData, start_date: date })
     }
 
     async function handleFormSubmit (e) {
         e.preventDefault();
-        console.log(formData)
         createNewJob(params.id, formData).then(newJob => {
-
         if (!newJob.error) {
             navigate(`/users/${params.id}/jobs/${newJob.id}`)
         } else {
-            console.log(newJob)
             setError(true)
         }})
     }
@@ -94,6 +85,7 @@ export default function AddNewJob() {
             <input
                 type='text'
                 name='title'
+                required='true'
                 placeholder='Title'
                 value={formData.title}
                 onChange={handleFormChange}
@@ -102,6 +94,7 @@ export default function AddNewJob() {
            
             <textarea
                 type='text'
+                required='true'
                 name='description'
                 placeholder='Details'
                 value={formData.description}
@@ -166,8 +159,6 @@ export default function AddNewJob() {
                     autoComplete="off"
                 />
             </div>
-
-
 
             <input
                 type='submit'

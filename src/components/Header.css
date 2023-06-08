@@ -108,19 +108,19 @@
     }
 }
 
-@media screen and (max-width: 530px) {
+@media screen and (max-width: 545px) {
     .header {
         height: 115px;
         padding: 1rem 2rem;
 
     }
 
-    .app-title, .header .fa-paw { font-size: 5vh; }
+    .app-title, .header .fa-paw { font-size: 39px; }
 
     .nav .nav-list { padding-top: 8rem; }
 }
 
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 520px) {
 
     .header {
         height: 110px;
@@ -128,7 +128,7 @@
 
     }
 
-    .app-title, .header .fa-paw{ font-size: 2.1rem; }
+    .app-title, .header .fa-paw{ font-size: 33px; }
 
     .nav .nav-list { padding-top: 10rem; }
 }

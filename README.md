@@ -199,6 +199,8 @@ rails new p4-rails --api
 
 <br>
 
+## 7. Build Process
+
 ### start date: 26/05/2023
 
 - specifictions given

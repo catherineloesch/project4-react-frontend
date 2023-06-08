@@ -26,6 +26,7 @@ Jobs Page
     color: var(--brown)
 }
 
+
 .btn-add-job, .btn-all-jobs {
     font-size: 1rem;
     padding: 2px 6px;
@@ -37,6 +38,9 @@ Jobs Page
 
 }
 
+.btn-add-job {
+    padding: 10px;
+}
 
 
 .btn-add-job:hover {
@@ -72,36 +76,25 @@ Dashboard Page
 }
 
 .dashboard-grid {
-    /* display: grid;
-    grid-template-columns: 60% 40%;
-    padding-top: 40px;
- */
- background-color: var(--brown);
-border-radius: 10px;
- display: flex;
- flex-wrap: wrap;
- justify-content: space-between;
- 
-   
+    background-color: rgba(107, 35, 1, 0.861);
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 70%
 }
+
 .dog-pc-img,
 .dashboard-links {
-    /* width: 75%; */
-    /* display: flex;
-    flex-direction: column;
-    justify-content: space-around; */
     align-items: center;
     border-radius: 60px;
- 
-
     width: 100%;
     border-radius: 10px;
     padding-bottom: 20px;
     padding: 10px;
     transition: .3s;
     flex: 0 0 calc(40% - 20px);
-    max-width: calc(40% - 20px);
-    
+    max-width: calc(40% - 20px); 
 }
 
 .dashboard-links {
@@ -110,7 +103,6 @@ border-radius: 10px;
     justify-content: space-between;
     padding-top: 70px;
     padding-bottom: 70px;
-
 }
 
 .dog-pc-img{
@@ -118,66 +110,59 @@ border-radius: 10px;
     max-width: calc(60% - 20px);
     padding: 20px;
 }
-.dog-pc-img2{
-    display: none;
-}
+
+.dog-pc-img2 { display: none; }
 
 .dashboard-links a {
     color: var(--lightolive);
     font-size: 24px;
     display: block;
-
     text-align: center;
 }
 
-.dashboard-links a:hover {
-    color: var(--yellow)
-    
-}
+.dashboard-links a:hover { color: var(--yellow) }
 
+@media screen and (max-width: 1150px) {
+
+    .dashboard-grid { width: 85% }
+
+    .dashboard-links {
+        padding-top: 30px;
+        padding-bottom: 30px;
+
+    }
+
+    .dashboard-links a{
+        font-size: 22px;
+    }
+}
 
 @media screen and (max-width: 840px) {
 
-  
-    .dog-pc-img2 {
-        width: 100%;
- 
-    }
-
-    .dashboard-links {
-    
-        padding-top: 30px;
-        padding-bottom: 30px;
-    
-    }
-    .dashboard-links a{
-        padding: 10px;
-        font-size: 22px;
-    
-    }
-    
-
-
-  
-  }
-
+    .dashboard-links a { padding: 10px; }
+    .dog-pc-img2 { width: 100%; }
+}
 
 @media screen and (max-width: 840px) {
 
     .dashboard-grid {
-
+        padding-top: 28px;
         display: flex;
         justify-content: center;
         align-items: center;
         margin: 0;
         padding: 0;
-        width: 100%;
-        
+        width: 90%;   
     }
 
-    .dog-pc-img {
-        display: none;
+    .dashboard-links a {
+        font-size: 22px;
+        width: 200%;
+    
     }
+
+    .dog-pc-img { display: none; }
+
     .dog-pc-img2 {
         display: flex;
         width: 90%;
@@ -193,17 +178,35 @@ border-radius: 10px;
         padding-bottom: 30px;
     
     }
+
     .dashboard-links a {
         padding: 15px;
         font-size: 22px;
     
     }
+}
     
+    @media screen and (max-width: 540px) {
+        .dashboard-links a{
+            padding: 10px;
+            font-size: 20px;
+            width: 350%;
+        }
 
+        #dashboard-title { font-size: 32px; }
+    }
 
-  
-  }
+    @media screen and (max-width: 285px) {
 
+        .dashboard-links a { font-size: 16px; }
+        #dashboard-title { font-size: 28px; }
+    }
+
+    @media screen and (max-width: 250px) {
+
+        .dashboard-links a { width: 480%; }
+        #dashboard-title { font-size: 28px; }
+    }
 
 
 /* 
@@ -442,10 +445,20 @@ Home
 Job Page
 ----------------------------------------------------------------------------------------------------------------
 */
-.btn-all-jobs {
-    color: black;
+
+.job-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
 
+.job-page .btn-all-jobs {
+    margin-bottom: 10px;
+    color: black;
+
+}
 
 
 /* 

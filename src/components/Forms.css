@@ -213,14 +213,15 @@ New Job Form
 
 .new-job-form {
     height: 50em;
- 
     justify-content: space-between;
     padding-bottom: 2em;
     padding-top: 2em;
     background-size: 190%;
-    background-position-y:0.5rem;
-    background-color:  rgb(136, 52, 52);
-
+    background: url('./../assets/images/dog_vector2.png');
+    background-position-y:90px;
+    background-repeat: no-repeat;
+    background-size: 230%;
+    background-color: rgb(96, 49, 5);
 }
 
 .datePicker {
@@ -229,16 +230,13 @@ New Job Form
     justify-content: center;
     width: 100%;
     border: none;
-
 }
-
 
 .datePicker input {
     background-color: none !important;
     width: 100% !important;
     border: none!important;
     height: 1.5em!important;
-
 }
 
 .date-input {
@@ -269,9 +267,7 @@ New Job Form
     border-radius: 0.25em;
 }
 
-
 /* media queries */
-
 @media only screen and (max-width: 620px) {
     .login-form, 
     .signup-form, 
@@ -286,25 +282,21 @@ New Job Form
 @media only screen and (max-width: 450px) {
 
     .new-job-form {
-        height: 60em;
+        height: 900px;
+        margin-top: 200px;
+        justify-content: space-between;
             
     }
-
 
     .new-job-form input, .new-job-form select {
         padding: 1em auto;
             
     }
-
-    .date-container, .time-container, .type-container {
-     
-
+    
+    .date-container,
+    .time-container,
+    .type-container
+    {
         flex-direction: column;
-        /* height: 2.1em;
-        width: 80%;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        border-radius: 0.25em; */
     }
 }

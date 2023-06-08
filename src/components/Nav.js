@@ -22,8 +22,11 @@ export default function Nav(props) {
 
   useEffect(() => {
     const auth = authenticateUser()
+    console.log('auth is...', auth)
 
     if (auth === true) {
+      console.log('auth is true')
+
         getUser().then((user) => {
           setCurrentUser(user)
           setUserLoggedIn(true)
@@ -31,9 +34,9 @@ export default function Nav(props) {
         console.log('User authenticated:', auth)
         console.log(currentUser)
     } else {
+      console.log('auth failed')
       setUserLoggedIn(false)
       setCurrentUser(null)
-      console.log(currentUser)
     }
 
 
@@ -41,11 +44,16 @@ export default function Nav(props) {
 
 
   const handleLogOut = async () => {
+    console.log('logging out ....')
     const apiResponse = await logUserOut()
+    console.log('api resp', apiResponse)
 
     if (apiResponse.error) {
-      setErrors(apiResponse.message.split('.')[1])
-      console.log(apiResponse.message)
+      console.log(apiResponse)
+      await setCurrentUser(null)
+      await setUserLoggedIn(false)
+      localStorage.removeItem("petsJWT")
+      navigate('/')
 
     } else {
 
