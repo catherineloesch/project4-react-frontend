@@ -1,9 +1,9 @@
 
 import React, { useState, useEffect } from 'react'
 import { useContext } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { LoginContext } from '../contexts/LoginContext';
-import { pawIconR, pawIconL, pawIcon, deleteIcon, editIcon } from './../assets/icons';
+import { deleteIcon, editIcon } from './../assets/icons';
 import { getUserById } from '../api/user_api';
 import { authenticateUser } from './../api/user_api'
 

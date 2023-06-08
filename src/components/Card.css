@@ -39,7 +39,7 @@ Job card elements
     max-width: calc(33.33% - 20px);
     width: 100%;
     border-radius: 10px;
-    background-color: var(--deepolive);
+    background-color: var(--brown);
     padding-bottom: 20px;
     padding-top: 5px;
     margin-bottom: 20px;
@@ -117,6 +117,10 @@ Job card elements
 
 .card-data p {
     padding: 3px;
+}
+
+.card-data a {
+    color: var(--lightolive)
 }
 
 

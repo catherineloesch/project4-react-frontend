@@ -50,8 +50,8 @@ export default function Dashboard(props) {
     <div className='dashboard-page'>
         {
           dashBoardTitleText ? 
-          <h1 className='page-title'>{dashBoardTitleText}'s Dashboard</h1> : 
-          <h1 className='page-title'>Dashboard</h1>
+          <h1 className='page-title' id='dashboard-title'>{dashBoardTitleText}'s Dashboard</h1> : 
+          <h1 className='page-title' id='dashboard-title'>Dashboard</h1>
         }
 
         <div className='dashboard-grid'>

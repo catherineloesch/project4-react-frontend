@@ -64,12 +64,20 @@ Dashboard Page
     justify-content: center;
     text-align: center;
 }
+
+#dashboard-title {
+    margin-bottom: 30px;
+    color: var(--brown);
+    font-size: 40px;
+}
+
 .dashboard-grid {
     /* display: grid;
     grid-template-columns: 60% 40%;
     padding-top: 40px;
  */
-
+ background-color: var(--brown);
+border-radius: 10px;
  display: flex;
  flex-wrap: wrap;
  justify-content: space-between;
@@ -77,39 +85,51 @@ Dashboard Page
    
 }
 .dog-pc-img,
- .dashboard-links {
+.dashboard-links {
     /* width: 75%; */
-    background-color: var(--brown);
     /* display: flex;
     flex-direction: column;
     justify-content: space-around; */
     align-items: center;
     border-radius: 60px;
-
+ 
 
     width: 100%;
     border-radius: 10px;
     padding-bottom: 20px;
-    padding-top: 5px;
-    margin-bottom: 20px;
+    padding: 10px;
     transition: .3s;
-        flex: 0 0 calc(50% - 20px);
-        max-width: calc(50% - 20px);
+    flex: 0 0 calc(40% - 20px);
+    max-width: calc(40% - 20px);
     
 }
 
+.dashboard-links {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 70px;
+    padding-bottom: 70px;
+
+}
+
 .dog-pc-img{
+    flex: 0 0 calc(60% - 20px);
+    max-width: calc(60% - 20px);
+    padding: 20px;
 }
 
 .dashboard-links a {
     color: var(--lightolive);
-    font-size: 20px;
-    display: flex;
-    text-align: left;
+    font-size: 24px;
+    display: block;
+
+    text-align: center;
 }
 
 .dashboard-links a:hover {
     color: var(--yellow)
+    
 }
 
 
