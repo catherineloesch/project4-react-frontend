@@ -17,6 +17,7 @@ export default function JobData(props) {
 
     useEffect(
         () => {
+          console.log('authenticating user')
           const auth = authenticateUser()
     
           if (auth === true) {
@@ -33,6 +34,7 @@ export default function JobData(props) {
 
     //date formatting
     const displayDate = (d) => {
+      console.log('formatting date ...')
       console.log(d) // time zone issue, db doesn't have same time zone as react app
 
       const day = (parseInt(d.slice(8, 10))+1) <10 ? "0" + (parseInt(d.slice(8, 10))+1) : (parseInt(d.slice(8, 10))+1)
@@ -41,6 +43,7 @@ export default function JobData(props) {
       console.log("0" + (parseInt(d.slice(8, 10))+1))
       const month= d.slice(5, 7)
       const year = d.slice(0, 4)
+      console.log('finish formatting date...')
         return `${day}/${month}/${year}`
     }
     const displayCreatedDate = (d) => {
@@ -56,23 +59,28 @@ export default function JobData(props) {
     }
 
   //title element
-  const jobTitle = ( <h2><i className={pawIconL.className}></i>{props.job.title}<i className={pawIconR.className}></i></h2>)
+  const jobTitle = ( <h2 onClick={handleClick} ><i className={pawIconL.className}></i>{props.job.title}<i className={pawIconR.className}></i></h2>)
  
 
   return (
-    <div onClick={handleClick} className='card-data'> 
+    <div className='card-data'> 
+      <div className='card-data' onClick={handleClick}></div>
         {jobTitle}
-        <p>details: {props.job.description}</p>
+        <div className='job-details'>
+        <p className='job-description'>{props.job.description}</p>
 
-        {props.job.location && <p>location: {props.job.location}</p>}
-        {props.job.pay && <p>pay: {props.job.pay}</p>}
-        {props.job.job_type && <p>type: {props.job.job_type}</p>}
-        {props.job.start_date && <p>start date: {displayDate(props.job.start_date)}</p>}
-        {props.job.start_time && <p>start time: {displayTime(props.job.start_time)}</p>}
-        {props.job.end_date && <p>end date: {displayDate(props.job.end_date)}</p>}
-        {props.job.end_time && <p>end time: {displayTime(props.job.end_time)}</p>}
+        {props.job.location && <p>Location: {props.job.location}</p>}
+        {props.job.pay && <p>Pay: {props.job.pay}</p>}
+        {props.job.job_type && <p>Type: {props.job.job_type}</p>}
+        {props.job.start_date && <p>Start date: {displayDate(props.job.start_date)}</p>}
+        {props.job.start_time && <p>Start time: {displayTime(props.job.start_time)}</p>}
+        {props.job.end_date && <p>End date: {displayDate(props.job.end_date)}</p>}
+        {props.job.end_time && <p>End time: {displayTime(props.job.end_time)}</p>}
         
         <p>job posted: {displayCreatedDate(props.job.created_at)}</p>
+        {props.name && <p>by: <Link to={`/users/${props.job.user_id}/profile`}>{props.name}</Link></p>}
+
+        </div>
     </div>
   )
 }

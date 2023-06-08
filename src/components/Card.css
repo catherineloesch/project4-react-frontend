@@ -91,6 +91,18 @@ Job card elements
     justify-content: center;
     color: white;
     font-size: 18px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+}
+.job-description {
+    margin-bottom: 15px;
+}
+
+.job-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .card-data:hover {
@@ -100,6 +112,7 @@ Job card elements
 .card-data h2{
     color: var(--yellow);
     padding: 18px;
+ 
 }
 
 .card-data p {

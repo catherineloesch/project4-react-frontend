@@ -1,15 +1,33 @@
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useContext } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { LoginContext } from '../contexts/LoginContext';
 import { pawIconR, pawIconL, pawIcon, deleteIcon, editIcon } from './../assets/icons';
+import { getUserById } from '../api/user_api';
 
 
 import JobData from './JobData';
 import "./Card.css"
 
 export default function JobCard(props) {
+  const [name, setName] = useState(null)
+
+  useEffect(() => {
+  
+    
+          getUserById(props.job.user_id)
+          .then(res => res.json())
+          .then(data => {
+            if (data && data.display_name) {
+              setName(data.display_name)
+              console.log(data.display_name)
+            }})
+      
+  
+ 
+
+  }, [])
   const navigate = useNavigate();
   const params = useParams()
 
@@ -33,7 +51,6 @@ const handleEdit = () => {
     navigate(`/users/${props.job.user_id}/jobs/${props.job.id}/edit`)
 }
   
-  const jobTitle = ( <h2><i className={pawIconL.className}></i>{props.job.title}<i className={pawIconR.className}></i></h2>)
 
   let buttons;
 
@@ -58,7 +75,7 @@ const handleEdit = () => {
 
   return (
     <div className='job-card'>
-      <JobData job={props.job}/>
+      <JobData job={props.job} name={name}/>
       {buttons}
     </div>
   )

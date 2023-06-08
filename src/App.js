@@ -33,6 +33,7 @@ function App() {
   const [userLoggedIn, setUserLoggedIn] = useState('false');
   
   const [userId, setUserId] = useState(null);
+  const [userName, setUserName] = useState(null);
 
   return (
     <div className="App">
@@ -50,8 +51,8 @@ function App() {
           {/* USER ROUTES */}
           {/* protected routes: can only be accessed with valid JWT token */}
           <Route path='/users/login' element={<Login />} />
-          <Route path='/users/signup' element={<SignUp />} />
-          <Route path='/users/:id/dashboard' element={<Dashboard />} />
+          <Route path='/users/signup' element={<SignUp setUserName={setUserName}/>} />
+          <Route path='/users/:id/dashboard' element={<Dashboard userName= {userName} />} />
           <Route path='/users/:id/profile' element={<UserProfile />} />
           <Route path='/users/:id/edit' element={<EditUser />} />
 

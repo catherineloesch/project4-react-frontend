@@ -5,7 +5,7 @@ import { LoginContext } from "../contexts/LoginContext"
 import { getCurrentUser, authenticateUser } from './../api/user_api'
 import './pages.css'
 
-export default function Dashboard({ verifyToken }) {
+export default function Dashboard(props) {
   const { currentUser, setCurrentUser, setUserLoggedIn } = useContext(LoginContext);
 
   const navigate = useNavigate();
@@ -32,13 +32,24 @@ export default function Dashboard({ verifyToken }) {
 
   }, [])
 
+  let dashBoardTitleText;
+
+
+  if (currentUser && currentUser.display_name) {
+    dashBoardTitleText = currentUser.display_name;
+  } else if (props.userName) {
+    dashBoardTitleText = props.userName;
+  } else {
+    dashBoardTitleText = null
+  }
+
 
 
   return (
     <div>
         {
-          currentUser ? 
-          <h1 className='page-title'>{currentUser.display_name}'s Dashboard</h1> : 
+          dashBoardTitleText ? 
+          <h1 className='page-title'>{dashBoardTitleText}'s Dashboard</h1> : 
           <h1 className='page-title'>Dashboard</h1>
         }
         

@@ -2,11 +2,11 @@ import React from 'react'
 import { useState, useContext } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import { LoginContext } from '../contexts/LoginContext';
-import { createNewUser } from '../api/user_api';
+import { createNewUser, updateUser } from '../api/user_api';
 import './pages.css'
 import './../components/Forms.css'
 
-export default function SignUp() {
+export default function SignUp(props) {
 
     const { setCurrentUser, setUserLoggedIn } = useContext(LoginContext);
     const navigate = useNavigate();
@@ -32,15 +32,26 @@ export default function SignUp() {
     const handleFormSubmit = async (e) => {
         e.preventDefault();
 
-        const apiResponse = await createNewUser(formData)
+        let apiResponse = await createNewUser(formData)
 
         if (apiResponse.error) {
             setErrors(apiResponse.message.split('.')[1])
         }
         else {
+            console.log(apiResponse.data.display_name)
+            if (apiResponse.data.display_name === "") {
+                console.log('no name')
+                apiResponse.data = {...apiResponse.data, display_name: `User ${apiResponse.data.id}`}
+                updateUser(apiResponse.data.id, apiResponse.data)
+                console.log(apiResponse.data)
+                props.setUserName('User ${apiResponse.data.id}')
+            }
             await setUser(apiResponse.data)
+
             navigate(`/users/${apiResponse.data.id}/dashboard`)
         }
+            
+        
     }
 
 
