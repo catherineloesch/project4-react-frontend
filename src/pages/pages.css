@@ -27,7 +27,10 @@ Jobs Page
 }
 
 
-.btn-add-job, .btn-all-jobs {
+.btn-add-job,
+.btn-all-jobs,
+.btn-cancel,
+.btn-delete-account {
     font-size: 1rem;
     padding: 2px 6px;
     border-radius: 8px;
@@ -43,7 +46,11 @@ Jobs Page
 }
 
 
-.btn-add-job:hover {
+.btn-add-job:hover,
+.btn-all-jobs:hover,
+.btn-cancel:hover,
+.btn-delete-account:hover
+{
     transform: scale(1.08);
     cursor: pointer;
 }
@@ -457,6 +464,97 @@ Job Page
 .job-page .btn-all-jobs {
     margin-bottom: 10px;
     color: black;
+        padding: 10px;
+
+    
+    
+
+
+}
+
+
+.btn-add-job:hover {
+    transform: scale(1.08);
+    cursor: pointer;
+}
+/* 
+----------------------------------------------------------------------------------------------------------------
+Delete Account Page
+----------------------------------------------------------------------------------------------------------------
+*/
+
+.delet-account-page {
+    margin-top: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.delet-account-page h1 {
+    font-size: 30px;
+    color: darkred;
+    text-align: center;
+}
+
+.delet-account-page input[type=password] {
+    width: 20%;
+    font-size: 20px;
+}
+
+.delete-btn-container {
+    display: flex;
+    gap: 20px;
+}
+
+.delet-account-page .btn-delete-account,
+.delet-account-page .btn-cancel {
+    margin-bottom: 10px;
+    color: black;
+    font-size: 20px;
+}
+
+@media screen and (max-width: 1550px) {
+
+    .delet-account-page input[type=password] { width: 30%; }
+
+}
+
+@media screen and (max-width: 1000px) {
+
+    .delet-account-page input[type=password] { width: 40%; }
+
+}
+
+@media screen and (max-width: 770px) {
+
+    .delet-account-page h1 { width: 80%; }
+
+}
+
+@media screen and (max-width: 630px) {
+
+    .delet-account-page input[type=password] { width: 60%; }
+
+}
+
+@media screen and (max-width: 425px) {
+
+    .delet-account-page input[type=password] { width: 70%; }
+
+    .delete-btn-container { flex-direction: column; }
+
+    .delet-account-page h1 { font-size: 25px; }
+
+    .delet-account-page .btn-delete-account,
+    .delet-account-page .btn-cancel {
+    margin-bottom: 8px;
+    font-size: 16px;
+
+}
+
+  
 
 }
 
