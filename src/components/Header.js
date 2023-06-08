@@ -9,7 +9,6 @@ import "./Header.css"
 
 
 export default function Header(props) {
-  const {currentUser, userLoggedIn} = useContext(LoginContext);
   const navigate = useNavigate();
 
    const [showHamburgerMenu, setShowHamburgerMenu] = useState(false);

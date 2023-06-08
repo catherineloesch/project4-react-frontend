@@ -37,6 +37,7 @@ export default function DeleteAccount() {
             getUser()
             console.log('User authenticated:', auth)
         } else {
+        localStorage.removeItem("petsJWT")
           setUserLoggedIn(false)
           setCurrentUser(null)
           navigate(`/users/login`)

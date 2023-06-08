@@ -11,20 +11,13 @@ export default function UserJobCard(props) {
     const navigate = useNavigate();
     const { setCurrentUser, setUserLoggedIn } = useContext(LoginContext);
 
-
-    const displayDate = (d) => {
-      return `${d.slice(8, 10)}/${d.slice(5, 7)}/${d.slice(0, 4)}`
-    }
-    const displayTime = (t) => {
-      return `${t.slice(11, 13)}:${t.slice(14, 16)}`
-    }
-
     const handleEdit = () => {
       const auth = authenticateUser()
       if (auth === true) {
         console.log('User authenticated:', auth)
         navigate(`/users/${props.job.user_id}/jobs/${props.job.id}/edit`)
     } else {
+      localStorage.removeItem("petsJWT")
       setUserLoggedIn(false)
       setCurrentUser(null)
       navigate(`/users/login`)

@@ -5,6 +5,7 @@ import { LoginContext } from "../contexts/LoginContext"
 import UserJobCard from '../components/UserJobCard'
 import { fetchUserJobs } from '../api/job_api'
 import { authenticateUser } from './../api/user_api'
+import CardGrid from '../components/CardGrid';
 
 export default function UserJobs() {
 
@@ -17,20 +18,18 @@ export default function UserJobs() {
   
 
   useEffect(
+   
     () => {
       const auth = authenticateUser()
-
-      if (auth === true) {
+      if (auth) {
           console.log('User authenticated:', auth)
           setUserLoggedIn(true)
-
-        
-
-
 
 
 
       } else {
+        localStorage.removeItem("petsJWT")
+
         setUserLoggedIn(false)
         setCurrentUser(null)
         navigate(`/users/login`)
@@ -42,7 +41,7 @@ export default function UserJobs() {
     , [params.id])
 
   const handleAddNewJob = () => {
-    (currentUser && userLoggedIn) ? navigate(`/users/${params.id}/jobs/new`) : navigate('/users/login')
+    userLoggedIn ? navigate(`/users/${params.id}/jobs/new`) : navigate('/users/login')
   }
 
   let display;
@@ -52,14 +51,16 @@ export default function UserJobs() {
   } else if (jobs === []) {
     display = <p>You haven't posted any jobs yet!</p>
   } else {
-    display = jobs.map(job => <UserJobCard key={job.id} job={job} />)
+    display = <CardGrid jobs={jobs}/>
   }
 
   return (
-    <div>
-        <h1>My Jobs:</h1>
-        {display}
+    <div className='my-jobs-page'>
+      <section className='jobs-title-container'>
+        <h1 className='my-jobs-title'>My Jobs Listings</h1>
         <button className='btn btn-add-job' onClick={handleAddNewJob}>Add new Job Posting</button>
-    </div>
+      </section>
+        {display}
+      </div>
   )
 }

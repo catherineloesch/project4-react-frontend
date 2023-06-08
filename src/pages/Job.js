@@ -6,6 +6,7 @@ import JobCard from '../components/JobCard'
 import { LoginContext } from '../contexts/LoginContext';
 import { Link } from "react-router-dom";
 
+import { authenticateUser } from './../api/user_api'
 
 import "./../components/Card.css"
 
@@ -13,10 +14,15 @@ import "./../components/Card.css"
 export default function Job(props) {
     const params = useParams()
     const [job, setJob] = useState(null);
-    const { userLoggedIn, currentUser } = useContext(LoginContext);
+    const { userLoggedIn, currentUser, setUserLoggedIn } = useContext(LoginContext);
 
 
     useEffect(() => {
+      const auth = authenticateUser()
+      if (auth) {
+          console.log('User authenticated:', auth)
+          setUserLoggedIn(true)
+      } 
        fetchJob(params.job_id)
         .then(res => res.json())
         .then(data => {
@@ -40,6 +46,8 @@ export default function Job(props) {
     //     if (currentUser && currentUser.id == job.user_id)
     //     navigate(`/users/${job.user_id}/jobs/${job.id}/edit`)
     // }
+    console.log('Is user logged in?')
+    console.log(userLoggedIn)
 
     let display;
 

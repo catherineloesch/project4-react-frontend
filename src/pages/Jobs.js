@@ -63,12 +63,7 @@ export default function Jobs(props) {
           <button className='btn btn-add-job' onClick={handleAddNewJob}>Add new Job Posting</button>
         </section>
 
-        <CardGrid jobs={jobs}/>
-
-        <section>
-          {jobs && jobs.length}
-        </section>
-        
+        <CardGrid jobs={jobs}/>        
 
     </div>
   )

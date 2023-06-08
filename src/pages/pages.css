@@ -18,11 +18,12 @@ Jobs Page
 
 }
 
-.browse-jobs-title {
+.browse-jobs-title,
+.my-jobs-title {
     font-size: 30px;
     line-height: 40px;
     margin-bottom: 15px;
-    color: brown;
+    color: var(--brown)
 }
 
 .btn-add-job, .btn-all-jobs {
@@ -30,11 +31,13 @@ Jobs Page
     padding: 2px 6px;
     border-radius: 8px;
     background-color: transparent;
-    border: 2px solid brown;
+    border: 2px solid var(--brown);
     background-color: transparent;
     transition: 0.5s;
 
 }
+
+
 
 .btn-add-job:hover {
     transform: scale(1.08);
@@ -46,6 +49,69 @@ Jobs Page
     .browse-jobs-title { font-size: 7vw; }
   
   }
+
+
+/* 
+----------------------------------------------------------------------------------------------------------------
+Dashboard Page
+----------------------------------------------------------------------------------------------------------------
+*/
+
+.dashboard-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.dashboard-grid {
+    /* display: grid;
+    grid-template-columns: 60% 40%;
+    padding-top: 40px;
+ */
+
+ display: flex;
+ flex-wrap: wrap;
+ justify-content: space-between;
+ 
+   
+}
+.dog-pc-img,
+ .dashboard-links {
+    /* width: 75%; */
+    background-color: var(--brown);
+    /* display: flex;
+    flex-direction: column;
+    justify-content: space-around; */
+    align-items: center;
+    border-radius: 60px;
+
+
+    width: 100%;
+    border-radius: 10px;
+    padding-bottom: 20px;
+    padding-top: 5px;
+    margin-bottom: 20px;
+    transition: .3s;
+        flex: 0 0 calc(50% - 20px);
+        max-width: calc(50% - 20px);
+    
+}
+
+.dog-pc-img{
+}
+
+.dashboard-links a {
+    color: var(--lightolive);
+    font-size: 20px;
+    display: flex;
+    text-align: left;
+}
+
+.dashboard-links a:hover {
+    color: var(--yellow)
+}
+
 
 /* 
 ----------------------------------------------------------------------------------------------------------------

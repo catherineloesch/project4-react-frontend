@@ -13,19 +13,13 @@ export default function UserProfile() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const auth = authenticateUser()
-    
-        if (auth === true) {
+  
             getUserById(params.id)
             .then(res => res.json())
             .then(data => {
                 setUser(data)
             })
-        } else {
-          setUserLoggedIn(false)
-          setCurrentUser(null)
-          navigate(`/users/login`)
-        }
+
     
       }, [])
   

@@ -38,6 +38,8 @@ export default function EditUser() {
             getUser()
         
         } else {
+            localStorage.removeItem("petsJWT")
+
           setUserLoggedIn(false)
           setCurrentUser(null)
           navigate(`/users/login`)

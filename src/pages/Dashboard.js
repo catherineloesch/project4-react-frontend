@@ -25,6 +25,7 @@ export default function Dashboard(props) {
         getUser()
         console.log('User authenticated:', auth)
     } else {
+      localStorage.removeItem("petsJWT")
       setUserLoggedIn(false)
       setCurrentUser(null)
       navigate(`/users/login`)
@@ -46,18 +47,26 @@ export default function Dashboard(props) {
 
 
   return (
-    <div>
+    <div className='dashboard-page'>
         {
           dashBoardTitleText ? 
           <h1 className='page-title'>{dashBoardTitleText}'s Dashboard</h1> : 
           <h1 className='page-title'>Dashboard</h1>
         }
-        
-        <Link to={`/users/${params.id}/jobs/new`}><div>Post new job</div></Link>
-        <Link to={`/users/${params.id}/jobs`}><div>View my current job posts</div></Link>
-        <Link to={`/users/${params.id}/profile`}><div>View my Profile</div></Link>
-        <Link to={`/users/${params.id}/edit`}><div>Edit Profile</div></Link>
-        <Link to={`/users/${params.id}/delete`}><div>Delete Account</div></Link>
+
+        <div className='dashboard-grid'>
+          
+        <img src={require('./../assets/images/dog_computer.jpg')} alt="photograph of dog with computer"  className='dog-pc-img' />
+
+            <div className='dashboard-links'>
+              <Link to={`/users/${params.id}/jobs/new`}><div>Post new job</div></Link>
+              <Link to={`/users/${params.id}/jobs`}><div>View my current job posts</div></Link>
+              <Link to={`/users/${params.id}/profile`}><div>View my Profile</div></Link>
+              <Link to={`/users/${params.id}/edit`}><div>Edit Profile</div></Link>
+              <Link to={`/users/${params.id}/delete`}><div>Delete Account</div></Link>
+          </div>
+        </div>
+      
         
     </div>
   )

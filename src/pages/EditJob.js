@@ -5,7 +5,6 @@ import { LoginContext } from '../contexts/LoginContext';
 import { authenticateUser } from './../api/user_api'
 import { updateJob, fetchUserJob } from '../api/job_api';
 
-import 'react-datepicker/dist/react-datepicker.css'
 
 import './pages.css'
 import './../components/Forms.css'
@@ -50,6 +49,7 @@ export default function EditJob() {
             const auth = authenticateUser()
 
             if (auth !== true) {
+                localStorage.removeItem("petsJWT")
                 setUserLoggedIn(false)
                 setCurrentUser(null)
                 navigate(`/users/login`)
