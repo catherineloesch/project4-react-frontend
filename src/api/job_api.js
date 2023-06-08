@@ -1,8 +1,7 @@
 import { API_URL } from './api_url'
-const mode = {mode: "no-cors"}
 //get all jobs, unprotected route, no token required
 export const fetchAllJobs = async () => {
-    return fetch(API_URL + '/jobs', mode)
+    return fetch(API_URL + '/jobs', {mode: 'no-cors'})
 }
 
 //get one job by id (unprotected)
