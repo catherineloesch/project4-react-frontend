@@ -35,6 +35,13 @@ const pawIconR = {
       html: (<i class="fa-solid fa-paw fa-rotate-90"></i>)
 }
 
+const browseIcon = {
+      source: 'FontAwesome',
+      url: 'https://fontawesome.com/icons/magnifying-glass?f=classic&s=solid',
+      className: "fa-solid fa-magnifying-glass",
+      html: (<i class="fa-solid fa-magnifying-glass"></i>)
+}
+
 //header nav links
 const homeIcon = {
       source: 'FontAwesome',
@@ -104,6 +111,19 @@ const plusIcon = {
       html: (<i class="fa-solid fa-plus"></i>)
 }
 
+const profileIcon = {
+      source: 'FontAwesome',
+      url: 'https://fontawesome.com/icons/user?f=classic&s=solid',
+      className:"fa-solid fa-user",
+      html: (<i class="fa-solid fa-user"></i>)
+}
+const viewIcon = {
+      source: 'FontAwesome',
+      url: 'https://fontawesome.com/icons/eye?f=classic&s=regular',
+      className: "fa-regular fa-eye",
+      html: (<i class="fa-regular fa-eye"></i>)
+}
+
 
 
 export { 
@@ -118,5 +138,8 @@ export {
       boneIcon,
       editIcon,
       deleteIcon,
-      plusIcon
+      plusIcon,
+      browseIcon,
+      profileIcon,
+      viewIcon
  };

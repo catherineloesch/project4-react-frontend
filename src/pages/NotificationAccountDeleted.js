@@ -1,23 +1,25 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 import './pages.css'
+import { homeIcon, browseIcon } from '../assets/icons';
+
 
 export default function NotificationAccountDeleted() {
 
   return (
-    <div className='notification-account-deleted'>
+    <div className='account-deleted-page'>
+      <div className='account-deleted-grid'>
 
-      <div className='account-deleted-img-container'>
-        <img src={require('./../assets/images/dog_window.jpg')} alt="photograph of dog looking out a window" className='account-deleted-img'  />
-        <img src={require('./../assets/images/dog_sad.jpg')} alt="black and white dog photograph" className='account-deleted-img'  />
-      </div>
-
-      <div className='account-deleted-text-container'>
-        <p>Your account has successfully been deleted!</p>
-        <Link to='/'>Home</Link>
-        <Link to='/jobs'>Browse Jobs</Link>
-      </div>
+          <img src={require('./../assets/images/dog_sad.jpg')} alt="black and white dog photograph" className='account-deleted-img'  />
       
+
+        <div className='account-deleted-text-container'>
+          <h1>Your account has successfully been deleted!</h1>
+          <Link to='/'><span><i className={homeIcon.className}></i>&nbsp;&nbsp;Home </span></Link>
+          <Link to='/jobs'><span><i className={browseIcon.className}></i>&nbsp;&nbsp;Browse Jobs </span></Link>
+        </div>
+        
+      </div>
     </div>
   )
 }

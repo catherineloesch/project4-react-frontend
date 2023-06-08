@@ -118,6 +118,9 @@ border-radius: 10px;
     max-width: calc(60% - 20px);
     padding: 20px;
 }
+.dog-pc-img2{
+    display: none;
+}
 
 .dashboard-links a {
     color: var(--lightolive);
@@ -133,40 +136,167 @@ border-radius: 10px;
 }
 
 
+@media screen and (max-width: 840px) {
+
+  
+    .dog-pc-img2 {
+        width: 100%;
+ 
+    }
+
+    .dashboard-links {
+    
+        padding-top: 30px;
+        padding-bottom: 30px;
+    
+    }
+    .dashboard-links a{
+        padding: 10px;
+        font-size: 22px;
+    
+    }
+    
+
+
+  
+  }
+
+
+@media screen and (max-width: 840px) {
+
+    .dashboard-grid {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        
+    }
+
+    .dog-pc-img {
+        display: none;
+    }
+    .dog-pc-img2 {
+        display: flex;
+        width: 90%;
+        border-radius: 10px;
+        margin-bottom: 30px;
+    }
+
+    .dashboard-links {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    
+    }
+    .dashboard-links a {
+        padding: 15px;
+        font-size: 22px;
+    
+    }
+    
+
+
+  
+  }
+
+
+
+/* 
+----------------------------------------------------------------------------------------------------------------
+Notification Page after logout successful
+----------------------------------------------------------------------------------------------------------------
+*/
+
+.logout-successful-page{
+    margin-top: 180px;
+}
+
+.logout-successful-grid{
+    display: grid;
+    grid-template-columns: 40% 60%;
+}
+
+.logout-successful-text-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.logout-successful-text-container h1 {
+    /* margin-top: -210px; */
+    margin-bottom: 60px;
+    color: var(--deepolive);
+    font-size: 47px;
+}
+
+.logout-successful-text-container a {
+    color: var(--darkolive);
+    font-size: 28px;
+    display: block;
+    padding: 15px;
+
+    text-align: center;
+}
+
+
+.logout-successful-text-container a:hover {
+    color: var(--brown)
+}
+
+.logout-successful-img {
+    width: 90%;
+    border-radius: 30px;
+}
+
+
+
 /* 
 ----------------------------------------------------------------------------------------------------------------
 Notification Page after account is successfully deleted
 ----------------------------------------------------------------------------------------------------------------
 */
 
-.notification-account-deleted {
-    display: flex;
-    flex-direction: row;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    gap: 4vh;
-    margin: 0;
+.account-deleted-page {
+    margin-top: 180px;
+
+}
+
+.account-deleted-grid {
+    display: grid;
+    grid-template-columns: 55% 45%;
 }
 
 .account-deleted-text-container {
-    width: 60vw;
     display: flex;
     flex-direction: column;
-    gap: 5vh;
-    height: 85vh;
+    justify-content: center;
+    align-items: center;
+    margin-left: -80px;
 }
-.account-deleted-text-container p {
-    font-size: 4.5vh;
-    padding-left: 15vw;
-    padding-right: 15vw;
+.account-deleted-text-container h1 {
+    margin-bottom: 60px;
+    color: var(--deepolive);
+    font-size: 47px;
+    text-align: center;
+    width: 80%;
 }
 
 .account-deleted-text-container a {
-    font-size: 3vh;
-    text-decoration: none;
     color: var(--darkolive);
-    font-weight: 500;
+    font-size: 28px;
+    display: block;
+    padding: 15px;
+    text-align: center;
+}
+
+.account-deleted-text-container a:hover {
+    color: var(--brown)
 }
 
 .account-deleted-img-container {
@@ -176,7 +306,8 @@ Notification Page after account is successfully deleted
     background-color: var(--darkolive);
 }
 .account-deleted-img {
-   width: 100%;
+    width: 90%;
+    border-radius: 30px;
 }
 
 

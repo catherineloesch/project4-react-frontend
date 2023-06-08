@@ -21,6 +21,7 @@ import EditJob from './pages/EditJob';
 import DeleteJob from './pages/DeleteJob';
 import EditUser from './pages/EditUser';
 import UserProfile from './pages/UserProfile';
+import NotificationLogoutSuccessful from './pages/NotificationLogoutSuccessful';
 
 function App() {
   const navigate = useNavigate();
@@ -56,6 +57,8 @@ function App() {
           <Route path='/users/:id/profile' element={<UserProfile />} />
           <Route path='/users/:id/edit' element={<EditUser />} />
 
+
+          <Route path='/users/logoutsuccessful' element={<NotificationLogoutSuccessful/>} />
           <Route path='/users/:id/delete' element={<DeleteAccount />} />
           <Route path='/users/accountdeleted' element={<NotificationAccountDeleted />} />
 
