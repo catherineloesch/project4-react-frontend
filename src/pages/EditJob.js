@@ -4,7 +4,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { LoginContext } from '../contexts/LoginContext';
 import { authenticateUser } from './../api/user_api'
 import { updateJob, fetchUserJob } from '../api/job_api';
-import DatePicker from'react-datepicker';
 
 import 'react-datepicker/dist/react-datepicker.css'
 

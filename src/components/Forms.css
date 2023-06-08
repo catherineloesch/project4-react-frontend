@@ -1,5 +1,11 @@
 
-/* pages containing user input forms */
+/* 
+----------------------------------------------------------------------------------------------------------------
+form elemets
+----------------------------------------------------------------------------------------------------------------
+*/
+
+/* elements shared by different pages */
 
 .login-page, 
 .signup-page, 
@@ -15,6 +21,7 @@
 
 }
 
+/* <form> */
 .login-form, 
 .signup-form, 
 .new-job-form,
@@ -39,53 +46,7 @@
     /* border: 3px solid var(--darkolive); */
 }
 
-.signup-form {
-    height: 40em;
-    padding-bottom: 1em;
-    background: url('./../assets/images/pitbull_vector.png');
-    background-size: 100%;
-    background-color: rgb(68, 35, 7);
-    
-}
-
-.signup-form p {
-    color: black;
-}
-
-.signup-form a {
-    color: darkred;
-    
-}
-
-.login-form {
-    height: 25em;
-     /*padding-bottom: 1em; */
-    background: url('./../assets/images/ai_puppy.png');
-    background-size: 150%;
-    background-color: rgb(185, 154, 127);
-    background-position-y: -1.5rem;
-    background-position-x: -7.5rem
-    
-}
-
-.login-form h1 {
-    color: var(--crimson);
-}
-
-.login-form a {
-    padding-bottom: 1.5rem;
-    color: var(--crimson);
-    font-weight:bold;
-
-    
-}
-
-.login-form p {
-    color: var(--crimson);
-    font-weight:bold;
-    
-}
-
+/* <h1> */
 form h1 {  /* form title */
     width: 100%;
     height: auto;
@@ -96,79 +57,20 @@ form h1 {  /* form title */
     text-align: center;
 }
 
-form a { /* form nav links */
+/* <Link> */
+form a { 
     color: var(--yellow);
     font-size: 18px;
 }
 
+/* <p> */
 form p {
     color: var(--primary);
     font-size: 18px;
 }
 
 
-.new-job-form {
-    height: 50em;
- 
-    justify-content: space-between;
-    padding-bottom: 2em;
-    padding-top: 2em;
-    background-size: 190%;
-    background-position-y:0.5rem;
-    background-color:  rgb(136, 52, 52);
-
-}
-
-
-
-.datePicker {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    border: none;
-
-}
-
-
-.datePicker input {
-    background-color: none !important;
-    width: 100% !important;
-    border: none!important;
-    height: 1.5em!important;
-
-}
-
-.date-input {
-    height: 2.1em;
-    width: 60%;
-    display: flex;
-    align-items: center;
-    justify-content:flex-start;
-    background-color: var(--lightolive);
-    border: 2px solid var(--darkolive);
-}
-
-.time-container input, .type-container select {
-    width: 60% !important
-}
-
-.date-input:focus {
-    border: 3px solid var(--crimson)!important;
-   
-}
-
-.date-container, .time-container, .type-container {
-    height: 2.1em;
-    width: 80%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border-radius: 0.25em;
-}
-
-
-/* user input */
+/* <input> | <select> | <textarea> */
 input[type=text],
 input[type=password],
 select,
@@ -183,6 +85,7 @@ textarea
     outline: none;
     
 }
+
 input[type=text]:focus,
 input[type=password]:focus,
 select:focus,
@@ -242,6 +145,130 @@ input[type=submit]:hover {
     color: var(--yellow);
     border: 2px solid var(--yellow);
 }
+
+/* 
+----------------------------------------------------------------------------------------------------------------
+Sign Up Page
+----------------------------------------------------------------------------------------------------------------
+*/
+
+.signup-form {
+    height: 40em;
+    padding-bottom: 1em;
+    background: url('./../assets/images/pitbull_vector.png');
+    background-size: 100%;
+    background-color: rgb(68, 35, 7);
+    
+}
+
+.signup-form p {
+    color: black;
+}
+
+.signup-form a {
+    color: darkred;
+    
+}
+
+/* 
+----------------------------------------------------------------------------------------------------------------
+Login Page
+----------------------------------------------------------------------------------------------------------------
+*/
+
+.login-form {
+    height: 25em;
+     /*padding-bottom: 1em; */
+    background: url('./../assets/images/ai_puppy.png');
+    background-size: 150%;
+    background-color: rgb(185, 154, 127);
+    background-position-y: -1.5rem;
+    background-position-x: -7.5rem
+    
+}
+
+.login-form h1 {
+    color: var(--crimson);
+}
+
+.login-form a {
+    padding-bottom: 1.5rem;
+    color: var(--crimson);
+    font-weight:bold;
+
+    
+}
+
+.login-form p {
+    color: var(--crimson);
+    font-weight:bold;
+    
+}
+
+/* 
+----------------------------------------------------------------------------------------------------------------
+New Job Form
+----------------------------------------------------------------------------------------------------------------
+*/
+
+.new-job-form {
+    height: 50em;
+ 
+    justify-content: space-between;
+    padding-bottom: 2em;
+    padding-top: 2em;
+    background-size: 190%;
+    background-position-y:0.5rem;
+    background-color:  rgb(136, 52, 52);
+
+}
+
+.datePicker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    border: none;
+
+}
+
+
+.datePicker input {
+    background-color: none !important;
+    width: 100% !important;
+    border: none!important;
+    height: 1.5em!important;
+
+}
+
+.date-input {
+    height: 2.1em;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content:flex-start;
+    background-color: var(--lightolive);
+    border: 2px solid var(--darkolive);
+}
+
+.time-container input, .type-container select {
+    width: 60% !important
+}
+
+.date-input:focus {
+    border: 3px solid var(--crimson)!important;
+   
+}
+
+.date-container, .time-container, .type-container {
+    height: 2.1em;
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 0.25em;
+}
+
 
 /* media queries */
 
