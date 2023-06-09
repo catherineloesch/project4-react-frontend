@@ -55,7 +55,7 @@ export default function Nav(props) {
       await setCurrentUser(null)
       await setUserLoggedIn(false)
       localStorage.removeItem("petsJWT")
-      navigate('/users/logoutsuccessfull')
+      navigate('/users/logoutsuccessful')
     }
   }
   

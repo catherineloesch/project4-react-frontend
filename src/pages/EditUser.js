@@ -72,6 +72,8 @@ export default function EditUser() {
                 placeholder='email'
                 value={formData.email}
                 onChange={handleFormChange}
+                autoComplete="off"
+
             />
 
             <input
@@ -79,7 +81,9 @@ export default function EditUser() {
                 name='display_name'
                 placeholder='Name'
                 value={formData.display_name}
-                onChange={handleFormChange} 
+                onChange={handleFormChange}
+                autoComplete="off"
+ 
             />
             
             <input
@@ -88,6 +92,8 @@ export default function EditUser() {
                 placeholder='Address'
                 value={formData.address}
                 onChange={handleFormChange}
+                autoComplete="off"
+
             />
 
             <textarea
@@ -96,6 +102,8 @@ export default function EditUser() {
                 placeholder="Tell us about yourself"
                 value={formData.description}
                 onChange={handleFormChange}
+                autoComplete="off"
+
             />
             
             <input
@@ -104,6 +112,8 @@ export default function EditUser() {
                 placeholder='Age'
                 value={formData.age}
                 onChange={handleFormChange}
+                autoComplete="off"
+
             />
 
             <input

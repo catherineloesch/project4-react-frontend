@@ -47,6 +47,8 @@ export default function Login() {
                 placeholder='email'
                 value={formData.email}
                 onChange={handleFormChange}
+                autoComplete="off"
+
             />
             
             <input

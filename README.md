@@ -13,8 +13,7 @@
 7. Build Process
 8. Challenges
 9. Wins
-10. Key Learnings & Takeaways
-11. Future Improvements
+10. Future Improvements
 
 <br>
 
@@ -295,23 +294,19 @@ tested to see that the following 3 routes work in postman:
 
 ## 8. Challenges
 
-dealing with getting stuck
-deployment
-date formatting
+- deployment -> frontend + backend
+- create sqlite database instead of postgred
+- date formatting
 
 ## 9. Wins
 
-responsive design
+-> responsive design
 
-## 10. Key Learnings & Takeaways
-
-    Working on this project has definitely improved my understanding of React,APIs, rails.
-
-planning different react components and props chain more carefully before starting to build them
-
-## 11. Future Improvements
+## 10. Future Improvements
 
 - add 3rd party API
 - incorporate Redux
 - add automated Tests Using Jest / RSpec or MiniTest for Rails
 - add more models e.g. pets
+- picture uploads
+- user can change password

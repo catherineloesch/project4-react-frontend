@@ -68,6 +68,8 @@ export default function SignUp(props) {
                 placeholder='email'
                 value={formData.email}
                 onChange={handleFormChange}
+                autoComplete="off"
+
             />
 
             <input
@@ -76,6 +78,8 @@ export default function SignUp(props) {
                 placeholder='password'
                 value={formData.password}
                 onChange={handleFormChange}
+                autoComplete="off"
+
             />
 
             <input
@@ -84,6 +88,8 @@ export default function SignUp(props) {
                 placeholder='Name'
                 value={formData.display_name}
                 onChange={handleFormChange} 
+                autoComplete="off"
+
             />
 
                   
@@ -93,6 +99,8 @@ export default function SignUp(props) {
                 placeholder='Age'
                 value={formData.age}
                 onChange={handleFormChange}
+                autoComplete="off"
+
             />
             
             <input
@@ -101,6 +109,8 @@ export default function SignUp(props) {
                 placeholder='Location'
                 value={formData.address}
                 onChange={handleFormChange}
+                autoComplete="off"
+
             />
 
             <textarea
@@ -109,6 +119,8 @@ export default function SignUp(props) {
                 placeholder="Tell us about yourself"
                 value={formData.description}
                 onChange={handleFormChange}
+                autoComplete="off"
+
             />
 
             <input
