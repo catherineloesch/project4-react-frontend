@@ -56,7 +56,7 @@ export default function DeleteAccount() {
 
     async function handleDelete (e) {
         const loginResponse = await logUserIn(formData)
-        if (loginResponse.status.code === 200) {
+        if (loginResponse.status.code && loginResponse.status.code === 200) {
             const deletedUser = await deleteAccount(params.id)
             if (deletedUser !== null && deletedUser !== undefined) {
                 localStorage.removeItem("petsJWT")
@@ -65,7 +65,7 @@ export default function DeleteAccount() {
                 navigate('/users/accountdeleted')
             }
         } else {
-            setErrors("Login failed! You must enter the correct password to delete your account.")
+            setErrors("Delete failed! You must enter the correct password to delete your account.")
         }
     }
 
