@@ -19,10 +19,8 @@ export default function Dashboard(props) {
 
   useEffect(() => {
     const auth = authenticateUser()
-    console.log('UE')
 
     if (auth === true) {
-      console.log('user is authenticated')
         getUser()
         console.log('User authenticated:', auth)
     } else {

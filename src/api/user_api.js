@@ -149,15 +149,6 @@ export const getUserById = async (id) => {
 }
 
 
-
-
-
-
-
-
-
-
-
 // ------------------------------------------------------------------------------------------------
     // AUTHENTICATION: CHECK IF TOKEN IS EXPIRED
 // ------------------------------------------------------------------------------------------------
@@ -217,63 +208,3 @@ export const updateUser = async (user_id, updates) => {
         return {error: response.statusText, status: response.status}
     }
 }
-
-
-
-
-
-
-
-    // -----------------------------------------------------------
-        //With Devise
-    // -----------------------------------------------------------
-
-        // async function retrieveCurrentUserFromAPI() {
-
-    //     if (token) {
-    //         const url = 'http://localhost:4000/current_user/info'
-        
-    //         const fetchOptions = {
-    //             method: 'GET',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 'Authorization': 'Bearer ' + token
-    //         }}
-
-    //         const newUser = await fetch(url, fetchOptions).then(res => res.json())
-    //         return newUser
-
-    //     } else {
-    //         console.log('no token')
-    //         return null
-    //     }
-
-    // }
-
-
-
-
-    // ------------------------------------------------------------------------------------------
-        ///backend api without devise: project4-rails-api
-        //API_URL = "http://project4-rails-api.herokuapp.com"
-    // -------------------------------------------------------------------------------------------
-
-    // const createNewUser = async (newUser) => {
-    //     const url = API_URL + "/users"
-    //     const fetchOptions = {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //             "Accept": "application/json"
-    //         },
-    //         body: JSON.stringify(newUser)
-    //     };
-
-    //     const response = await fetch(url, fetchOptions);
-        
-    //     if (!response.ok) {
-    //         const errorMessage = await response.text();
-    //         throw new Error(errorMessage);
-    //     }
-    //     return response.json();
-    // }
