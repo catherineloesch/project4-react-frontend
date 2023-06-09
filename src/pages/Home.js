@@ -1,19 +1,13 @@
-import React from 'react'
-import { useEffect, useContext } from 'react';
-import { getCurrentUser, authenticateUser } from './../api/user_api'
-import { LoginContext } from "../contexts/LoginContext"
-import { boneIcon, catIcon, dogIcon, homeIcon, pawIcon } from '../assets/icons';
-import './pages.css'
-
-// import { pawIcon } from './../assets/icons'
+import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { LoginContext } from "../contexts/LoginContext"
+import { getCurrentUser, authenticateUser } from './../api/user_api'
+import { boneIcon, catIcon, dogIcon, homeIcon, pawIcon } from '../assets/icons';
 import Hero from '../components/Hero';
-
-
+import './pages.css'
 
 export default function Home(props) {
   const { setCurrentUser, setUserLoggedIn  } = useContext(LoginContext);
-
   const getUser = async() => {
     const apiResponse = await getCurrentUser()
     if (apiResponse !== null && apiResponse !== undefined) {
@@ -87,7 +81,7 @@ export default function Home(props) {
 
           <li>
             <Link to='https://worldanimalfoundation.org'><span> {'> World Animal Foundation'} </span></Link>
-              WAF is an organization dedicated to promoting animal welfare through education, advocacy, and awareness. 
+              Organization dedicated to promoting animal welfare through education, advocacy, and awareness. 
           </li>
 
           <li>
@@ -113,18 +107,6 @@ export default function Home(props) {
           <li>
             <Link to='https://www.rspca.org.uk/'><span> {'> RSPA'}</span></Link>
             Charity pushing for changes in the law to improve animal welfare and raise standards of care.
-            Rescue & rehabilitation of animals, providing them with veterinary care and finding them new homes.
-          </li>
-        
-          <li>
-            <Link to='https://www.bluecross.org.uk/'><span> {'> Blue Cross'}</span> </Link>
-            Rehoming for homeless pets, providing free veterinary treatment trustworthy pet information.
-          </li>
-
-          <li>
-            <Link to='https://www.pdsa.org.uk/what-we-do'><span> {'> PDSA'}</span></Link>
-            Education of communities and schools to raise awareness on key issues that affect the UK’s pet population and how to prevent illness and suffering.
-            Vets and vet nurses treat sick and injured pets whose owners can’t afford the full cost of their veterinary treatment, across 48 Pet Hospitals.
           </li>
 
           <li>
@@ -133,12 +115,8 @@ export default function Home(props) {
           </li>
 
         </ul>
-
         
-
-        
-
-    </section>
+      </section>
     </div>
   )
 }

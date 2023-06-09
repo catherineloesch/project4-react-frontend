@@ -170,3 +170,27 @@ Job card elements
         max-width: 100%;
     }
 }
+
+@media screen and (max-width: 400px) {
+
+    .card-data h2{
+        font-size: 20px;
+     
+    }
+    .card-data p{
+        font-size: 15px;
+     
+    }
+}
+@media screen and (max-width: 315px) {
+
+    .card-data h2{
+        font-size: 20px;
+     
+    }
+    .card-data p{
+        font-size: 15px;
+        padding: 1px;
+     
+    }
+}

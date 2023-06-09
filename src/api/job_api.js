@@ -95,3 +95,4 @@ export const deleteJob = async(user_id, job_id) => {
         return {error: response.statusText, status: response.status}
     }
 }
+

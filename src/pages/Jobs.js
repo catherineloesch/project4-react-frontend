@@ -1,19 +1,16 @@
-import React from 'react'
-import { useState, useEffect, useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react'
 import { useNavigate} from "react-router-dom";
 import { LoginContext } from "../contexts/LoginContext"
-import { fetchAllJobs } from '../api/job_api';
 import { getCurrentUser, authenticateUser } from './../api/user_api'
+import { fetchAllJobs } from '../api/job_api';
 import JobData from '../components/JobData'
-import "./pages.css"
 import CardGrid from '../components/CardGrid';
+import "./pages.css"
 
 export default function Jobs(props) {
   
   const {currentUser, userLoggedIn, setCurrentUser, setUserLoggedIn  } = useContext(LoginContext);
-
   const navigate = useNavigate();
-
   const [jobs, setJobs] = useState(null);
 
   const getUser = async() => {
@@ -33,12 +30,11 @@ export default function Jobs(props) {
     fetchAllJobs()
     .then(res => res.json())
     .then(data => {
-      console.log(data)
       setJobs(data)})
       }, [])
 
   const handleAddNewJob = () => {
-    if (currentUser && userLoggedIn) { //valid token?
+    if (currentUser && userLoggedIn) {
       navigate(`/users/${currentUser.id}/jobs/new`)
     } else {
         navigate('/users/login')
@@ -48,7 +44,6 @@ export default function Jobs(props) {
   let display;
 
   if (jobs === null) {
-    console.log('jobs is null')
     display = <p>Loading...</p>
   } else if (jobs === []) {
     display = <p>No Jobs Found!</p>
@@ -64,7 +59,6 @@ export default function Jobs(props) {
         </section>
 
         <CardGrid jobs={jobs}/>        
-
     </div>
   )
 }

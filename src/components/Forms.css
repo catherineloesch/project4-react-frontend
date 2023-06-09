@@ -40,10 +40,7 @@ form elemets
     position: relative;
     border-radius: 1em;
     box-shadow:  0 8px 32px 0 var(--darkolive-shadow);
-   
-    /* background: url('./../assets/images/paws_bones.jpg'); */
     background-size: 100em;    
-    /* border: 3px solid var(--darkolive); */
 }
 
 /* <h1> */
@@ -153,10 +150,13 @@ Sign Up Page
 */
 
 .signup-form {
+    margin-top: -10%;
     height: 40em;
     padding-bottom: 1em;
     background: url('./../assets/images/pitbull_vector.png');
     background-size: 100%;
+    background-repeat: no-repeat;
+
     background-color: rgb(68, 35, 7);
     
 }
@@ -170,6 +170,36 @@ Sign Up Page
     
 }
 
+@media only screen and (max-width: 1850px) {
+    .signup-form {
+        margin-top: -25%;
+        background-position-X: 50%;
+        background-size: 120%;
+    }
+}
+@media only screen and (max-width: 435px) {
+    .signup-form {
+        margin-top: -25%;
+        background-position-Y: -10%;
+        background-size: 130%;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .signup-form {
+        margin-top: -10%;
+        background-position-Y: 20%;
+        background-size: 150%;
+    }
+}
+@media only screen and (max-width: 355px) {
+    .signup-form {
+        margin-top: -20%;
+        background-position-Y: 90px;
+        background-size: 150%;
+    }
+}
+
+
 /* 
 ----------------------------------------------------------------------------------------------------------------
 Login Page
@@ -177,14 +207,14 @@ Login Page
 */
 
 .login-form {
+    margin-top: -20%;
     height: 25em;
-     /*padding-bottom: 1em; */
     background: url('./../assets/images/ai_puppy.png');
     background-size: 150%;
     background-color: rgb(185, 154, 127);
     background-position-y: -1.5rem;
-    background-position-x: -7.5rem
-    
+    background-position-x: -7.5rem;
+    background-repeat: no-repeat;    
 }
 
 .login-form h1 {
@@ -195,15 +225,86 @@ Login Page
     padding-bottom: 1.5rem;
     color: var(--crimson);
     font-weight:bold;
-
-    
 }
 
 .login-form p {
     color: var(--crimson);
     font-weight:bold;
-    
 }
+
+.login-errors,
+.signup-errors,
+.edit-job-errors
+ {
+    background-color: rgb(217, 0, 0);
+    padding: 6px;
+    border-radius: 10px;
+    margin: 6px;
+    font-size: 18px;
+
+}
+
+@media only screen and (max-width: 1200px) {
+    .login-form { margin-top: -30%; }
+}
+
+@media only screen and (max-width: 900px) {
+    .login-form { margin-top: -40%; }
+}
+
+@media only screen and (max-width: 740px) {
+    .login-form { margin-top: -50%; }
+}
+
+@media only screen and (max-width: 530px) {
+    .login-form { margin-top: -80%; }
+}
+
+@media only screen and (max-width: 450px) {
+    .login-form { margin-top: -90%; }
+    .login-form h1 { color: black; }
+}
+
+@media only screen and (max-width: 420px) {
+    .login-form {
+        margin-top: -80%;
+        background-position-x: -5rem;
+        background-position-y: 1rem;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    .login-form {
+        background-position-x: -6rem;
+        background-position-y: 1rem;
+        background-size: 170%;
+    }
+    .login-errors,
+    .signup-errors {
+        font-size: 15px;
+    }
+}
+
+@media only screen and (max-width: 280px) {
+    .login-form {
+        margin-top: -100%;
+        background-position-x: -7rem;
+        background-position-y: 0rem;
+        background-size: 210%;
+    }
+}
+
+@media only screen and (max-width: 230px) {
+    .login-form {
+        margin-top: -120%;
+        background-position-x: -8.5rem;
+        background-position-y: 1.5rem;
+        background-size: 240%;
+    }
+
+    .login-form p { font-size: 1rem; }
+}
+
 
 /* 
 ----------------------------------------------------------------------------------------------------------------
@@ -298,5 +399,80 @@ New Job Form
     .type-container
     {
         flex-direction: column;
+    }
+}
+
+
+/* 
+----------------------------------------------------------------------------------------------------------------
+Edit Job Form
+----------------------------------------------------------------------------------------------------------------
+*/
+
+.edit-job-form {
+    height: 50em;
+    justify-content: space-between;
+    padding-bottom: 2em;
+    padding-top: 2em;
+    background-size: 190%;
+    background: url('./../assets/images/dog_vector2.png');
+    background-position-y:90px;
+    background-repeat: no-repeat;
+    background-size: 230%;
+    background-color: rgb(96, 49, 5);
+}
+
+.date-input {
+    height: 2.1em;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content:flex-start;
+    background-color: var(--lightolive);
+    border: 2px solid var(--darkolive);
+}
+
+.edit-job-form .time-container input,
+.edit-job-form .type-container select,
+.edit-job-form .date-input {
+    width: 60% !important;
+}
+
+.edit-job-form .date-container,
+.edit-job-form .time-container,
+.edit-job-form .type-container {
+    height: 2.1em;
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 0.25em;
+}
+
+/* media queries */
+@media only screen and (max-width: 450px) {
+
+    .edit-job-form  {
+        height: 900px;
+        margin-top: 200px;
+        justify-content: space-between;      
+    }
+
+    .edit-job-form  input, .edit-job-form select {
+        padding: 1em auto;
+    }
+    
+    .edit-job-form .date-container,
+    .edit-job-form .time-container,
+    .edit-job-form .type-container
+    {
+        flex-direction: column;
+    }
+} 
+
+@media only screen and (max-width: 400px) {
+    .edit-job-form input[type="submit"] {
+        font-size: 15px;
+        width: 60%;
     }
 }

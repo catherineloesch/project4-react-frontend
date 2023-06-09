@@ -60,7 +60,7 @@ export default function SignUp(props) {
   
         <form className='signup-form' onSubmit={handleFormSubmit}>
             <h1 className='page-title'>Register</h1>
-            {errors && <h4>Error: {errors}!</h4>}
+            {errors && <h4 className='signup-errors'>Error: {errors}!</h4>}
            
             <input
                 type='text'

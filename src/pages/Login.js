@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState, useContext } from 'react';
+import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from "react-router-dom";
 import { LoginContext } from '../contexts/LoginContext';
 import { logUserIn } from '../api/user_api';
@@ -9,9 +8,7 @@ import './../components/Forms.css'
 export default function Login() {
     const { setCurrentUser, setUserLoggedIn } = useContext(LoginContext);
     const navigate = useNavigate();
-
     const [errors, setErrors] = useState(null);
-
     const [formData, setFormData] = useState({
         email: "",
         password: ""
@@ -38,12 +35,11 @@ export default function Login() {
   return (
     <div className='login-page'>
 
-
         <form className="login-form" onSubmit={handleFormSubmit}>
 
         <h1 className='page-title'>Login</h1>
        
-        {errors && <h4>Error: {errors}!</h4>}
+        {errors && <h4 className='login-errors'>Error: {errors}!</h4>}
            
             <input
                 type='text'

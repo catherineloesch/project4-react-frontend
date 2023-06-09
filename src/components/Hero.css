@@ -21,16 +21,14 @@
     transform: translate(-50%, -50%);
     color: var(--primary);
     width: 15%;
-    
-   
 }
-
 
 .home-hero-text h1 { 
     font-size: 36px;
     color: var(--lightolive);
     margin-bottom: 350px;
 }
+
 .home-hero-text h2 {
     font-size: 21px;
     margin-bottom: 10px;
