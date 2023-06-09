@@ -19,7 +19,16 @@
 
 ## 1. Description
 
-This solo project is full-stack web application featuring freelance jobs for animal lovers. Users can make an account and post job listings looking for dog-walkers or pet sitters. Users can browse different job listings based on their area or pay they're looking for.
+This solo project is a fully responsive full-stack web application featuring freelance jobs for animal lovers. Users can make an account and post job listings looking for dog-walkers or pet sitters. Users can browse different job listings based on their area or pay they're looking for.
+
+ <img src="./src/assets/readme_images/landing_page1.jpg">
+ <img src="./src/assets/readme_images/landing_page2.jpg">
+ <img src="./src/assets/readme_images/landing_page_responsive.jpg" width=50%>
+ <img src="./src/assets/readme_images/jobs.jpg">
+ <img src="./src/assets/readme_images/jobs_responsive.jpg" width=50%>
+ <img src="./src/assets/readme_images/dashboard.jpg">
+ <img src="./src/assets/readme_images/responsive_dashboard_1.jpg" width=50%>
+ <img src="./src/assets/readme_images/responsive_dashboard_2.jpg" width=50%>
 
 ## 2. Deployment link
 
