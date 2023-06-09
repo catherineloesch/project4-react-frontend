@@ -74,9 +74,6 @@ export const updateJob = async (user_id, job_id, updatedJob) => {
 export const deleteJob = async(user_id, job_id) => {
     const token = JSON.parse(localStorage.getItem('petsJWT'))
 
-    console.log('running fetch...')
-    console.log(token)
-
     const url = API_URL + `/users/${user_id}/jobs/${job_id}`
     const fetchOptions = {
         method: "DELETE",
@@ -86,8 +83,6 @@ export const deleteJob = async(user_id, job_id) => {
         }
     }
     const response = await fetch(url, fetchOptions);
-    console.log('response')
-    console.log(response)
     if (response.ok) {
         const data = await response.json()
         return data

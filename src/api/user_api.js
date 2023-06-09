@@ -7,7 +7,6 @@ import { Buffer } from 'buffer'
 
 export const createNewUser = async (newUser) => {
     const url = API_URL + '/signup'
-    console.log('signing user up...')
     const fetchOptions = {
         method: "POST",
         headers: {
@@ -18,8 +17,6 @@ export const createNewUser = async (newUser) => {
     };
     
     let response = await fetch(url, fetchOptions)
-    console.log('response: ')
-   console.log(response)
     if (!response.ok) {
         const error = await response.json()
         return {error: true, code: error.status.code, message: error.status.message}

@@ -27,6 +27,7 @@ Profile Page
     align-items: center;
     justify-content: center;
     gap: 20px;
+    width: 50%;
 
 }
 
@@ -42,6 +43,16 @@ Profile Page
 .profile-content p {
     font-size: 19px;
 }
+
+@media screen and (max-width: 650px) {
+    .profile{
+        margin-top: -20%;
+    }
+    .profile-content {
+        width: 80%;
+    }
+  
+  }
 
 /* 
 ----------------------------------------------------------------------------------------------------------------
