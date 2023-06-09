@@ -7,6 +7,44 @@
 
 /* 
 ----------------------------------------------------------------------------------------------------------------
+Profile Page
+----------------------------------------------------------------------------------------------------------------
+*/
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  
+    padding-top: 90px;
+}
+
+.profile-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+}
+
+.profile-content .title {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+ #about-me {
+   padding-bottom: 20px;
+}
+
+.profile-content p {
+    font-size: 19px;
+}
+
+/* 
+----------------------------------------------------------------------------------------------------------------
 Jobs Page
 ----------------------------------------------------------------------------------------------------------------
 */
@@ -875,5 +913,4 @@ Delete Job Page
     border-radius: 8px;
     border: 3px solid var(--darkolive);
 }
-
 

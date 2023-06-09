@@ -41,11 +41,13 @@ export default function UserProfile() {
 
 
   return (
-    <div>
-      {user && heading}
-      {user && (user.address && <p>Location: {user.address}</p>)}
-      {user && (user.email && <p>Contact: {user.email}</p>)}
-      {user && (user.description && <p>About Me: {user.description}</p>)}
+    <div className='profile'>
+      <div className='profile-content'>
+        {user && heading}
+        {user && (user.address && <p><span className='title'>Location:</span> {user.address}</p>)}
+        {user && (user.email && <p><span className='title'>Contact: </span>{user.email}</p>)}
+        {user && (user.description &&<p><span className='title' id='about-me'>About Me:</span><br></br> {user.description}</p>)}
+      </div>
     </div>
   )
 }

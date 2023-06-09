@@ -1,7 +1,5 @@
-import React from 'react'
-import { useState, useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from "react-router-dom";
-
 import { LoginContext } from '../contexts/LoginContext';
 import { getCurrentUser, authenticateUser, updateUser } from '../api/user_api';
 import './pages.css'
@@ -9,16 +7,15 @@ import './pages.css'
 export default function EditUser() {
 
     const { setCurrentUser, setUserLoggedIn } = useContext(LoginContext);
+    
     const navigate = useNavigate();
-    const [errors, setErrors] = useState(null);
-
     const params = useParams()
 
+    const [errors, setErrors] = useState(null);
     const [formData, setFormData] = useState({})
 
     const getUser = async() => {
         const apiResponse = await getCurrentUser()
-        console.log(apiResponse)
         if (apiResponse !== null && apiResponse !== undefined) {
         setCurrentUser(apiResponse)
         setUserLoggedIn(true)
@@ -67,7 +64,7 @@ export default function EditUser() {
   
         <form className='edit-user-form' onSubmit={handleFormSubmit}>
             <h1 className='page-title'>Edit Profile</h1>
-            {errors && <h4>Server Error: {errors.status} {errors.error}!</h4>}
+            {errors && <h4 className='edit-user-errors'>Server Error: {errors.status} {errors.error}!</h4>}
            
             <input
                 type='text'
