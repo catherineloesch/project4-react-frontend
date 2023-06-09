@@ -26,6 +26,12 @@ This solo project is a fully responsive full-stack web application featuring fre
  <img src="./src/assets/readme_images/landing_page_responsive.jpg" width=50%>
  <img src="./src/assets/readme_images/jobs.jpg">
  <img src="./src/assets/readme_images/jobs_responsive.jpg" width=50%>
+ <img src="./src/assets/readme_images/login.jpg">
+ <img src="./src/assets/readme_images/responsive_login.jpg" width=50%>
+ <img src="./src/assets/readme_images/login_ipad.jpg" width=50%>
+ <img src="./src/assets/readme_images/logout.jpg" width=50%>
+ <img src="./src/assets/readme_images/mobile_menu.jpg" width=50%>
+
  <img src="./src/assets/readme_images/dashboard.jpg">
  <img src="./src/assets/readme_images/responsive_dashboard_1.jpg" width=50%>
  <img src="./src/assets/readme_images/responsive_dashboard_2.jpg" width=50%>
@@ -290,16 +296,17 @@ tested to see that the following 3 routes work in postman:
 
 ### 07/06/2023
 
--npm install react-datepicker
--npm install moment
-
-- npm install moment-timezone
-
-- formatting dates, default in react and datepicker is American Time so time has to be formatted when user adds it in british time
+responsive css
 
 ### 08/06/2023
 
+responsive css
+seeding file
+
 ### 09/06/2023 - Submission Deadline
+
+responsive css
+frontend deployment
 
 ## 8. Challenges
 
