@@ -17,7 +17,8 @@
 
 ## <a name="description"></a> 1. Description
 
-This project is a fully responsive full-stack web application featuring freelance jobs for animal lovers. Using a rails API as its backend and a react-based front end, this application enables users to make an account and post job listings looking for dog-walkers or pet sitters. Once logged in they can view their listings and edit and delete them. They can also update their account information and delete their account.
+A fully responsive full-stack job-board application, built from scratch in 10 days using a rails API as its backend and a react-based front. This solo project was the fourth and final application built as part of the curriculum for the General Assembly Software Engineering Immersive Course.
+Featuring freelance jobs posted by pet owners, the application enables users to make an account and post job listings looking for dog-walkers or pet sitters. Once logged in they can view their listings as well as edit and delete them.They can also update their account information and delete their account.
 
  <img src="./src/assets/readme_images/landing_page1.jpg">
  <img src="./src/assets/readme_images/landing_page2.jpg">
@@ -188,29 +189,25 @@ rails new p4-rails --api
 - the deliverables for this project were issued on 26/05/2023
 
   - a project proposal was to be submitted and approved by the instructional team before moving on to coding phase of the prjoject
-    - the proposal was to include:
-      - description of the project
-      - user stories
-      - ERD of models (Entity relationship diagram)
-      - wireframe
-      - choice of technology stack, giving students the choice between 3 options:
-        - Full-Stack Rails App
-        - Rails API with React Front-End
-        - Express API with React Front-End
+  - the proposal was to include:
+    - description of the project
+    - user stories
+    - ERD of models (Entity relationship diagram)
+    - wireframe
+    - choice of technology stack, giving students the choice between 3 options:
+      1. Full-Stack Rails App
+      2. Rails API with React Front-End
+      3. Express API with React Front-End
 
-- Submission deadline + poject presentation on: 12/05/2023
+- Submission deadline + project presentation on: 12/05/2023
 
-### propsal: ERD
+### Propsal: ERD
 
- <br>
- <br>
+<img src="./src/assets/readme_images/project_4_erd.png">
 
- <img src="./src/assets/readme_images/project_4_erd.png">
- 
- <br>
- <br>
+<br>
 
-## proposal: User stories
+### Proposal: User stories
 
 - As a user I should be able to register with a username and password.
 - As a user I should be able to log in with my username and password.
@@ -220,22 +217,61 @@ rails new p4-rails --api
 - As a user I should be able to delete my postings.
 - As a user I should be able to edit my postings.
 
- <br>
- <br>
+<br>
 
-## proposal: Wireframe
+### Proposal: Wireframe
 
  <img src="./src/assets/readme_images/project_4_wireframe.png">
 
 ### proposal submission deadline: 30/05/2023
 
-- proposal was approved
-- once the proposal was approved I started the development process
+- My proposal for this project was approved by instructional team on 30/05/2023.
+- I started the development process the next day.
 
 ### development: day 1 - 31/05/2023
 
 On the first day I wrote the code for the backend models for User and Job.
 I built the controllers and CRUD actions for those models and started testing them out in postman.
+
+```ruby
+
+  create_table "jobs", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "title"
+    t.string "description"
+    t.string "job_type"
+    t.string "location"
+    t.integer "applications"
+    t.date "start_date"
+    t.time "start_time"
+    t.date "end_date"
+    t.time "end_time"
+    t.string "pay"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_jobs_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "username"
+    t.string "display_name"
+    t.string "address"
+    t.string "description"
+    t.integer "age"
+    t.string "jti", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["jti"], name: "index_users_on_jti", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+```
 
 ### development: day 2 - 01/06/2023
 
