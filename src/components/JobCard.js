@@ -30,31 +30,19 @@ export default function JobCard(props) {
           .then(data => {
             if (data && data.display_name) {
               setName(data.display_name)
-              console.log(data.display_name)
             }})
 
   }, [])
   const navigate = useNavigate();
   const params = useParams()
 
-  // const displayDate = (d) => {
-  //   return `${d.slice(8, 10)}/${d.slice(5, 7)}/${d.slice(0, 4)}`
-  // }
-  // const displayTime = (t) => {
-  //   return `${t.slice(11, 13)}:${t.slice(14, 16)}`
-  // }
 
 
   const handleDelete = () => {
-    console.log('delete clicked!')
     if (userLoggedIn && currentUser.id == props.job.user_id) {
-      console.log(userLoggedIn)
-      console.log(props.job.user_id)
-      console.log(props.job.id)
         navigate(`/users/${props.job.user_id}/jobs/${props.job.id}/delete`)
     }
 }
-console.log(userLoggedIn)
 const handleEdit = () => {
     if (userLoggedIn && currentUser.id == props.job.user_id)
     navigate(`/users/${props.job.user_id}/jobs/${props.job.id}/edit`)

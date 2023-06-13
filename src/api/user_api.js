@@ -61,9 +61,10 @@ export const logUserIn = async (loginDetails) => {
 // ------------------------------------------------------------------------------------------------
 
 export const logUserOut = async () => {
+    console.log('logging out ...')
     const url = API_URL + "/logout"
     const token = JSON.parse(localStorage.getItem('petsJWT'))
-
+    console.log(token)
     const fetchOptions = {
         method: "DELETE",
         headers: {
@@ -72,9 +73,11 @@ export const logUserOut = async () => {
                   }}
 
     const response = await fetch(url, fetchOptions);
-
+    console.log('respo')
+                  console.log(response)
     if (!response.ok) {
         const error = await response.json()
+        if (error.status && error.status.code)
         return {error: true, code: error.status.code, message: error.status.message}
 
     } else {

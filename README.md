@@ -2,29 +2,28 @@
 
 ## Overview
 
-<br>
-
-1. Description
-2. Deployment Link
-3. Installation
-4. Technologies Used
-5. Deliverables
-6. Planning
-7. Build Process
-8. Challenges
-9. Wins
-10. Future Improvements
+1. [Description](#description)
+2. [Deployment Links](#deployment-links)
+3. [Installation](#installation)
+4. [Technologies Used](#technologies)
+5. [Deliverables](#deliverables)
+6. [Planning](#planning)
+7. [Build Process](#build-process)
+8. [Challenges](#challenges)
+9. [Wins](#wins)
+10. [Key Learnings & Takeaways](#takeaways)
 
 <br>
 
-## 1. Description
+## <a name="description"></a> 1. Description
 
-This solo project is a fully responsive full-stack web application featuring freelance jobs for animal lovers. Users can make an account and post job listings looking for dog-walkers or pet sitters. Users can browse different job listings based on their area or pay they're looking for.
+This project is a fully responsive full-stack web application featuring freelance jobs for animal lovers. Using a rails API as its backend and a react-based front end, this application enables users to make an account and post job listings looking for dog-walkers or pet sitters. Once logged in they can view their listings and edit and delete them. They can also update their account information and delete their account.
 
  <img src="./src/assets/readme_images/landing_page1.jpg">
  <img src="./src/assets/readme_images/landing_page2.jpg">
- <img src="./src/assets/readme_images/landing_page_responsive.jpg" width=50%>
- <img src="./src/assets/readme_images/jobs.jpg">
+
+ <img src="./src/assets/readme_images/landing_page_responsive.jpg" width=40%>
+ <img src="./src/assets/readme_images/jobs.jpg" width=40%>
  <img src="./src/assets/readme_images/jobs_responsive.jpg" width=50%>
  <img src="./src/assets/readme_images/login.jpg">
  <img src="./src/assets/readme_images/responsive_login.jpg" width=50%>
@@ -36,21 +35,16 @@ This solo project is a fully responsive full-stack web application featuring fre
  <img src="./src/assets/readme_images/responsive_dashboard_1.jpg" width=50%>
  <img src="./src/assets/readme_images/responsive_dashboard_2.jpg" width=50%>
 
-## 2. Deployment link
+## <a name="deployment-links"></a> 2. Deployment Links
 
 - Front End: React application deployed on Netlify
-  - Deployment: https://pawneepets.netlify.app/
-  - Git repository: https://github.com/catherineloesch/project4-react-frontend
-  - Issue tracker: https://github.com/catherineloesch/project4-react-frontend/issues
 
-<br>
+  - Deployment: https://pawneepets.netlify.app/
 
 - Back End: rails application deployed on Heroku
   - Deployment: https://p4-rails.herokuapp.com
-  - Git repository: https://github.com/catherineloesch/project4-rails-api
-  - Issue tracker: https://github.com/catherineloesch/project4-rails-api/issues
 
-## 3. Installation
+## <a name="installation"></a> 3. Installation
 
 ### Front end dependencies:
 
@@ -74,7 +68,7 @@ npm install
 bundle install
 ```
 
-## 4. Technologies Used
+## <a name="technologies"></a> 4. Technologies Used
 
 ### Front End
 
@@ -165,7 +159,7 @@ rails new p4-rails --api
   - https://www.youtube.com/watch?v=wVNQwrALp1A
   - https://github.com/DakotaLMartinez/rails-react-devise-tutorial
 
-## 5. Deliverables
+## <a name="deliverables"></a> 5. Deliverables
 
 ### MVP
 
@@ -199,7 +193,7 @@ rails new p4-rails --api
 
 ---
 
-## 6. Planning
+## <a name="planning"></a>6. Planning
 
  <br>
  <br>
@@ -213,7 +207,7 @@ rails new p4-rails --api
 
 <br>
 
-## 7. Build Process
+## <a name="planning"></a> 7. Build Process
 
 ### start date: 26/05/2023
 
@@ -229,16 +223,16 @@ rails new p4-rails --api
   - user stories
 
 - proposal was approved
+- once the proposal was approved I started the development process
 
-### 31/05/2023
+### development: day 1 - 31/05/2023
 
-- backend models for user + job
-- controllers + actions for user + jobs
-- testing out API in postman
+On the first day I wrote the code for the backend models for User and Job.
+I built the controllers and CRUD actions for those models and started testing them out in postman.
 
-### 01/06/2023
+### development: day 2 - 01/06/2023
 
-backend deployment
+On day 2 I deployed the backend rails app on heroku.
 
 - initialise react application using command:
 
@@ -246,7 +240,7 @@ backend deployment
 create-react-app
 ```
 
-### 02/06/2023
+### development: day 3 - 02/06/2023
 
 - start authentication
 - add delete account feature for user
@@ -254,12 +248,12 @@ create-react-app
 - rendering job resource from api
 - add context to keep track of user logged in
 
-### 03/06/2023
+### development: day 4 - 03/06/2023
 
 - tried to add Material UI to React project but ran into issues, react version did not work with Material UI
 - custom fonts added
 
-### 04/06/2023
+### development: day 5 - 04/06/2023
 
 - created third model: applications: join table linking a job posting (by id) with an applicant (by user id).
 
@@ -278,7 +272,7 @@ rails g controller applications
 - CSS added
 - responsibe navigation bar using vanilla CSS
 
-### 05/06/2023
+### development: day 6 - 05/06/2023
 
 - backend deployed on heroku: https://p4-rails.herokuapp.com
 
@@ -289,36 +283,40 @@ tested to see that the following 3 routes work in postman:
 - GET: https://p4-rails.herokuapp.com/current_user -> verifies token and returns user data
 - DELETE: https://p4-rails.herokuapp.com/logout -> logs user out
 
-### 06/06/2023
+### development: day 7 - 06/06/2023
 
 - full CRUD for both User and Job model
 - CSS forms for user input
 
-### 07/06/2023
+### development: day 8 - 08/06/2023
 
 responsive css
 
-### 08/06/2023
+### development: day 9 - 08/06/2023
 
-responsive css
-seeding file
+On day 9 I finished the responsive design and created seed data for the rails api.
+I also worked on the frontend deployment.
 
-### 09/06/2023 - Submission Deadline
+### development: day 10 - 09/06/2023 - Submission Deadline + presentation
 
-responsive css
-frontend deployment
+On the final day of this project I completed the readme and presented the project to my cohort.
 
-## 8. Challenges
+## 8. <a name="challenges"></a> Challenges
 
-- deployment -> frontend + backend
-- create sqlite database instead of postgred
-- date formatting
+- deployment on the front end proved to be a challenge as there were issues with the fetch requests not working properly.
+- I originally created the backend with a sqlite database instead of postgresql and had to later account for that during deployment, which made things more complicated.
+- the react-datepicker component I used formatted the date in a different way than the rails datetime format, which required writing some extra code to account for this inconsistency.
 
-## 9. Wins
+BUGS:
 
--> responsive design
+## 9. <a name="wins"></a> Wins
 
-## 10. Future Improvements
+- I managed to fulfil all the MVP requirements.
+- I was also really glad that I managed to implement the responsive design for this project withing the timeframe that was given as I had run out of time in previous projects to make the applications fully responsive.
+
+## 10. <a name="takeaways"></a> 9. Key Learnings & Takeaways
+
+## <a name="future-improvements"></a> 11. Future Improvements
 
 - add 3rd party API
 - incorporate Redux

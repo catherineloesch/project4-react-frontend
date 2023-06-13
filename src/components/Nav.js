@@ -42,21 +42,11 @@ export default function Nav(props) {
 
   const handleLogOut = async () => {
     const apiResponse = await logUserOut()
-
-    if (apiResponse.error) {
-      console.log(apiResponse)
-      await setCurrentUser(null)
-      await setUserLoggedIn(false)
-      localStorage.removeItem("petsJWT")
-      navigate('/')
-
-    } else {
-
-      await setCurrentUser(null)
-      await setUserLoggedIn(false)
-      localStorage.removeItem("petsJWT")
-      navigate('/users/logoutsuccessful')
-    }
+    console.log(apiResponse)
+    await setCurrentUser(null)
+    await setUserLoggedIn(false)
+    localStorage.removeItem("petsJWT")
+    navigate('/users/logoutsuccessful')
   }
   
   let id;
