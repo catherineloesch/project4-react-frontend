@@ -207,7 +207,7 @@ rails new p4-rails --api
 
 <br>
 
-## <a name="planning"></a> 7. Build Process
+## <a name="build-process"></a> 7. Build Process
 
 ### start date: 26/05/2023
 
