@@ -191,8 +191,8 @@ rails new p4-rails --api
   - a project proposal was to be submitted and approved by the instructional team before moving on to coding phase of the prjoject
   - the proposal was to include:
     - description of the project
-    - user stories
     - ERD of models (Entity relationship diagram)
+    - user stories
     - wireframe
     - choice of technology stack, giving students the choice between 3 options:
       1. Full-Stack Rails App
@@ -223,15 +223,41 @@ rails new p4-rails --api
 
  <img src="./src/assets/readme_images/project_4_wireframe.png">
 
+### Proposal: choice of technology stack
+
+- I dediced to use a rails API with a React Front-End.
+
 ### proposal submission deadline: 30/05/2023
 
-- My proposal for this project was approved by instructional team on 30/05/2023.
+- I submitted my project proposal on 30/05/2023 and the instructional team approved it later that same day.
 - I started the development process the next day.
 
 ### development: day 1 - 31/05/2023
 
 On the first day I wrote the code for the backend models for User and Job.
-I built the controllers and CRUD actions for those models and started testing them out in postman.
+After generating both manually at first, I realised that when using the devise package for authentication it is simpler to generate the User model with devise. Since I was still early in the process I decided to start over with the backend and generate the User model with devise, following along the steps listed in the documumentation by Dakota Lee Martinez: https://dakotaleemartinez.com/tutorials/devise-jwt-api-only-mode-for-authentication/ .
+
+This documentation recommends first installing the following gems:
+
+- rack-cors
+- devise
+- devise-jwt
+- jsonapi-serializer
+
+It then recommendeds to use the following command to generate the User model with devise:
+
+```zsh
+rails generate devise User
+```
+
+Following these steps I created and migrated the database:
+
+```zsh
+rails db:create db:migrate
+
+```
+
+Folling the migration I made sure both the tables for users and jobs would appear in the Schema file:
 
 ```ruby
 
@@ -272,6 +298,140 @@ I built the controllers and CRUD actions for those models and started testing th
   end
 
 ```
+
+I then followed along the documentation further to create Create devise controllers and routes
+end up with users controllers: sessions controller and registrations controller
+
+```ruby
+
+class Users::RegistrationsController < Devise::RegistrationsController
+  include RackSessionFix
+  protect_from_forgery with: :null_session
+  before_action :configure_sign_up_params, only: [:create]
+  respond_to :json
+  private
+
+  def respond_with(resource, _opts = {})
+    if request.method == "POST" && resource.persisted?
+      render json: {
+        status: {code: 200, message: "Sign up successful. New user created."},
+        data: UserSerializer.new(resource).serializable_hash[:data][:attributes]
+      }, status: :ok
+    elsif request.method == "DELETE"
+      render json: {
+        status: { code: 200, message: "Account deleted successfully."}
+      }, status: :ok
+    else
+      render json: {
+        status: {code: 422, message: "Error: user couldn't be created successfully. #{resource.errors.full_messages.to_sentence}"}
+      }, status: :unprocessable_entity
+    end
+  end
+
+  def configure_sign_up_params
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:age, :description, :username, :address, :display_name])
+  end
+
+end
+
+
+
+class Users::SessionsController < Devise::SessionsController
+  include RackSessionFix
+  protect_from_forgery with: :null_session
+  respond_to :json
+  private
+
+  def respond_with(resource, _opts = {})
+    render json: {
+      status: {code: 200, message: 'User logged in sucessfully.'},
+      data: UserSerializer.new(resource).serializable_hash[:data][:attributes]
+    }, status: :ok
+  end
+
+  def respond_to_on_destroy
+    if current_user
+      render json: {
+        status: 200,
+        message: "User logged out successfully."
+      }, status: :ok
+    else
+      render json: {
+        status: 401,
+        message: "Couldn't find an active session."
+      }, status: :unauthorized
+    end
+  end
+end
+```
+
+```ruby
+class JobsController < ApplicationController
+  before_action :set_job, only: [:show, :edit, :update, :destroy]
+  before_action only: [:create, :destroy, :update]
+
+  def index
+      @user = User.find(params[:user_id])
+      @jobs = @user.jobs
+      render json: @jobs
+  end
+
+  def all
+      @jobs = Job.all
+      render json: @jobs
+  end
+
+  def one
+    @job = Job.find(params[:id])
+    render json: @job
+
+  end
+
+  def show
+      render json: @job
+  end
+
+  def create
+    @user = User.find(params[:user_id])
+    @job = @user.jobs.create(job_params)
+    if @job.valid?
+      render json: @job
+    else
+      render json: @job.errors, status: :unprocessable_entity
+    end
+  end
+
+  def update
+      if @job.update(job_params)
+        render json: @job
+      else
+        render json: @job.errors, status: :unprocessable_entity
+      end
+  end
+
+  def destroy
+      @job.destroy
+      render json: @job
+  end
+
+  private
+  def set_job
+      @job = User.find(params[:user_id]).jobs.find(params[:id])
+  end
+
+  def job_params
+      params.require(:job).permit(:title, :description, :pay, :start_date, :start_time, :end_date, :end_time, :user_id, :job_type, :location)
+  end
+
+end
+```
+
+I built the controllers and CRUD actions for those models and started testing them out in postman.
+
+ <img src="./src/assets/readme_images/POST_signup.jpg">
+ <img src="./src/assets/readme_images/POST_login.jpg">
+ <img src="./src/assets/readme_images/GET_current_user.jpg">
+ <img src="./src/assets/readme_images/DELETE_logout.jpg">
 
 ### development: day 2 - 01/06/2023
 
