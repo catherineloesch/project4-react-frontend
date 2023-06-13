@@ -22,10 +22,10 @@ Featuring freelance jobs posted by pet owners, the application enables users to 
 
  <img src="./src/assets/readme_images/landing_page1.jpg">
  <img src="./src/assets/readme_images/landing_page2.jpg">
+ <img src="./src/assets/readme_images/jobs.jpg">
 
- <img src="./src/assets/readme_images/landing_page_responsive.jpg" width=40%>
- <img src="./src/assets/readme_images/jobs.jpg" width=40%>
- <img src="./src/assets/readme_images/jobs_responsive.jpg" width=50%>
+<img src="./src/assets/readme_images/landing_page_responsive.jpg" width=40%><img src="./src/assets/readme_images/responsive_services.jpg" width=40%><img src="./src/assets/readme_images/jobs_responsive.jpg" width=50%>
+
  <img src="./src/assets/readme_images/login.jpg">
  <img src="./src/assets/readme_images/responsive_login.jpg" width=50%>
  <img src="./src/assets/readme_images/login_ipad.jpg" width=50%>
