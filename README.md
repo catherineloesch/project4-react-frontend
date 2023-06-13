@@ -7,11 +7,11 @@
 3. [Installation](#installation)
 4. [Technologies Used](#technologies)
 5. [Deliverables](#deliverables)
-6. [Planning](#planning)
-7. [Build Process](#build-process)
-8. [Challenges](#challenges)
-9. [Wins](#wins)
-10. [Key Learnings & Takeaways](#takeaways)
+6. [Planning/Build Process](#planning)
+7. [Challenges](#challenges)
+8. [Wins](#wins)
+9. [Key Learnings & Takeaways](#takeaways)
+10. [Future Improvements](#future-improvements)
 
 <br>
 
@@ -181,19 +181,26 @@ rails new p4-rails --api
 - Redux
 - Automated Tests Using Jest / RSpec or MiniTest for Rails
 
-## User stories
+## <a name="planning"></a>6. Planning / Build Process
 
-- As a user I should be able to register with a username and password.
-- As a user I should be able to log in with my username and password.
-- As a user I should be able to view all job postings.
-- As a user I should be able to view my job postings.
-- As a user I should be able to write a new job posting.
-- As a user I should be able to delete my postings.
-- As a user I should be able to edit my postings.
+### timeframe
 
----
+- the deliverables for this project were issued on 26/05/2023
 
-## <a name="planning"></a>6. Planning
+  - a project proposal was to be submitted and approved by the instructional team before moving on to coding phase of the prjoject
+    - the proposal was to include:
+      - description of the project
+      - user stories
+      - ERD of models (Entity relationship diagram)
+      - wireframe
+      - choice of technology stack, giving students the choice between 3 options:
+        - Full-Stack Rails App
+        - Rails API with React Front-End
+        - Express API with React Front-End
+
+- Submission deadline + poject presentation on: 12/05/2023
+
+### propsal: ERD
 
  <br>
  <br>
@@ -203,24 +210,24 @@ rails new p4-rails --api
  <br>
  <br>
 
+## proposal: User stories
+
+- As a user I should be able to register with a username and password.
+- As a user I should be able to log in with my username and password.
+- As a user I should be able to view all job postings.
+- As a user I should be able to view my job postings.
+- As a user I should be able to write a new job posting.
+- As a user I should be able to delete my postings.
+- As a user I should be able to edit my postings.
+
+ <br>
+ <br>
+
+## proposal: Wireframe
+
  <img src="./src/assets/readme_images/project_4_wireframe.png">
 
-<br>
-
-## <a name="build-process"></a> 7. Build Process
-
-### start date: 26/05/2023
-
-- specifictions given
-
 ### proposal submission deadline: 30/05/2023
-
-- proposal to be submitted for approval by instructional team including:
-
-  - ERD of models
-  - wireframe
-  - description
-  - user stories
 
 - proposal was approved
 - once the proposal was approved I started the development process
@@ -301,7 +308,7 @@ I also worked on the frontend deployment.
 
 On the final day of this project I completed the readme and presented the project to my cohort.
 
-## 8. <a name="challenges"></a> Challenges
+## 7. <a name="challenges"></a> Challenges
 
 - deployment on the front end proved to be a challenge as there were issues with the fetch requests not working properly.
 - I originally created the backend with a sqlite database instead of postgresql and had to later account for that during deployment, which made things more complicated.
@@ -309,14 +316,14 @@ On the final day of this project I completed the readme and presented the projec
 
 BUGS:
 
-## 9. <a name="wins"></a> Wins
+## 8. <a name="wins"></a> Wins
 
 - I managed to fulfil all the MVP requirements.
 - I was also really glad that I managed to implement the responsive design for this project withing the timeframe that was given as I had run out of time in previous projects to make the applications fully responsive.
 
-## 10. <a name="takeaways"></a> 9. Key Learnings & Takeaways
+## <a name="takeaways"></a> 9. Key Learnings & Takeaways
 
-## <a name="future-improvements"></a> 11. Future Improvements
+## <a name="future-improvements"></a> 10. Future Improvements
 
 - add 3rd party API
 - incorporate Redux
