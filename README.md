@@ -26,16 +26,6 @@ Featuring freelance jobs posted by pet owners, the application enables users to 
 
 <img src="./src/assets/readme_images/landing_page_responsive.jpg" height=400px><img src="./src/assets/readme_images/responsive_services.jpg" height=400px><img src="./src/assets/readme_images/jobs_resp.jpg" height=400px>
 
- <img src="./src/assets/readme_images/login.jpg">
- <img src="./src/assets/readme_images/responsive_login.jpg" width=50%>
- <img src="./src/assets/readme_images/login_ipad.jpg" width=50%>
- <img src="./src/assets/readme_images/logout.jpg" width=50%>
- <img src="./src/assets/readme_images/mobile_menu.jpg" width=50%>
-
- <img src="./src/assets/readme_images/dashboard.jpg">
- <img src="./src/assets/readme_images/responsive_dashboard_1.jpg" width=50%>
- <img src="./src/assets/readme_images/responsive_dashboard_2.jpg" width=50%>
-
 ## <a name="deployment-links"></a> 2. Deployment Links
 
 - Front End: React application deployed on Netlify
@@ -165,30 +155,31 @@ rails new p4-rails --api
 ### MVP
 
 - full stack web application
-- at least 2 models
-  - full CRUD on at least one of your models
-  - be able to Add/Delete on any remaining models
+- at least 2 models:
+  - full CRUD on at least one of the models
+  - Add/Delete functionality on any remaining models
 - authentication
-- write code that is well-structured, readable, efficient and DRY
-  - follow accepted naming conventions + consistent indentation
-  - use semantic naming of variables, functions, CSS classes, etc.
-  - Short and clear functions that do one thing
+- code:
+  - well-structured, readable, efficient and DRY
+  - adherence to naming conventions + consistent indentation
+  - semantic naming of variables, functions, CSS classes, etc.
+  - short and clear functions that follow the single responsibility principle
 
 ### Stretch Goals
 
-- add 3rd party API
-- Make app mobile responsive
-- High quality, professional design
+- incorporation of a 3rd party API
+- high quality, professional design
+- mobile responsive design
 - Redux
-- Automated Tests Using Jest / RSpec or MiniTest for Rails
+- inclusion of automated tests using Jest / RSpec or MiniTest for Rails
 
 ## <a name="planning"></a>6. Planning / Build Process
 
-### timeframe
+### Timeframe
 
 - the deliverables for this project were issued on 26/05/2023
 
-  - a project proposal was to be submitted and approved by the instructional team before moving on to coding phase of the prjoject
+  - a project proposal was to be submitted and approved by the instructional team before moving on to coding phase of the project
   - the proposal was to include:
     - description of the project
     - ERD of models (Entity relationship diagram)
@@ -225,7 +216,7 @@ rails new p4-rails --api
 
 ### Proposal: choice of technology stack
 
-- I dediced to use a rails API with a React Front-End.
+- I dediced to use a rails API with a React Front-End as I had used these 2 technologies before separately but not yet combined together.
 
 ### proposal submission deadline: 30/05/2023
 
@@ -244,20 +235,13 @@ This documentation recommends first installing the following gems:
 - devise-jwt
 - jsonapi-serializer
 
-It then recommendeds to use the following command to generate the User model with devise:
+It then recommendeds to use the following command to generate the User model with devise with the following command:
 
 ```zsh
 rails generate devise User
 ```
 
-Following these steps I created and migrated the database:
-
-```zsh
-rails db:create db:migrate
-
-```
-
-Folling the migration I made sure both the tables for users and jobs would appear in the Schema file:
+Next, I generated the job model manually and also created and migrated the database. Folling the migration I made sure both the tables for users and jobs would appear in the Schema file:
 
 ```ruby
 
@@ -300,7 +284,7 @@ Folling the migration I made sure both the tables for users and jobs would appea
 ```
 
 I then followed along the documentation further to create Create devise controllers and routes
-end up with users controllers: sessions controller and registrations controller
+end up with users controllers: sessions controller and registrations controller.
 
 ```ruby
 
@@ -428,11 +412,6 @@ end
 
 I built the controllers and CRUD actions for those models and started testing them out in postman.
 
- <img src="./src/assets/readme_images/POST_signup.jpg">
- <img src="./src/assets/readme_images/POST_login.jpg">
- <img src="./src/assets/readme_images/GET_current_user.jpg">
- <img src="./src/assets/readme_images/DELETE_logout.jpg">
-
 ### development: day 2 - 01/06/2023
 
 On day 2 I deployed the backend rails app on heroku.
@@ -510,12 +489,11 @@ On the final day of this project I completed the readme and presented the projec
 - I originally created the backend with a sqlite database instead of postgresql and had to later account for that during deployment, which made things more complicated.
 - the react-datepicker component I used formatted the date in a different way than the rails datetime format, which required writing some extra code to account for this inconsistency.
 
-BUGS:
-
 ## 8. <a name="wins"></a> Wins
 
 - I managed to fulfil all the MVP requirements.
 - I was also really glad that I managed to implement the responsive design for this project withing the timeframe that was given as I had run out of time in previous projects to make the applications fully responsive.
+- I successfully implemented authentication with devise which I had not used before in a project.
 
 ## <a name="takeaways"></a> 9. Key Learnings & Takeaways
 
