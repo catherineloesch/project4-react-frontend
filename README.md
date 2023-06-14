@@ -542,8 +542,7 @@ Next, I added styling to forms for the webite. I started with the form that allo
 
 I also thought it would be nice to have a dropdown menu rather than a simple text field for the user to specify the job type. For the start date and the end date of the job I wanted the user to be able to select the date from a dropdown calendar. For this used the [React Date Picker](https://www.npmjs.com/package/react-datepicker) component.
 
-<img src="./src/assets/readme_images/job_type_dropdown.jpg" width=39.5%>
-<img src="./src/assets/readme_images/datepicker.jpg" width=31%>
+<img src="./src/assets/readme_images/job_type_dropdown.jpg" width=39.5%><img src="./src/assets/readme_images/datepicker.jpg" width=31%>
 
 ### Development: day 6 - 05/06/2023
 
@@ -604,7 +603,7 @@ const token = JSON.parse(localStorage.getItem('petsJWT'))
 
 ```
 
-I `authenticateUser` function for all the protected routes i.e. routes that should only be accessible with a valid token. If the `authenticateUser` returns `true` the user can proceed to the requested page. If the `authenticateUser` function returns `false` the user is redirected to the login page:
+I incorporated the `authenticateUser` function for all the protected routes i.e. routes that should only be accessible with a valid token. If the `authenticateUser` returns `true` the user can proceed to the requested page. If the `authenticateUser` function returns `false` the user is redirected to the login page:
 
 ```Javascript
 
@@ -630,6 +629,7 @@ I `authenticateUser` function for all the protected routes i.e. routes that shou
 - full CRUD for both User and Job model
 
 I woked on the page that displays all the job postings. I mad a reusable card component for each job.
+
 <img src="./src/assets/readme_images/jobs_full_screen.jpg">
 <img src="./src/assets/readme_images/jobs_ipad.jpg" width=50%><img src="./src/assets/readme_images/jobs_mobile.jpg" width=31%>
 
@@ -641,7 +641,7 @@ I also added styled the dashboard page, including media queries to make the page
 
 <img src="./src/assets/readme_images/dashboard_full_screen.jpg">
 
-<img src="./src/assets/readme_images/dashboard_ipad.jpg" width=50%><img src="./src/assets/readme_images/dashboard_mobile.jpg" width=32%>
+<img src="./src/assets/readme_images/dashboard_ipad.jpg" width=40%><img src="./src/assets/readme_images/dashboard_mobile.jpg" width=25%>
 
 dashboard css, media queries
 deletedAccountPage, LogoutSuccessfulPage
@@ -655,7 +655,7 @@ I also worked on the frontend deployment.
 
 ### Development: day 10 - 09/06/2023 - Submission Deadline + Presentation
 
-On the final day of this project I completed the readme and presented the project to my cohort.
+On the final day of this project I added content to the readme document and presented the project to my cohort.
 
 ## 7. <a name="challenges"></a> Challenges
 
@@ -671,6 +671,10 @@ On the final day of this project I completed the readme and presented the projec
 - I successfully implemented authentication with devise which I had not used before in a project.
 
 ## <a name="takeaways"></a> 9. Key Learnings & Takeaways
+
+- It is useful to think about how to implement authentication before generating a User model in the backend.
+- CSS variables are save a lot of time when programmming in vanilla CSS.
+-
 
 ## <a name="future-improvements"></a> 10. Future Improvements
 
