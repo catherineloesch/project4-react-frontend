@@ -34,6 +34,7 @@ Featuring freelance jobs posted by pet owners, the application enables users to 
 
 - Back End: rails application deployed on Heroku
   - Deployment: https://p4-rails.herokuapp.com
+  - Back end GitHub repository: https://github.com/catherineloesch/project4-rails-api
 
 ## <a name="installation"></a> 3. Installation
 
@@ -218,30 +219,32 @@ rails new p4-rails --api
 
 - I dediced to use a rails API with a React Front-End as I had used these 2 technologies before separately but not yet combined together.
 
-### proposal submission deadline: 30/05/2023
+### proposal submission
 
 - I submitted my project proposal on 30/05/2023 and the instructional team approved it later that same day.
 - I started the development process the next day.
 
 ### development: day 1 - 31/05/2023
 
-On the first day I wrote the code for the backend models for User and Job.
-After generating both manually at first, I realised that when using the devise package for authentication it is simpler to generate the User model with devise. Since I was still early in the process I decided to start over with the backend and generate the User model with devise, following along the steps listed in the documumentation by Dakota Lee Martinez: https://dakotaleemartinez.com/tutorials/devise-jwt-api-only-mode-for-authentication/ .
+I started the development process by writing the code for the backend models: the User and Job models.
+When I originally generated these models I did so without implementing authentication.
+After some research I realised that when using the devise package for authentication, it is more straightforward to generate the User model with devise.
+Since I was still early in the backend development process, I decided to start over from scratch and generated the User model with devise, following along the steps listed in the documumentation by Dakota Lee Martinez: https://dakotaleemartinez.com/tutorials/devise-jwt-api-only-mode-for-authentication/.
 
-This documentation recommends first installing the following gems:
+This documentation also recommends installing the following gems:
 
 - rack-cors
 - devise
 - devise-jwt
 - jsonapi-serializer
 
-It then recommendeds to use the following command to generate the User model with devise with the following command:
+After installing the gems, I used the recommended command to generate the User model with devise:
 
 ```zsh
 rails generate devise User
 ```
 
-Next, I generated the job model manually and also created and migrated the database. Folling the migration I made sure both the tables for users and jobs would appear in the Schema file:
+Next, I generated the Job model manually (the same way I had done before) and also created and migrated the database. Folling the migration I made sure both the tables for users and jobs would appear in the Schema file:
 
 ```ruby
 
@@ -283,8 +286,7 @@ Next, I generated the job model manually and also created and migrated the datab
 
 ```
 
-I then followed along the documentation further to create Create devise controllers and routes
-end up with users controllers: sessions controller and registrations controller.
+I then followed along the documentation further to create the controllers and routes for the User model, resulting in a SessionsController, a, RegistrationsController and a CurrentUserController:
 
 ```ruby
 
@@ -347,7 +349,39 @@ class Users::SessionsController < Devise::SessionsController
     end
   end
 end
+
+
+class CurrentUserController < ApplicationController
+  before_action :authenticate_user!
+  def index
+    render json: UserSerializer.new(current_user).serializable_hash[:data][:attributes], status: :ok
+  end
+
+
+  def show
+    @user = get_user_from_token
+    render json: @user
+
+  end
+
+
+  def jobs
+    @user = get_user_from_token
+    render json: @user.jobs
+
+  end
+
+  private
+
+  def get_user_from_token
+    jwt_payload = JWT.decode(request.headers['Authorization'].split(' ')[1], Rails.application.credentials.fetch(:secret_key_base)).first
+    user_id = jwt_payload['sub']
+    User.find(user_id.to_s)
+  end
+end
 ```
+
+I then created a JobsController as well, implementing all the CRUD operations for the Job model needed for the project:
 
 ```ruby
 class JobsController < ApplicationController
@@ -410,21 +444,51 @@ class JobsController < ApplicationController
 end
 ```
 
-I built the controllers and CRUD actions for those models and started testing them out in postman.
+I used postman to test out all the endpoints.
+
+```ruby
+Rails.application.routes.draw do
+  get '/current_user', to: 'current_user#index'
+  get '/current_user/info', to: 'current_user#show'
+
+  devise_for :users, path: '', path_names: {
+    #POST request to /login
+    sign_in: 'login',
+    #DELETE request to /logout
+    sign_out: 'logout',
+    #POST request to /signup
+    registration: 'signup'
+  },
+  controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations',
+  }
+
+  resources :users do
+    resources :jobs do
+    end
+  end
+
+  get "jobs", to: "jobs#all"
+  get "jobs/:id", to: "jobs#one"
+
+end
+```
 
 ### development: day 2 - 01/06/2023
 
-On day 2 I deployed the backend rails app on heroku.
+Once I was confident that all the routes were working, I deployed the back end rails app on heroku, so rather than using locahost, the requests were now being sent to https://p4-rails.herokuapp.com.
 
-- initialise react application using command:
+After deploying the backend, I focused on the front end and initialised a new React application using the 'create-react-app' command:
 
-```terminal
-create-react-app
+```zsh
+npx create-react-app frontend
 ```
+
+I removed all the unncessary files that come with a default application and started building the basic folder structure for he front end.
 
 ### development: day 3 - 02/06/2023
 
-- start authentication
 - add delete account feature for user
 - new job form sends data to api
 - rendering job resource from api
