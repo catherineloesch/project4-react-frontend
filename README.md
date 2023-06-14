@@ -17,8 +17,8 @@
 
 ## <a name="description"></a> 1. Description
 
-A fully responsive full-stack job-board application, built from scratch in 10 days using a rails API as its backend and a react-based front. This solo project was the fourth and final application built as part of the curriculum for the General Assembly Software Engineering Immersive Course.
-Featuring freelance jobs posted by pet owners, the application enables users to make an account and post job listings looking for dog-walkers or pet sitters. Once logged in they can view their listings as well as edit and delete them.They can also update their account information and delete their account.
+A fully responsive full-stack job-board application, built from scratch in 10 days using a rails API as its back end and a react-based front end. This solo project was the fourth and final application built as part of the curriculum for the General Assembly Software Engineering Immersive Course.
+Featuring freelance jobs posted by pet owners, the application enables users to make an account and post job listings looking for dog-walkers or pet sitters. Once logged in they can view their listings as well as edit and delete them. They can also update their account information and delete their account.
 
  <img src="./src/assets/readme_images/landing_page1.jpg">
  <img src="./src/assets/readme_images/landing_page2.jpg">
@@ -66,24 +66,24 @@ bundle install
 
 - The front end of this application is based in ReactJS (v18.2.0), JavaScript, JSX and CSS.
   - it was created using the 'create-react-app' command
+  - https://create-react-app.dev/
 
 ```zsh
-create-react-app project4-react-frontend
+npx create-react-app project4-react-frontend
 ```
 
-- https://create-react-app.dev/
-- routing
+- routing:
   - react-router (v6.11.2)
     - https://www.npmjs.com/package/react-router
   - react-router-dom (v6.11.2)
     - https://www.npmjs.com/package/react-router-dom
-- authentication
+- authentication:
   - buffer (v6.0.3)
     - https://nodejs.org/api/buffer.html
     - used to decode JWT tokens
-- UI
+- UI:
   - react-datepicker (v4.12.0)
-  - https://www.npmjs.com/package/react-datepicker
+    - https://www.npmjs.com/package/react-datepicker
   - fonts:
     - 'Lilly Regular' by Apostrophic Labs
       - source: Font Squirrel
@@ -92,7 +92,7 @@ create-react-app project4-react-frontend
       - source: BestFonts.pro
       - 'https://en.bestfonts.pro/font/quicksand',
     - .woff files: assets/fonts directory
-  - icons
+  - icons:
     - source: Font Awesome
     - https://fontawesome.com/
     - details: assets/fonts/icons.js
@@ -107,7 +107,7 @@ create-react-app project4-react-frontend
 rails new p4-rails --api
 ```
 
-- ruby gems
+- ruby gems:
   - rack-cors gem (v2.0.1)
     - middleware to make Rack-based apps CORS compatible
     - https://rubygems.org/gems/rack-cors/versions/1.1.1
@@ -130,7 +130,7 @@ rails new p4-rails --api
 - Postman
   - used to test the API endpoints
   - https://www.postman.com/
-- excalidraw
+- Excalidraw
   - used for building the wireframe + ERD
   - https://excalidraw.com/
 - Git / GitHub
@@ -138,7 +138,7 @@ rails new p4-rails --api
   - https://git-scm.com/
   - https://github.com/https://github.com/
 - Visual Studio Code (VSCode)
-  - code editor used for writing CSS, JSX and JavaScript
+  - code editor used for writing CSS, JSX, JavaScript and ruby.
 - Google Chrome browser
   - used for launching the website and displaying the application Google Chrome
 - Google Chrome Developer Tools: For troubleshooting and debugging
@@ -153,12 +153,12 @@ rails new p4-rails --api
 
 ## <a name="deliverables"></a> 5. Deliverables
 
-### MVP
+### MVP requriements
 
 - full stack web application
 - at least 2 models:
   - full CRUD on at least one of the models
-  - Add/Delete functionality on any remaining models
+  - add/delete functionality on any remaining models
 - authentication
 - code:
   - well-structured, readable, efficient and DRY
@@ -178,14 +178,14 @@ rails new p4-rails --api
 
 ### Timeframe
 
-- the deliverables for this project were issued on 26/05/2023
+- the deliverables for this project were issued on: 26/05/2023
 
   - a project proposal was to be submitted and approved by the instructional team before moving on to coding phase of the project
   - the proposal was to include:
-    - description of the project
-    - ERD of models (Entity relationship diagram)
+    - a description of the project
+    - an ERD of models (Entity relationship diagram)
     - user stories
-    - wireframe
+    - a wireframe
     - choice of technology stack, giving students the choice between 3 options:
       1. Full-Stack Rails App
       2. Rails API with React Front-End
@@ -208,6 +208,7 @@ rails new p4-rails --api
 - As a user I should be able to write a new job posting.
 - As a user I should be able to delete my postings.
 - As a user I should be able to edit my postings.
+- As a user I should be able to log out of my account.
 
 <br>
 
@@ -219,12 +220,12 @@ rails new p4-rails --api
 
 - I dediced to use a rails API with a React Front-End as I had used these 2 technologies before separately but not yet combined together.
 
-### proposal submission
+### Proposal: submission
 
 - I submitted my project proposal on 30/05/2023 and the instructional team approved it later that same day.
 - I started the development process the next day.
 
-### development: day 1 - 31/05/2023
+### Development: day 1 - 31/05/2023
 
 I started the development process by writing the code for the backend models: the User and Job models.
 When I originally generated these models I did so without implementing authentication.
@@ -475,50 +476,83 @@ Rails.application.routes.draw do
 end
 ```
 
-### development: day 2 - 01/06/2023
+### Development: day 2 - 01/06/2023
 
-Once I was confident that all the routes were working, I deployed the back end rails app on heroku, so rather than using locahost, the requests were now being sent to https://p4-rails.herokuapp.com.
+Once I was confident that all the routes were working, I deployed the back end rails application on [Heroku](http://www.heroku.com/), so rather than using http://localhost:4000, all requests were now being sent to https://p4-rails.herokuapp.com.
 
 After deploying the backend, I focused on the front end and initialised a new React application using the 'create-react-app' command:
 
 ```zsh
-npx create-react-app frontend
+npx create-react-app project4-react-frontend
 ```
 
-I removed all the unncessary files that come with a default application and started building the basic folder structure for he front end.
+I removed all the unncessary boilerplate files that come with a default application and started building the basic folder structure for the front end.
 
-### development: day 3 - 02/06/2023
+### Development: day 3 - 02/06/2023
 
-- add delete account feature for user
-- new job form sends data to api
-- rendering job resource from api
-- add context to keep track of user logged in
+On the third day of development I focused on rendering the API data on the front end.
+manged to get full CRUD for job resource
+user signup
+user login
+delete account
 
-### development: day 4 - 03/06/2023
+### Development: day 4 - 03/06/2023
 
-- tried to add Material UI to React project but ran into issues, react version did not work with Material UI
-- custom fonts added
+On day 4 of development I spent some time trying to install Material UI, a CSS framework but ran into some issues as the it didn't seem compatible with the version of React that I was using (v18.2.0). Rather than downgrading to an older version of React, I decided to do the styling in vanilla CSS rather than use a framework.
 
-### development: day 5 - 04/06/2023
+I also added some custom fonts to the front end, Lilly and Quicksand.
 
-- created third model: applications: join table linking a job posting (by id) with an applicant (by user id).
+### Development: day 5 - 04/06/2023
 
-```ruby
-rails g model Application content:string  user:references job:references
+On day 5 of development I got started on he styling of the website, starting with the header and the navigation bar. I used @media queries to make the nagivation menu easy to navigate from different screen sizes.
 
-rails g controller applications
+<img src="./src/assets/readme_images/navbar_large_screen.jpg" >
 
+<img src="./src/assets/readme_images/navbar_medium_screen.jpg" width=65%>
+
+<img src="./src/assets/readme_images/navbar_small_screen.jpg" width=40%>
+
+<img src="./src/assets/readme_images/navbar_mobile.jpg" width=30%>
+
+<img src="./src/assets/readme_images/mobile_menu.jpg" width=30%>
+
+I used several media queries to achieve this, below is the example of one I used for screens smaller than 400px:
+
+```CSS
+@media screen and (max-width: 400px) {
+
+    .header {
+        height: 115px;
+        padding: 3rem 1rem;
+
+    }
+
+    .app-title,  .header .fa-paw { font-size: 1.85rem; }
+
+    .nav .nav-list a { padding: 1rem 0; }
+
+}
 ```
 
-- add content to home page
-- add dropdown menu for job_type in AddNewJob form
 - add @media queries for header
 - toggle hamburger menu
 - add fontawesome icons, add css, add responsive navbar
 - CSS added
 - responsibe navigation bar using vanilla CSS
 
-### development: day 6 - 05/06/2023
+I added content to the landing page and did the styling.
+
+I also did styling for the input forms.
+
+<img src="./src/assets/readme_images/new_job_form_ipad.jpg" width=50%>
+<img src="./src/assets/readme_images/new_job_form_mobile.jpg" width=40%>
+
+I also thought it would be nice to have a dropdown menu rather than a simple text field for the user to specify the job type.
+
+<img src="./src/assets/readme_images/new_job_form.jpg" width=45%>
+<img src="./src/assets/readme_images/job_type_dropdown.jpg" width=45%>
+
+### Development: day 6 - 05/06/2023
 
 - backend deployed on heroku: https://p4-rails.herokuapp.com
 
@@ -529,21 +563,21 @@ tested to see that the following 3 routes work in postman:
 - GET: https://p4-rails.herokuapp.com/current_user -> verifies token and returns user data
 - DELETE: https://p4-rails.herokuapp.com/logout -> logs user out
 
-### development: day 7 - 06/06/2023
+### Development: day 7 - 06/06/2023
 
 - full CRUD for both User and Job model
 - CSS forms for user input
 
-### development: day 8 - 08/06/2023
+### Development: day 8 - 08/06/2023
 
 responsive css
 
-### development: day 9 - 08/06/2023
+### Development: day 9 - 08/06/2023
 
 On day 9 I finished the responsive design and created seed data for the rails api.
 I also worked on the frontend deployment.
 
-### development: day 10 - 09/06/2023 - Submission Deadline + presentation
+### Development: day 10 - 09/06/2023 - Submission Deadline + presentation
 
 On the final day of this project I completed the readme and presented the project to my cohort.
 
@@ -552,6 +586,7 @@ On the final day of this project I completed the readme and presented the projec
 - deployment on the front end proved to be a challenge as there were issues with the fetch requests not working properly.
 - I originally created the backend with a sqlite database instead of postgresql and had to later account for that during deployment, which made things more complicated.
 - the react-datepicker component I used formatted the date in a different way than the rails datetime format, which required writing some extra code to account for this inconsistency.
+- typos
 
 ## 8. <a name="wins"></a> Wins
 
