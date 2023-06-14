@@ -1,4 +1,4 @@
-# Project 4 - Full Stack App Rails API + React app
+# Project 4 - Rails/React Pet Job Board
 
 ## Overview
 
@@ -230,9 +230,7 @@ rails new p4-rails --api
 I started the development process by writing the code for the backend models: the User and Job models.
 When I originally generated these models I did so without implementing authentication.
 After some research I realised that when using the devise package for authentication, it is more straightforward to generate the User model with devise.
-Since I was still early in the backend development process, I decided to start over from scratch and generated the User model with devise, following along the steps listed in the documumentation by Dakota Lee Martinez: https://dakotaleemartinez.com/tutorials/devise-jwt-api-only-mode-for-authentication/.
-
-This documentation also recommends installing the following gems:
+Since I was still early in the backend development process, I decided to start over from scratch and generated the User model with devise, following along the steps listed in the [documumentation by Dakota Lee Martinez](https://dakotaleemartinez.com/tutorials/devise-jwt-api-only-mode-for-authentication/). This documentation recommends installing the following gems:
 
 - rack-cors
 - devise
@@ -245,7 +243,7 @@ After installing the gems, I used the recommended command to generate the User m
 rails generate devise User
 ```
 
-Next, I generated the Job model manually (the same way I had done before) and also created and migrated the database. Folling the migration I made sure both the tables for users and jobs would appear in the Schema file:
+Next, I generated the Job model (without devise) and also created and migrated the database. Folling the migration I made sure both the tables for users and jobs would appear in the Schema file:
 
 ```ruby
 
@@ -287,10 +285,13 @@ Next, I generated the Job model manually (the same way I had done before) and al
 
 ```
 
-I then followed along the documentation further to create the controllers and routes for the User model, resulting in a SessionsController, a, RegistrationsController and a CurrentUserController:
+I then followed along the [documentation](https://dakotaleemartinez.com/tutorials/devise-jwt-api-only-mode-for-authentication/) further to create the controllers and routes for the User model, resulting in 3 controllers for the User model:
+
+- a SessionsController
+- a RegistrationsController
+- and a CurrentUserController
 
 ```ruby
-
 class Users::RegistrationsController < Devise::RegistrationsController
   include RackSessionFix
   protect_from_forgery with: :null_session
@@ -382,7 +383,7 @@ class CurrentUserController < ApplicationController
 end
 ```
 
-I then created a JobsController as well, implementing all the CRUD operations for the Job model needed for the project:
+I then created a JobsController as well, implementing all the CRUD actions for the Job model needed for the project:
 
 ```ruby
 class JobsController < ApplicationController
@@ -445,9 +446,15 @@ class JobsController < ApplicationController
 end
 ```
 
-I used postman to test out all the endpoints.
-
 ### Development: day 2 - 01/06/2023
+
+I tested all the different routes in [Postman](https://www.postman.com/), making sure that:
+
+- sending a POST request to the '/signup' endpoint creates new user and generates a token along with a 'Sign up successful. New user created.' message.
+- sending a POST request to the '/login' endpoint logs the user in and creates token along with a 'User logged in sucessfully.' message.
+- sending a GET request to the '/current_user' endpoint with a valid token verifies the token and returns the data for the user associated with the token.
+- sending a DELETE request to the '/logout' endpoint logs user out with a "User logged out successfully." message.
+- all CRUD actions defined in the JobsController work as expected
 
 Once I was confident that all the routes were working, I deployed the back end rails application on [Heroku](http://www.heroku.com/), so rather than using http://localhost:4000, all requests were now being sent to https://p4-rails.herokuapp.com.
 
@@ -508,15 +515,14 @@ When no user is logged in, it should display the 'Sign Up' and 'Log In' buttons.
     (userLoggedIn && <Link to="/" className='nav-link'><div onClick={handleLogOut}>Log Out</div></Link>)
 ```
 
-- rendering the API data on the front end.
-- manged to get full CRUD for job resource
-- user signup
-- user login
-- delete account
+I also made sure tha I was able to display data from the backend on the front end, starting with the job resource, first making sure that I could display jobs from the database on the front end and then adding forms to add, edit and delete jobs on the front end.
 
 ### Development: day 4 - 03/06/2023
 
-On day 4 of development I spent some time trying to install [Material UI](https://mui.com/), an open-source framework for React components. However, I ran into some issues as the it didn't seem compatible with the version of React that I was using (v18.2.0). Rather than downgrading to an older version of React, I decided to do the styling in vanilla CSS instead of using a framework. I also added two custom fonts to the front end, [Lilly](https://www.fontsquirrel.com/fonts/lilly) and [Quicksand](https://en.bestfonts.pro/font/quicksand).
+Continuing where I had left off the day before, on day 4 I added more forms to the front end and made sure that the sign up and log in features worked for the User model.
+I then proceeded to add the features for updating user information and deleting a user.
+
+I also spent some time trying to install [Material UI](https://mui.com/), an open-source framework for React components. However, I ran into some issues as the it didn't seem compatible with the version of React that I was using (v18.2.0). Rather than downgrading to an older version of React, I decided to do the styling in vanilla CSS instead of using a framework. I also added two custom fonts to the front end, [Lilly](https://www.fontsquirrel.com/fonts/lilly) and [Quicksand](https://en.bestfonts.pro/font/quicksand).
 
 ### Development: day 5 - 04/06/2023
 
@@ -534,7 +540,7 @@ On the fifth day of development I tackled the styling of the website, starting w
 
 <br>
 
-Next, I added styling to forms for the webite. I started with the form that allows the user to post a new job listing:
+Next, I added styling to the `<form>` elements. I started with the form that allows the user to post a new job listing. As I was styling the form I added media queries to make the forms responsive:
 
 <br>
 
@@ -551,34 +557,21 @@ On day 6 I added styling to the login and signup forms, again writing several me
 <img src="./src/assets/readme_images/signup.jpg" width=45%><img src="./src/assets/readme_images/login.jpg" width=45%>
 <img src="./src/assets/readme_images/signup_ipad.jpg" width=30%><img src="./src/assets/readme_images/login_ipad.jpg" width=30%><img src="./src/assets/readme_images/signup_mobile.jpg" width=19.9%><img src="./src/assets/readme_images/login_mobile.jpg" width=20%>
 
-tested to see that the following 3 routes work in postman:
+After verifying that a user can log in and out of their account with a token, I tackled the issue of checking whether or not a token is expired.
+As a first step, I wrote a function that decodes the token and extracts the data that contains the expiration date of the token. I achieved this using the [Buffer library](https://vinod827.medium.com/decoding-a-jwt-token-in-nodejs-b8d5d079dea7).
 
-- POST: https://p4-rails.herokuapp.com/signup -> creates new user+generates token
-- POST: https://p4-rails.herokuapp.com/login -> logs user in + creates token
-- GET: https://p4-rails.herokuapp.com/current_user -> verifies token and returns user data
-- DELETE: https://p4-rails.herokuapp.com/logout -> logs user out
-
-user profile page
-update user
-delete user
-
-check if token expired
-
-authentication
-
-First we need to get the payload by decoding the token and extracting the part that contains the expiration date
-I achieved this using the Buffer library.
-The next step is to check the expiration date against the current date. If the expiration date is less than the current date, the token is expired and authentication fails. If the expiration date is greater than the current date authentication is successful.
-
-```Javascript
+```JavaScript
 const decodeToken = (token) => {
 
     const base64String = token.split('.')[1];
     const decodedValue = JSON.parse(Buffer.from(base64String, 'base64').toString('ascii'));
     return decodedValue;
-
 }
+```
 
+The next step was to check the expiration date against the current date. If the expiration date is less than the current date, the token is expired and authentication fails. If the expiration date is greater than the current date, authentication is successful.
+
+```Javascript
 const checkTokenExp = (token_exp) => {
   const currentTime = Math.round(Date.now()/1000)
   return (currentTime < token_exp)
@@ -597,15 +590,11 @@ const token = JSON.parse(localStorage.getItem('petsJWT'))
    }
  }
 }
-
-
-
 ```
 
 I incorporated the `authenticateUser` function for all the protected routes i.e. routes that should only be accessible with a valid token. If the `authenticateUser` returns `true` the user can proceed to the requested page. If the `authenticateUser` function returns `false` the user is redirected to the login page:
 
 ```Javascript
-
     useEffect(() => {
         const auth = authenticateUser()
 
@@ -613,21 +602,18 @@ I incorporated the `authenticateUser` function for all the protected routes i.e.
             getUser()
             console.log('User authenticated:', auth)
         } else {
+
         localStorage.removeItem("petsJWT")
           setUserLoggedIn(false)
           setCurrentUser(null)
           navigate(`/users/login`)
         }
-
       }, [])
-
 ```
 
 ### Development: day 7 - 06/06/2023
 
-- full CRUD for both User and Job model
-
-I woked on the page that displays all the job postings. I mad a reusable card component for each job.
+I woked on styling the landing page as well as the page that displays all the job postings. I mad a reusable card component for each job component.
 
 <img src="./src/assets/readme_images/jobs_full_screen.jpg">
 <img src="./src/assets/readme_images/jobs_ipad.jpg" width=35%><img src="./src/assets/readme_images/jobs_mobile.jpg" width=21.5%>
@@ -640,18 +626,16 @@ I also added styled the dashboard page, including media queries to make the page
 
 <img src="./src/assets/readme_images/dashboard_full_screen.jpg">
 
-<img src="./src/assets/readme_images/dashboard_ipad.jpg" width=30%>
-<img src="./src/assets/readme_images/dashboard_mobile.jpg" width=19%>
+<img src="./src/assets/readme_images/dashboard_ipad.jpg" width=30%><img src="./src/assets/readme_images/dashboard_mobile.jpg" width=19%>
 
-dashboard css, media queries
-deletedAccountPage, LogoutSuccessfulPage
+- dashboard css, media queries
+- deletedAccountPage, LogoutSuccessfulPage
 
 ### Development: day 9 - 08/06/2023
 
 edit user form css
 media queries for profile page
 On day 9 I finished the responsive design and created seed data for the rails api.
-I also worked on the frontend deployment.
 
 ### Development: day 10 - 09/06/2023 - Submission Deadline + Presentation
 
