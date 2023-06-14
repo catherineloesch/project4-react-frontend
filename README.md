@@ -549,8 +549,7 @@ I also thought it would be nice to have a dropdown menu rather than a simple tex
 On day 6 I added styling to the login and signup forms, again writing several media queries for each form to make sure they are easy to navigate on different screen sizes.
 
 <img src="./src/assets/readme_images/signup.jpg" width=45%><img src="./src/assets/readme_images/login.jpg" width=45%>
-<img src="./src/assets/readme_images/signup_ipad.jpg" width=40%><img src="./src/assets/readme_images/login_ipad.jpg" width=40%>
-<img src="./src/assets/readme_images/signup_mobile.jpg" width=29.9%><img src="./src/assets/readme_images/login_mobile.jpg" width=30%>
+<img src="./src/assets/readme_images/signup_ipad.jpg" width=30%><img src="./src/assets/readme_images/login_ipad.jpg" width=30%><img src="./src/assets/readme_images/signup_mobile.jpg" width=19.9%><img src="./src/assets/readme_images/login_mobile.jpg" width=20%>
 
 tested to see that the following 3 routes work in postman:
 
@@ -631,7 +630,7 @@ I incorporated the `authenticateUser` function for all the protected routes i.e.
 I woked on the page that displays all the job postings. I mad a reusable card component for each job.
 
 <img src="./src/assets/readme_images/jobs_full_screen.jpg">
-<img src="./src/assets/readme_images/jobs_ipad.jpg" width=50%><img src="./src/assets/readme_images/jobs_mobile.jpg" width=31%>
+<img src="./src/assets/readme_images/jobs_ipad.jpg" width=35%><img src="./src/assets/readme_images/jobs_mobile.jpg" width=21.5%>
 
 ### Development: day 8 - 08/06/2023
 
@@ -641,7 +640,8 @@ I also added styled the dashboard page, including media queries to make the page
 
 <img src="./src/assets/readme_images/dashboard_full_screen.jpg">
 
-<img src="./src/assets/readme_images/dashboard_ipad.jpg" width=40%><img src="./src/assets/readme_images/dashboard_mobile.jpg" width=25%>
+<img src="./src/assets/readme_images/dashboard_ipad.jpg" width=30%>
+<img src="./src/assets/readme_images/dashboard_mobile.jpg" width=19%>
 
 dashboard css, media queries
 deletedAccountPage, LogoutSuccessfulPage
