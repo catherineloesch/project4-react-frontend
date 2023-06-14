@@ -490,6 +490,60 @@ I removed all the unncessary boilerplate files that come with a default applicat
 
 ### Development: day 3 - 02/06/2023
 
+I did some reading on useContext as I wanted to use it to keep track of whether a user is logged in or not nad if a user is logged in, I wanted the data of that user to be accessible across all the different react components
+
+created a new file called LoginContext
+
+```JavaScript
+import { createContext } from "react";
+export const LoginContext = createContext({});
+
+```
+
+Since the App component contains all the other components, it made sense to define the state variables inside App and then share the variables with all its children.
+
+inside the App.js file:
+
+```JavaScript
+
+import { Routes, Route } from 'react-router-dom';
+import { LoginContext } from './contexts/LoginContext';
+import { useState } from 'react';
+
+
+function App() {
+
+  const [currentUser, setCurrentUser] = useState(null);
+  const [userLoggedIn, setUserLoggedIn] = useState('false');
+
+  return (
+    <div className="App">
+      <LoginContext.Provider value={{ currentUser, setCurrentUser, userLoggedIn, setUserLoggedIn }}>
+
+        <Header />
+        <Routes></Routes>
+
+      </LoginContext.Provider>
+    </div>
+  );
+}
+
+export default App;
+
+```
+
+Thus, I was able to use the userLoggedIn variable in all the child components.
+One instance where I made use of this is inside the navbar, in the header.
+When no user is logged in, we wan to display the 'Sign Up' and 'Log In' buttons, when a user is logged in we don't want the 'Sign Up' and 'Log In' buttons to show. Instead we want the 'Log out' button to show.
+
+```JavaScript
+    const { userLoggedIn } = useContext(LoginContext);
+
+    (!userLoggedIn && <Link to="/users/signup" className='nav-link'><div>Sign Up</div></Link>)
+    (!userLoggedIn && <Link to="/users/login" className='nav-link'><div>Login</div></Link>)
+    (userLoggedIn && <Link to="/" className='nav-link'><div onClick={handleLogOut}>Log Out</div></Link>)
+```
+
 On the third day of development I focused on rendering the API data on the front end.
 manged to get full CRUD for job resource
 user signup
@@ -534,27 +588,17 @@ I used several media queries to achieve this, below is the example of one I used
 }
 ```
 
-- add @media queries for header
-- toggle hamburger menu
-- add fontawesome icons, add css, add responsive navbar
-- CSS added
-- responsibe navigation bar using vanilla CSS
-
 I added content to the landing page and did the styling.
 
 I also did styling for the input forms.
 
-<img src="./src/assets/readme_images/new_job_form_ipad.jpg" width=50%>
-<img src="./src/assets/readme_images/new_job_form_mobile.jpg" width=40%>
+<img src="./src/assets/readme_images/new_job_form_ipad.jpg" width=50%><img src="./src/assets/readme_images/new_job_form_mobile.jpg" width=40%>
 
 I also thought it would be nice to have a dropdown menu rather than a simple text field for the user to specify the job type.
 
-<img src="./src/assets/readme_images/new_job_form.jpg" width=45%>
-<img src="./src/assets/readme_images/job_type_dropdown.jpg" width=45%>
+<img src="./src/assets/readme_images/new_job_form.jpg" width=45%><img src="./src/assets/readme_images/job_type_dropdown.jpg" width=45%>
 
 ### Development: day 6 - 05/06/2023
-
-- backend deployed on heroku: https://p4-rails.herokuapp.com
 
 tested to see that the following 3 routes work in postman:
 
@@ -563,17 +607,79 @@ tested to see that the following 3 routes work in postman:
 - GET: https://p4-rails.herokuapp.com/current_user -> verifies token and returns user data
 - DELETE: https://p4-rails.herokuapp.com/logout -> logs user out
 
+Login
+Logout
+SignUP
+
+user profile page
+update user
+delete user
+
+check if token expired
+
+authentication
+
+First we need to get the payload by decoding the token and extracting the part that contains the expiration date
+I achieved this using the Buffer library.
+The next step is to check the expiration date against the current date. If the expiration date is less than the current date, the token is expired and authentication fails. If the expiration date is greater than the current date authentication is successful.
+
+```Javascript
+const decodeToken = (token) => {
+
+    const base64String = token.split('.')[1];
+    const decodedValue = JSON.parse(Buffer.from(base64String, 'base64').toString('ascii'));
+    return decodedValue;
+
+}
+
+const checkTokenExp = (token_exp) => {
+  const currentTime = Math.round(Date.now()/1000)
+  return (currentTime < token_exp)
+
+}
+
+export const authenticateUser = () => {
+const token = JSON.parse(localStorage.getItem('petsJWT'))
+
+ if ((token !== null && token !== undefined)) {
+   const payload = decodeToken(token.token)
+
+   if (payload !== null && payload !== undefined) {
+     const userIsAuthenticated = checkTokenExp(payload.exp)
+     return userIsAuthenticated
+   }
+ }
+}
+
+
+
+```
+
 ### Development: day 7 - 06/06/2023
 
 - full CRUD for both User and Job model
 - CSS forms for user input
 
+Job cards
+date formatting
+
 ### Development: day 8 - 08/06/2023
 
-responsive css
+On day 8 of development I tackled the deployment of the front end on [Netlify](http://www.netlify.com/).
+
+I also added styled the dashboard page, including media queries to make the page responsive.
+
+<img src="./src/assets/readme_images/dashboard_full_screen.jpg">
+
+<img src="./src/assets/readme_images/dashboard_ipad.jpg" width=50%><img src="./src/assets/readme_images/dashboard_mobile.jpg" width=32%>
+
+dashboard css, media queries
+deletedAccountPage, LogoutSuccessfulPage
 
 ### Development: day 9 - 08/06/2023
 
+edit user form css
+media queries for profile page
 On day 9 I finished the responsive design and created seed data for the rails api.
 I also worked on the frontend deployment.
 
