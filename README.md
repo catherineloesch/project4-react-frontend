@@ -28,11 +28,11 @@ Featuring freelance jobs posted by pet owners, the application enables users to 
 
 ## <a name="deployment-links"></a> 2. Deployment Links
 
-- Front End: React application deployed on Netlify
+- Front end: React application deployed on [Netlify](http://www.netlify.com/)
 
   - Deployment: https://pawneepets.netlify.app/
 
-- Back End: rails application deployed on Heroku
+- Back end: rails application deployed on [Heroku](http://www.heroku.com/)
   - Deployment: https://p4-rails.herokuapp.com
   - Back end GitHub repository: https://github.com/catherineloesch/project4-rails-api
 
@@ -78,7 +78,7 @@ npx create-react-app project4-react-frontend
   - react-router-dom (v6.11.2)
     - https://www.npmjs.com/package/react-router-dom
 - authentication:
-  - buffer (v6.0.3)
+  - Buffer (v6.0.3)
     - https://nodejs.org/api/buffer.html
     - used to decode JWT tokens
 - UI:
@@ -447,40 +447,11 @@ end
 
 I used postman to test out all the endpoints.
 
-```ruby
-Rails.application.routes.draw do
-  get '/current_user', to: 'current_user#index'
-  get '/current_user/info', to: 'current_user#show'
-
-  devise_for :users, path: '', path_names: {
-    #POST request to /login
-    sign_in: 'login',
-    #DELETE request to /logout
-    sign_out: 'logout',
-    #POST request to /signup
-    registration: 'signup'
-  },
-  controllers: {
-    sessions: 'users/sessions',
-    registrations: 'users/registrations',
-  }
-
-  resources :users do
-    resources :jobs do
-    end
-  end
-
-  get "jobs", to: "jobs#all"
-  get "jobs/:id", to: "jobs#one"
-
-end
-```
-
 ### Development: day 2 - 01/06/2023
 
 Once I was confident that all the routes were working, I deployed the back end rails application on [Heroku](http://www.heroku.com/), so rather than using http://localhost:4000, all requests were now being sent to https://p4-rails.herokuapp.com.
 
-After deploying the backend, I focused on the front end and initialised a new React application using the 'create-react-app' command:
+After deploying the back end, I focused on the front end and initialised a new React application using the 'create-react-app' command:
 
 ```zsh
 npx create-react-app project4-react-frontend
@@ -490,9 +461,7 @@ I removed all the unncessary boilerplate files that come with a default applicat
 
 ### Development: day 3 - 02/06/2023
 
-I did some reading on useContext as I wanted to use it to keep track of whether a user is logged in or not nad if a user is logged in, I wanted the data of that user to be accessible across all the different react components
-
-created a new file called LoginContext
+On the third day of development, I did some research on useContext hook in React, as I wanted to use it to keep track of whether a user is logged in or not and if a user is logged in, I wanted the data of that user to be accessible across all the different React components. To do this, I first created a new file called LoginContext.js with the following lines:
 
 ```JavaScript
 import { createContext } from "react";
@@ -500,16 +469,12 @@ export const LoginContext = createContext({});
 
 ```
 
-Since the App component contains all the other components, it made sense to define the state variables inside App and then share the variables with all its children.
-
-inside the App.js file:
+Since the `<App>` component is high up in the hierarchy and contains all the other components, it made sense to define the state variables inside the `<App>` component and then share the variables with all its children:
 
 ```JavaScript
-
 import { Routes, Route } from 'react-router-dom';
 import { LoginContext } from './contexts/LoginContext';
 import { useState } from 'react';
-
 
 function App() {
 
@@ -532,9 +497,8 @@ export default App;
 
 ```
 
-Thus, I was able to use the userLoggedIn variable in all the child components.
-One instance where I made use of this is inside the navbar, in the header.
-When no user is logged in, we wan to display the 'Sign Up' and 'Log In' buttons, when a user is logged in we don't want the 'Sign Up' and 'Log In' buttons to show. Instead we want the 'Log out' button to show.
+Thus, I was able to use the `userLoggedIn` variable in all the child components. One instance where I made use of this was in the `<Nav>` component inside the `<Header>`.
+When no user is logged in, it should display the 'Sign Up' and 'Log In' buttons. However, when a user is logged in, those two buttons should disappear and a 'Log Out' button should appear in the nav bar:
 
 ```JavaScript
     const { userLoggedIn } = useContext(LoginContext);
@@ -544,21 +508,19 @@ When no user is logged in, we wan to display the 'Sign Up' and 'Log In' buttons,
     (userLoggedIn && <Link to="/" className='nav-link'><div onClick={handleLogOut}>Log Out</div></Link>)
 ```
 
-On the third day of development I focused on rendering the API data on the front end.
-manged to get full CRUD for job resource
-user signup
-user login
-delete account
+- rendering the API data on the front end.
+- manged to get full CRUD for job resource
+- user signup
+- user login
+- delete account
 
 ### Development: day 4 - 03/06/2023
 
-On day 4 of development I spent some time trying to install Material UI, a CSS framework but ran into some issues as the it didn't seem compatible with the version of React that I was using (v18.2.0). Rather than downgrading to an older version of React, I decided to do the styling in vanilla CSS rather than use a framework.
-
-I also added some custom fonts to the front end, Lilly and Quicksand.
+On day 4 of development I spent some time trying to install [Material UI](https://mui.com/), an open-source framework for React components. However, I ran into some issues as the it didn't seem compatible with the version of React that I was using (v18.2.0). Rather than downgrading to an older version of React, I decided to do the styling in vanilla CSS instead of using a framework. I also added two custom fonts to the front end, [Lilly](https://www.fontsquirrel.com/fonts/lilly) and [Quicksand](https://en.bestfonts.pro/font/quicksand).
 
 ### Development: day 5 - 04/06/2023
 
-On day 5 of development I got started on he styling of the website, starting with the header and the navigation bar. I used @media queries to make the nagivation menu easy to navigate from different screen sizes.
+On the fifth day of development I tackled the styling of the website, starting with the header and the navigation bar. I used media queries to make the nagivation menu easy to navigate from different screen sizes.
 
 <img src="./src/assets/readme_images/navbar_large_screen.jpg" >
 
@@ -570,35 +532,26 @@ On day 5 of development I got started on he styling of the website, starting wit
 
 <img src="./src/assets/readme_images/mobile_menu.jpg" width=30%>
 
-I used several media queries to achieve this, below is the example of one I used for screens smaller than 400px:
+<br>
 
-```CSS
-@media screen and (max-width: 400px) {
+Next, I added styling to forms for the webite. I started with the form that allows the user to post a new job listing:
 
-    .header {
-        height: 115px;
-        padding: 3rem 1rem;
+<br>
 
-    }
+<img src="./src/assets/readme_images/new_job_form.jpg" width=45%><img src="./src/assets/readme_images/new_job_form_mobile.jpg" width=40%>
 
-    .app-title,  .header .fa-paw { font-size: 1.85rem; }
+I also thought it would be nice to have a dropdown menu rather than a simple text field for the user to specify the job type. For the start date and the end date of the job I wanted the user to be able to select the date from a dropdown calendar. For this used the [React Date Picker](https://www.npmjs.com/package/react-datepicker) component.
 
-    .nav .nav-list a { padding: 1rem 0; }
-
-}
-```
-
-I added content to the landing page and did the styling.
-
-I also did styling for the input forms.
-
-<img src="./src/assets/readme_images/new_job_form_ipad.jpg" width=50%><img src="./src/assets/readme_images/new_job_form_mobile.jpg" width=40%>
-
-I also thought it would be nice to have a dropdown menu rather than a simple text field for the user to specify the job type.
-
-<img src="./src/assets/readme_images/new_job_form.jpg" width=45%><img src="./src/assets/readme_images/job_type_dropdown.jpg" width=45%>
+<img src="./src/assets/readme_images/job_type_dropdown.jpg" width=39.5%>
+<img src="./src/assets/readme_images/datepicker.jpg" width=31%>
 
 ### Development: day 6 - 05/06/2023
+
+On day 6 I added styling to the login and signup forms, again writing several media queries for each form to make sure they are easy to navigate on different screen sizes.
+
+<img src="./src/assets/readme_images/signup.jpg" width=45%><img src="./src/assets/readme_images/login.jpg" width=45%>
+<img src="./src/assets/readme_images/signup_ipad.jpg" width=40%><img src="./src/assets/readme_images/login_ipad.jpg" width=40%>
+<img src="./src/assets/readme_images/signup_mobile.jpg" width=29.9%><img src="./src/assets/readme_images/login_mobile.jpg" width=30%>
 
 tested to see that the following 3 routes work in postman:
 
@@ -606,10 +559,6 @@ tested to see that the following 3 routes work in postman:
 - POST: https://p4-rails.herokuapp.com/login -> logs user in + creates token
 - GET: https://p4-rails.herokuapp.com/current_user -> verifies token and returns user data
 - DELETE: https://p4-rails.herokuapp.com/logout -> logs user out
-
-Login
-Logout
-SignUP
 
 user profile page
 update user
@@ -655,13 +604,34 @@ const token = JSON.parse(localStorage.getItem('petsJWT'))
 
 ```
 
+I `authenticateUser` function for all the protected routes i.e. routes that should only be accessible with a valid token. If the `authenticateUser` returns `true` the user can proceed to the requested page. If the `authenticateUser` function returns `false` the user is redirected to the login page:
+
+```Javascript
+
+    useEffect(() => {
+        const auth = authenticateUser()
+
+        if (auth === true) {
+            getUser()
+            console.log('User authenticated:', auth)
+        } else {
+        localStorage.removeItem("petsJWT")
+          setUserLoggedIn(false)
+          setCurrentUser(null)
+          navigate(`/users/login`)
+        }
+
+      }, [])
+
+```
+
 ### Development: day 7 - 06/06/2023
 
 - full CRUD for both User and Job model
-- CSS forms for user input
 
-Job cards
-date formatting
+I woked on the page that displays all the job postings. I mad a reusable card component for each job.
+<img src="./src/assets/readme_images/jobs_full_screen.jpg">
+<img src="./src/assets/readme_images/jobs_ipad.jpg" width=50%><img src="./src/assets/readme_images/jobs_mobile.jpg" width=31%>
 
 ### Development: day 8 - 08/06/2023
 
@@ -683,7 +653,7 @@ media queries for profile page
 On day 9 I finished the responsive design and created seed data for the rails api.
 I also worked on the frontend deployment.
 
-### Development: day 10 - 09/06/2023 - Submission Deadline + presentation
+### Development: day 10 - 09/06/2023 - Submission Deadline + Presentation
 
 On the final day of this project I completed the readme and presented the project to my cohort.
 
