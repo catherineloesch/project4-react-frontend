@@ -218,7 +218,7 @@ rails new p4-rails --api
 
 ### Proposal: choice of technology stack
 
-- I dediced to use a rails API with a React Front-End as I had used these 2 technologies before separately but not yet combined together.
+- I dediced to use a rails API with a React Front-End as I had used these 2 technologies before separately but not combined.
 
 ### Proposal: submission
 
@@ -230,7 +230,7 @@ rails new p4-rails --api
 I started the development process by writing the code for the backend models: the User and Job models.
 When I originally generated these models I did so without implementing authentication.
 After some research I realised that when using the devise package for authentication, it is more straightforward to generate the User model with devise.
-Since I was still early in the backend development process, I decided to start over from scratch and generated the User model with devise, following along the steps listed in the [documumentation by Dakota Lee Martinez](https://dakotaleemartinez.com/tutorials/devise-jwt-api-only-mode-for-authentication/). This documentation recommends installing the following gems:
+Since I was still early in the backend development process, I decided to start the back end from scratch and generated the User model with devise, following along the steps listed in the [documumentation by Dakota Lee Martinez](https://dakotaleemartinez.com/tutorials/devise-jwt-api-only-mode-for-authentication/). This documentation recommends installing the following gems:
 
 - rack-cors
 - devise
@@ -243,7 +243,7 @@ After installing the gems, I used the recommended command to generate the User m
 rails generate devise User
 ```
 
-Next, I generated the Job model (without devise) and also created and migrated the database. Folling the migration I made sure both the tables for users and jobs would appear in the Schema file:
+Next, I generated the Job model (without devise) and also created and migrated the database. Following the migration I made sure both the tables for users and jobs would appear in the Schema file:
 
 ```ruby
 
@@ -285,11 +285,11 @@ Next, I generated the Job model (without devise) and also created and migrated t
 
 ```
 
-I then followed along the [documentation](https://dakotaleemartinez.com/tutorials/devise-jwt-api-only-mode-for-authentication/) further to create the controllers and routes for the User model, resulting in 3 controllers for the User model:
+I then followed along further with the [documentation](https://dakotaleemartinez.com/tutorials/devise-jwt-api-only-mode-for-authentication/) and created the controllers and routes for the User model, resulting in 3 controllers for the User model:
 
 - a SessionsController
 - a RegistrationsController
-- and a CurrentUserController
+- a CurrentUserController
 
 ```ruby
 class Users::RegistrationsController < Devise::RegistrationsController
@@ -450,10 +450,10 @@ end
 
 I tested all the different routes in [Postman](https://www.postman.com/), making sure that:
 
-- sending a POST request to the '/signup' endpoint creates new user and generates a token along with a 'Sign up successful. New user created.' message.
-- sending a POST request to the '/login' endpoint logs the user in and creates token along with a 'User logged in sucessfully.' message.
-- sending a GET request to the '/current_user' endpoint with a valid token verifies the token and returns the data for the user associated with the token.
-- sending a DELETE request to the '/logout' endpoint logs user out with a "User logged out successfully." message.
+- sending a POST request to the '/signup' endpoint creates new user and generates a token along with a 'Sign up successful. New user created.' message
+- sending a POST request to the '/login' endpoint logs the user in and generates a token along with a 'User logged in sucessfully.' message
+- sending a GET request to the '/current_user' endpoint with a valid token verifies the token and returns the data for the user associated with the token
+- sending a DELETE request to the '/logout' endpoint logs the user out and returns a "User logged out successfully." message
 - all CRUD actions defined in the JobsController work as expected
 
 Once I was confident that all the routes were working, I deployed the back end rails application on [Heroku](http://www.heroku.com/), so rather than using http://localhost:4000, all requests were now being sent to https://p4-rails.herokuapp.com.
@@ -515,7 +515,7 @@ When no user is logged in, it should display the 'Sign Up' and 'Log In' buttons.
     (userLoggedIn && <Link to="/" className='nav-link'><div onClick={handleLogOut}>Log Out</div></Link>)
 ```
 
-I also made sure tha I was able to display data from the backend on the front end, starting with the job resource, first making sure that I could display jobs from the database on the front end and then adding forms to add, edit and delete jobs on the front end.
+I also made sure that I was able to display data from the backend on the front end, starting with the job resource, first making sure that I could display jobs from the database on the front end and then adding forms to add, edit and delete jobs on the front end.
 
 ### Development: day 4 - 03/06/2023
 
@@ -546,7 +546,7 @@ Next, I added styling to the `<form>` elements. I started with the form that all
 
 <img src="./src/assets/readme_images/new_job_form.jpg" width=45%><img src="./src/assets/readme_images/new_job_form_mobile.jpg" width=40%>
 
-I also thought it would be nice to have a dropdown menu rather than a simple text field for the user to specify the job type. For the start date and the end date of the job I wanted the user to be able to select the date from a dropdown calendar. For this used the [React Date Picker](https://www.npmjs.com/package/react-datepicker) component.
+I chose to use a dropdown menu rather than a simple text field for the user to specify the job type. For the start date and the end date of the job I wanted the user to be able to select the date from a dropdown calendar. For this used the [React Date Picker](https://www.npmjs.com/package/react-datepicker) component.
 
 <img src="./src/assets/readme_images/job_type_dropdown.jpg" width=39.5%><img src="./src/assets/readme_images/datepicker.jpg" width=31%>
 
@@ -557,8 +557,8 @@ On day 6 I added styling to the login and signup forms, again writing several me
 <img src="./src/assets/readme_images/signup.jpg" width=45%><img src="./src/assets/readme_images/login.jpg" width=45%>
 <img src="./src/assets/readme_images/signup_ipad.jpg" width=30%><img src="./src/assets/readme_images/login_ipad.jpg" width=30%><img src="./src/assets/readme_images/signup_mobile.jpg" width=19.9%><img src="./src/assets/readme_images/login_mobile.jpg" width=20%>
 
-After verifying that a user can log in and out of their account with a token, I tackled the issue of checking whether or not a token is expired.
-As a first step, I wrote a function that decodes the token and extracts the data that contains the expiration date of the token. I achieved this using the [Buffer library](https://vinod827.medium.com/decoding-a-jwt-token-in-nodejs-b8d5d079dea7).
+After verifying that a user can sign up/log in with a token being issued, I moved on to issue of checking whether or not a token is expired.
+As a first step, I wrote a function that decodes the token and extracts the data that contains the expiration date. I achieved this using the [Buffer library](https://vinod827.medium.com/decoding-a-jwt-token-in-nodejs-b8d5d079dea7).
 
 ```JavaScript
 const decodeToken = (token) => {
@@ -613,29 +613,31 @@ I incorporated the `authenticateUser` function for all the protected routes i.e.
 
 ### Development: day 7 - 06/06/2023
 
-I woked on styling the landing page as well as the page that displays all the job postings. I mad a reusable card component for each job component.
+On day 7, I woked on styling the landing page as well as the page that displays all the job postings. I mad a reusable card component for each job record, along with media queries to ensure a responsive layout.
 
 <img src="./src/assets/readme_images/jobs_full_screen.jpg">
 <img src="./src/assets/readme_images/jobs_ipad.jpg" width=35%><img src="./src/assets/readme_images/jobs_mobile.jpg" width=21.5%>
 
 ### Development: day 8 - 08/06/2023
 
-On day 8 of development I tackled the deployment of the front end on [Netlify](http://www.netlify.com/).
-
-I also added styled the dashboard page, including media queries to make the page responsive.
+On day 8 I tackled the deployment of the front end on [Netlify](http://www.netlify.com/). I also added styling to the dashboard page, including media queries to make the page responsive.
 
 <img src="./src/assets/readme_images/dashboard_full_screen.jpg">
 
-<img src="./src/assets/readme_images/dashboard_ipad.jpg" width=30%><img src="./src/assets/readme_images/dashboard_mobile.jpg" width=19%>
+<img src="./src/assets/readme_images/dashboard_ipad.jpg" width=32%>
+<img src="./src/assets/readme_images/dashboard_mobile.jpg" width=20%>
 
-- dashboard css, media queries
 - deletedAccountPage, LogoutSuccessfulPage
 
 ### Development: day 9 - 08/06/2023
 
-edit user form css
-media queries for profile page
-On day 9 I finished the responsive design and created seed data for the rails api.
+On day 9, I styled the form that allows the user to edit job postings on the front end alongside some media queries.
+<img src="./src/assets/readme_images/edit_job.jpg" width=40%>
+
+<img src="./src/assets/readme_images/edit_job_ipad.jpg" width=32%>
+<img src="./src/assets/readme_images/edit_job_mobile.jpg" width=20%>
+
+After I finished the styling for the project, I finally created some seed data for the rails api.
 
 ### Development: day 10 - 09/06/2023 - Submission Deadline + Presentation
 
@@ -643,22 +645,23 @@ On the final day of this project I added content to the readme document and pres
 
 ## 7. <a name="challenges"></a> Challenges
 
-- deployment on the front end proved to be a challenge as there were issues with the fetch requests not working properly.
+- deployment on the front end on Netlify proved to be a challenge as there were issues with the fetch requests not working properly.
 - I originally created the backend with a sqlite database instead of postgresql and had to later account for that during deployment, which made things more complicated.
 - the react-datepicker component I used formatted the date in a different way than the rails datetime format, which required writing some extra code to account for this inconsistency.
-- typos
+- the [documentation](https://dakotaleemartinez.com/tutorials/devise-jwt-api-only-mode-for-authentication/) I followed to set up devise authentication contained a couple of typos which I only noticed after copying some of the commands to the CLI, which resulted in several error messages.
 
 ## 8. <a name="wins"></a> Wins
 
 - I managed to fulfil all the MVP requirements.
-- I was also really glad that I managed to implement the responsive design for this project withing the timeframe that was given as I had run out of time in previous projects to make the applications fully responsive.
+- I was glad to have managed the implementation of the responsive design for this project within the given timeframe as I had run out of time in previous projects to make the applications fully responsive.
 - I successfully implemented authentication with devise which I had not used before in a project.
 
 ## <a name="takeaways"></a> 9. Key Learnings & Takeaways
 
 - It is useful to think about how to implement authentication before generating a User model in the backend.
-- CSS variables are save a lot of time when programmming in vanilla CSS.
--
+- Using CSS variables are save a lot of time when programmming in vanilla CSS.
+- It is easier to implement a responsive design as you do the styling of different elements rather than leaving it until the final stages of development.
+- Always check for typos before copy and pasting commands to the CLI.
 
 ## <a name="future-improvements"></a> 10. Future Improvements
 
