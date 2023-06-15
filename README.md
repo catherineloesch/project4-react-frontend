@@ -627,16 +627,13 @@ On day 8 I tackled the deployment of the front end on [Netlify](http://www.netli
 <img src="./src/assets/readme_images/dashboard_ipad.jpg" width=32%>
 <img src="./src/assets/readme_images/mobile_dashboard.jpg" width=20%>
 
-- deletedAccountPage, LogoutSuccessfulPage
-
 ### Development: day 9 - 08/06/2023
 
-On day 9, I styled the form that allows the user to edit job postings on the front end alongside some media queries.
+On day 9, I styled the form that allows the user to edit job postings on the front end alongside some media queries, following the same pattern I used for the form that allows the user to create a new job:
 
 <img src="./src/assets/readme_images/edit_job.jpg" width=40%>
 
-<img src="./src/assets/readme_images/edit_job_ipad.jpg" width=32%>
-<img src="./src/assets/readme_images/edit_job_mobile.jpg" width=20%>
+<img src="./src/assets/readme_images/edit_job_ipad.jpg" width=32%><img src="./src/assets/readme_images/edit_job_mobile.jpg" width=20%>
 
 After I finished the styling for the project, I finally created some seed data for the rails api.
 
@@ -662,7 +659,7 @@ On the final day of this project I added content to the readme document and pres
 - It is useful to think about how to implement authentication before generating a User model in the backend.
 - Using CSS variables are save a lot of time when programmming in vanilla CSS.
 - It is easier to implement a responsive design as you do the styling of different elements rather than leaving it until the final stages of development.
-- Always check for typos before copy and pasting commands to the CLI.
+- Always check for typos before copying and pasting commands to the CLI.
 
 ## <a name="future-improvements"></a> 10. Future Improvements
 
