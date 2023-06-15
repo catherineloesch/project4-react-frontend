@@ -218,7 +218,7 @@ rails new p4-rails --api
 
 ### Proposal: choice of technology stack
 
-- I dediced to use a rails API with a React Front-End as I had used these 2 technologies before separately but not combined.
+- I dediced to use a rails API with a React front end as I had used these two technologies before separately but not combined.
 
 ### Proposal: submission
 
@@ -230,7 +230,7 @@ rails new p4-rails --api
 I started the development process by writing the code for the backend models: the User and Job models.
 When I originally generated these models I did so without implementing authentication.
 After some research I realised that when using the devise package for authentication, it is more straightforward to generate the User model with devise.
-Since I was still early in the backend development process, I decided to start the back end from scratch and generated the User model with devise, following along the steps listed in the [documumentation by Dakota Lee Martinez](https://dakotaleemartinez.com/tutorials/devise-jwt-api-only-mode-for-authentication/). This documentation recommends installing the following gems:
+Since I was still early in the back end development process, I decided to start the back end from scratch. Thus, I generated the User model with devise, following along the steps listed in the [documumentation by Dakota Lee Martinez](https://dakotaleemartinez.com/tutorials/devise-jwt-api-only-mode-for-authentication/). This documentation recommends installing the following gems:
 
 - rack-cors
 - devise
@@ -450,8 +450,8 @@ end
 
 I tested all the different routes in [Postman](https://www.postman.com/), making sure that:
 
-- sending a POST request to the '/signup' endpoint creates new user and generates a token along with a 'Sign up successful. New user created.' message
-- sending a POST request to the '/login' endpoint logs the user in and generates a token along with a 'User logged in sucessfully.' message
+- sending a POST request to the '/signup' endpoint creates new user and generates a token, along with a 'Sign up successful. New user created.' message
+- sending a POST request to the '/login' endpoint logs the user in and generates a token, along with a 'User logged in sucessfully.' message
 - sending a GET request to the '/current_user' endpoint with a valid token verifies the token and returns the data for the user associated with the token
 - sending a DELETE request to the '/logout' endpoint logs the user out and returns a "User logged out successfully." message
 - all CRUD actions defined in the JobsController work as expected
@@ -592,7 +592,7 @@ const token = JSON.parse(localStorage.getItem('petsJWT'))
 }
 ```
 
-I incorporated the `authenticateUser` function for all the protected routes i.e. routes that should only be accessible with a valid token. If the `authenticateUser` returns `true` the user can proceed to the requested page. If the `authenticateUser` function returns `false` the user is redirected to the login page:
+I incorporated the `authenticateUser` function for all the protected routes i.e. routes that should only be accessible with a valid token. If the `authenticateUser` funcion returns `true`, the user can proceed to the requested page. If the `authenticateUser` function returns `false`, the user is redirected to the login page:
 
 ```Javascript
     useEffect(() => {
@@ -613,7 +613,7 @@ I incorporated the `authenticateUser` function for all the protected routes i.e.
 
 ### Development: day 7 - 06/06/2023
 
-On day 7, I woked on styling the landing page as well as the page that displays all the job postings. I mad a reusable card component for each job record, along with media queries to ensure a responsive layout.
+On day 7, I woked on styling the landing page as well as the page that displays all the job postings. I made a reusable card component for each job record, along with media queries to ensure a responsive layout.
 
 <img src="./src/assets/readme_images/jobs_full_screen.jpg">
 <img src="./src/assets/readme_images/jobs_ipad.jpg" width=35%><img src="./src/assets/readme_images/jobs_mobile.jpg" width=21.5%>
@@ -625,13 +625,14 @@ On day 8 I tackled the deployment of the front end on [Netlify](http://www.netli
 <img src="./src/assets/readme_images/dashboard_full_screen.jpg">
 
 <img src="./src/assets/readme_images/dashboard_ipad.jpg" width=32%>
-<img src="./src/assets/readme_images/dashboard_mobile.jpg" width=20%>
+<img src="./src/assets/readme_images/mobile_dashboard.jpg" width=20%>
 
 - deletedAccountPage, LogoutSuccessfulPage
 
 ### Development: day 9 - 08/06/2023
 
 On day 9, I styled the form that allows the user to edit job postings on the front end alongside some media queries.
+
 <img src="./src/assets/readme_images/edit_job.jpg" width=40%>
 
 <img src="./src/assets/readme_images/edit_job_ipad.jpg" width=32%>
