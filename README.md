@@ -34,7 +34,7 @@ Featuring freelance jobs posted by pet owners, the application enables users to 
 
 - Back end: rails application deployed on [Heroku](http://www.heroku.com/)
   - Deployment: https://p4-rails.herokuapp.com
-  - Back end GitHub repository: https://github.com/katieloesch/project4-rails-api
+  - Back end GitHub repository: https://github.com/katieloesch/p4-rails
 
 ## <a name="installation"></a> 3. Installation
 

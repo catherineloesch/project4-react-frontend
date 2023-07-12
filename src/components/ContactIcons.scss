@@ -1,0 +1,121 @@
+.contact-icons {
+    padding-top: 30px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
+    gap: 5px;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+
+    @media screen and (max-width: 1050px) {
+      bottom: 34%;
+    }
+    @media screen and (max-width: 1000px) {
+     bottom: 22%;
+    }
+    @media screen and (max-width: 780px) {
+     bottom: 12%;
+    }
+    @media screen and (max-width: 715px) {
+     bottom: 21%;
+    }
+    @media screen and (max-width: 600px) {
+     bottom: 6%;
+    }
+
+    @media screen and (max-width: 415px) {
+     bottom: 2%;
+    }
+    @media screen and (max-width: 400px) {
+     bottom: 0%;
+    }
+    @media screen and (max-width: 360px) {
+     bottom: 0%;
+    }
+
+      
+    .contact-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 1px solid var(--gray-a);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-items: center;
+      transition: all 0.3s ease-in-out;
+     
+
+      svg {
+        width: 20px;
+        height: 20px;
+        padding-top: 3px;
+        color: var(--gray-a);
+        transition: all 0.3s ease-in-out;
+
+      }
+
+  
+
+
+      &:hover {
+        border: 1px solid var(--gray);
+      
+        svg { 
+          color: var(--gray);
+        }
+
+      }
+
+      @media screen and (min-width: 2000px) {
+        width: 70px;
+        height: 70px;
+
+        margin: 0.5rem 0;
+
+        svg {
+          width: 30px;
+          height: 30px;
+        }
+      }
+    }
+
+    .contact-icon-code, .contact-icon-github, .contact-icon-mail, .contact-icon-portfolio   {
+      // svg {
+      //    margin-bottom: 3px;
+          
+      // }
+    }
+    .contact-icon-linkedin {
+      svg {
+         margin-top: 2px;
+          
+      }
+    }
+    .contact-icon-mail, .contact-icon-portfolio, .contact-icon-github {
+      svg {
+         margin-top: 1px;
+          
+      }
+    }
+
+
+    .contact-icon-mail, .contact-icon-portfolio {
+      svg {
+          scale: 1.2;
+          
+      }
+    }
+    .contact-icon-github, .contact-icon-code {
+      svg {
+          scale: 1.1;
+          
+      }
+    }
+    
+}

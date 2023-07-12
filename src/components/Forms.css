@@ -170,32 +170,57 @@ Sign Up Page
     
 }
 
-@media only screen and (max-width: 1850px) {
+/* @media only screen and (max-width: 1850px) {
     .signup-form {
         margin-top: -25%;
         background-position-X: 50%;
         background-size: 120%;
     }
+} */
+@media only screen and (max-width: 1050px) {
+    .signup-form {
+        margin-top: -60%;
+        
+    }
+}
+@media only screen and (max-width: 800px) {
+    .signup-form {
+        margin-top: -50%;
+        
+    }
 }
 @media only screen and (max-width: 435px) {
     .signup-form {
-        margin-top: -25%;
+        background-position-X: 50%;
+        margin-top: -30%;
         background-position-Y: -10%;
-        background-size: 130%;
+        background-size: 120%;
     }
 }
 @media only screen and (max-width: 400px) {
     .signup-form {
         margin-top: -10%;
-        background-position-Y: 20%;
-        background-size: 150%;
+        background-position-Y: 60%;
+        /* background-size: 150%; */
+    }
+}
+@media only screen and (max-width: 360px) {
+    .signup-form {
+        margin-top: 0%;
     }
 }
 @media only screen and (max-width: 355px) {
     .signup-form {
         margin-top: -20%;
         background-position-Y: 90px;
-        background-size: 150%;
+        background-size: 130%;
+    }
+}
+@media only screen and (max-width: 320px) {
+    .signup-form {
+        margin-top: 15%;
+        background-position-Y: 180px;
+        background-size: 120%;
     }
 }
 

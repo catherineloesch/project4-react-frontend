@@ -22,6 +22,7 @@ import DeleteJob from './pages/DeleteJob';
 import EditUser from './pages/EditUser';
 import UserProfile from './pages/UserProfile';
 import NotificationLogoutSuccessful from './pages/NotificationLogoutSuccessful';
+import ContactIcons from './components/ContactIcons';
 
 function App() {
   const navigate = useNavigate();
@@ -42,6 +43,7 @@ function App() {
       <LoginContext.Provider value={{currentUser, setCurrentUser, userLoggedIn, setUserLoggedIn, API_URL}}>
 
         <Header userId={userId}/>
+        <ContactIcons />
 
         <Routes>
 

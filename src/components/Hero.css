@@ -11,7 +11,8 @@
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
-    border: 5px solid var(--darkolive)
+    border: 2px solid var(--darkolive);
+    box-shadow: 0 8px 32px 0 var(--darkolive-shadow);
 }
 
 .home-hero-text {
@@ -172,7 +173,7 @@
     }
 @media screen and (max-width: 800px) {
     .home-hero-img {
-        width: 100%;
+        width: 90%;
       
     }
     .home-hero-text {width: 35%; }
