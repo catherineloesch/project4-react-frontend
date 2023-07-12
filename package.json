@@ -1,6 +1,6 @@
 {
   "name": "project4-react-frontend",
-  "homepage": ".",
+  "homepage": "https://pawneepets.netlify.app/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -45,8 +45,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@sveltejs/adapter-netlify": "^1.0.0-next.65"
   }
 }
