@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "buffer": "^6.0.3",
     "install": "^0.13.0",
+    "mini-css-extract-plugin": "^2.5.1",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.43",
     "npm": "^9.6.7",
