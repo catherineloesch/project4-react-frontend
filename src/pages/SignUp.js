@@ -44,7 +44,7 @@ export default function SignUp(props) {
                 apiResponse.data = {...apiResponse.data, display_name: `User ${apiResponse.data.id}`}
                 updateUser(apiResponse.data.id, apiResponse.data)
                 console.log(apiResponse.data)
-                props.setUserName('User ${apiResponse.data.id}')
+                props.setUserName(`User ${apiResponse.data.id}`)
             }
             await setUser(apiResponse.data)
 

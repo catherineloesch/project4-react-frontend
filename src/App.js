@@ -55,7 +55,7 @@ function App() {
           {/* protected routes: can only be accessed with valid JWT token */}
           <Route path='/users/login' element={<Login />} />
           <Route path='/users/signup' element={<SignUp setUserName={setUserName}/>} />
-          <Route path='/users/:id/dashboard' element={<Dashboard userName= {userName} />} />
+          <Route path='/users/:id/dashboard' element={<Dashboard userName={userName} />} />
           <Route path='/users/:id/profile' element={<UserProfile />} />
           <Route path='/users/:id/edit' element={<EditUser />} />
 

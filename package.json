@@ -1,6 +1,6 @@
 {
   "name": "project4-react-frontend",
-  "homepage": "https://pawneepets.netlify.app/",
+  "homepage": "http://pawneepets.netlify.app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
